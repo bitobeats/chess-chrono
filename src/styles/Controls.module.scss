@@ -1,0 +1,51 @@
+@use "./consts" as consts;
+
+.container {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  grid-area: #{consts.$grid-menu};
+  justify-content: space-around;
+  height: 50%;
+
+  @media (orientation: "portrait") {
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-around;
+    margin: 0;
+  }
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: transparent;
+    width: max-content;
+    height: max-content;
+  }
+
+  .playPauseButton {
+    svg path {
+      fill: var(--primary-color);
+      color: var(--primary-color);
+    }
+  }
+
+  .resetButton {
+    svg path {
+      color: var(--primary-color);
+      stroke: var(--primary-color);
+    }
+  }
+
+  .settingsButton {
+    svg {
+      stroke: var(--primary-color);
+
+      path {
+        fill: var(--primary-color);
+      }
+    }
+  }
+}
