@@ -1,8 +1,8 @@
-import type { ActivePlayer } from "../../libs/chess-clock-service/types/ActivePlayer";
+import type { ActivePlayer } from "../libs/chess-clock-service/types/ActivePlayer";
 
 import { createEffect } from "solid-js";
 import { createStore, reconcile } from "solid-js/store";
-import { chessClockService } from "../../libs/libsSetup";
+import { chessClockService } from "../libs/libsSetup";
 
 const TIMER_REQUESTER_INTERVAL = 123;
 

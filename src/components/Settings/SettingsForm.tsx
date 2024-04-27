@@ -1,7 +1,7 @@
-import type { PlayerSettings as PlayerSettingsType } from "../../../libs/settings-manager/types/Settings";
-import type { Theme } from "../../../libs/settings-manager/enums/Theme";
+import type { PlayerSettings as PlayerSettingsType } from "../../libs/settings-manager/types/Settings";
+import type { Theme } from "../../libs/settings-manager/enums/Theme";
 
-import styles from "../../../styles/SettingsForm.module.scss";
+import styles from "./SettingsForm.module.scss";
 
 import { For } from "solid-js";
 import { GlobalSettings } from "./GlobalSettings";

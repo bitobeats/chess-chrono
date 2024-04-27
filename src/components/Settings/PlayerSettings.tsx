@@ -1,4 +1,4 @@
-import styles from "../../../styles/PlayerSettings.module.scss";
+import styles from "./PlayerSettings.module.scss";
 import { createUniqueId } from "solid-js";
 
 type ValueMinMax = {

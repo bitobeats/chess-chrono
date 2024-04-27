@@ -1,4 +1,4 @@
-@use "./consts";
+@use "../styles/consts";
 
 .container {
   grid-area: #{consts.$grid-main};

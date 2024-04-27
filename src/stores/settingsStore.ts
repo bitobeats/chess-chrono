@@ -1,9 +1,9 @@
 import { createSignal, onMount, createEffect } from "solid-js";
 import { createStore, reconcile } from "solid-js/store";
 
-import { changeTheme } from "../../utils/changeTheme";
-import { settingsManager } from "../../libs/libsSetup";
-import { Theme } from "../../libs/settings-manager/enums/Theme";
+import { changeTheme } from "../utils/changeTheme";
+import { settingsManager } from "../libs/libsSetup";
+import { Theme } from "../libs/settings-manager/enums/Theme";
 
 let init = false;
 

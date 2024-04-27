@@ -1,4 +1,4 @@
-import styles from "../../../styles/SettingsView.module.scss";
+import styles from "./SettingsView.module.scss";
 
 import { SettingsForm } from "./SettingsForm";
 

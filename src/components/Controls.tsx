@@ -1,14 +1,14 @@
-import styles from "../../styles/Controls.module.scss";
+import styles from "./Controls.module.scss";
 
 import { OpenSettingsModalButton } from "./OpenSettingsModalButton";
 import { SettingsView } from "./Settings/SettingsView";
 import { useChessClockStore } from "../stores/chessClockStore";
-import { audioPlayer } from "../../libs/libsSetup";
+import { audioPlayer } from "../libs/libsSetup";
 
-import playIcon from "../../assets/icons/play.svg";
-import restartIcon from "../../assets/icons/restart.svg";
-import settingsIcon from "../../assets/icons/settings.svg";
-import pauseIcon from "../../assets/icons/pause.svg";
+import playIcon from "../assets/icons/play.svg";
+import restartIcon from "../assets/icons/restart.svg";
+import settingsIcon from "../assets/icons/settings.svg";
+import pauseIcon from "../assets/icons/pause.svg";
 
 export const Controls = () => {
   let dialogRef!: HTMLDialogElement;
