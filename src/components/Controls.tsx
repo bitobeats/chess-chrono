@@ -1,7 +1,8 @@
 import styles from "./Controls.module.scss";
 
+import { lazy, Suspense } from "solid-js";
+
 import { OpenSettingsModalButton } from "./OpenSettingsModalButton";
-import { SettingsView } from "./Settings/SettingsView";
 import { useChessClockStore } from "../stores/chessClockStore";
 import { audioPlayer } from "../libs/libsSetup";
 
@@ -10,6 +11,10 @@ import restartIcon from "../assets/icons/restart.svg";
 import settingsIcon from "../assets/icons/settings.svg";
 import pauseIcon from "../assets/icons/pause.svg";
 
+const SettingsView = lazy(async () => {
+  const { SettingsView } = await import("./Settings/SettingsView");
+  return { default: SettingsView };
+});
 export const Controls = () => {
   let dialogRef!: HTMLDialogElement;
 
@@ -49,7 +54,9 @@ export const Controls = () => {
         <img src={settingsIcon} />
       </OpenSettingsModalButton>
       <dialog ref={dialogRef} onClick={handleClickOutside}>
-        <SettingsView onCancel={() => dialogRef.close()} />
+        <Suspense fallback="Loading...">
+          <SettingsView onCancel={() => dialogRef.close()} />
+        </Suspense>
       </dialog>
     </menu>
   );
