@@ -3,6 +3,7 @@ import type { JSXElement } from "solid-js";
 import { SettingsStoreContextProvider } from "../contexts/SettingsStoreContext";
 import { createSettingsStore } from "../stores/settingsStore";
 import { settingsManager } from "../libs/libsSetup";
+
 import { ChessClockStoreContextProvider } from "../contexts/ChessClockStoreContext";
 import { createChessClockStore } from "../stores/chessClockStore";
 import { chessClockService } from "../libs/libsSetup";
