@@ -46,11 +46,11 @@ export const ChessClock = () => {
   return (
     <main class={styles.container}>
       <button
+        classList={{ [styles.clockSwitch]: true, [styles.defeatedPlayer]: chessClockStore.defeatedPlayer === 1 }}
         ref={player1ButtonRef}
         title={"Clock switch"}
         onClick={[toggle, 2]}
         onTouchStart={[toggle, 2]}
-        class={chessClockStore.defeatedPlayer === 1 ? styles.defeatedPlayer : undefined}
         disabled={
           switchesDisabled() || (chessClockStore.chessClockState === "running" && chessClockStore.activePlayer === 2)
         }>
@@ -58,11 +58,10 @@ export const ChessClock = () => {
       </button>
 
       <button
+        classList={{ [styles.clockSwitch]: true, [styles.defeatedPlayer]: chessClockStore.defeatedPlayer === 2 }}
         ref={player2ButtonRef}
         title={"Clock switch"}
         onClick={[toggle, 1]}
-        onTouchStart={[toggle, 1]}
-        class={chessClockStore.defeatedPlayer === 2 ? styles.defeatedPlayer : undefined}
         disabled={
           switchesDisabled() || (chessClockStore.chessClockState === "running" && chessClockStore.activePlayer === 1)
         }>
