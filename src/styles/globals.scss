@@ -15,7 +15,7 @@
   background-color: var(--background-color);
 }
 
-body {
+#root {
   display: grid;
   grid-template-areas:
     "#{consts.$grid-menu}"

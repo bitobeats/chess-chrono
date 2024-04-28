@@ -26,26 +26,24 @@
   }
 
   .playPauseButton {
-    svg path {
+    img path {
       fill: var(--primary-color);
       color: var(--primary-color);
     }
   }
 
   .resetButton {
-    svg path {
+    path {
       color: var(--primary-color);
       stroke: var(--primary-color);
     }
   }
 
   .settingsButton {
-    svg {
-      stroke: var(--primary-color);
+    stroke: var(--primary-color);
 
-      path {
-        fill: var(--primary-color);
-      }
+    path {
+      fill: var(--primary-color);
     }
   }
 }
