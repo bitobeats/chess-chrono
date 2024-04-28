@@ -33,10 +33,10 @@ export function createSettingsStore() {
 
   onMount(() => {
     settingsManager.addEventListener("settingssaved", settingsSavedEventListener);
-  });
 
-  onCleanup(() => {
-    settingsManager.removeEventListener("settingssaved", settingsSavedEventListener);
+    onCleanup(() => {
+      settingsManager.removeEventListener("settingssaved", settingsSavedEventListener);
+    });
   });
 
   return { settings, setSettings, saveSettings };
