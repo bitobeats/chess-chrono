@@ -7,14 +7,22 @@ import { settingsManager } from "../libs/libsSetup";
 export function createSettingsStore() {
   const [settings, setSettings] = createStore({ ...settingsManager.lastLoadedSettings });
 
-  function settingsSavedEventListener() {
-    setSettings(reconcile(settingsManager.lastLoadedSettings));
-  }
-
   async function saveSettings() {
     settingsManager.setSettings(() => ({ ...settings }));
     await settingsManager.saveSettings();
   }
+
+  onMount(() => {
+    function settingsSavedEventListener() {
+      setSettings(reconcile(settingsManager.lastLoadedSettings));
+    }
+
+    settingsManager.addEventListener("settingssaved", settingsSavedEventListener);
+
+    onCleanup(() => {
+      settingsManager.removeEventListener("settingssaved", settingsSavedEventListener);
+    });
+  });
 
   createResource(async () => {
     await settingsManager.init();
@@ -29,14 +37,6 @@ export function createSettingsStore() {
 
   createEffect(() => {
     changeTheme(settings.global.theme);
-  });
-
-  onMount(() => {
-    settingsManager.addEventListener("settingssaved", settingsSavedEventListener);
-
-    onCleanup(() => {
-      settingsManager.removeEventListener("settingssaved", settingsSavedEventListener);
-    });
   });
 
   return { settings, setSettings, saveSettings };
