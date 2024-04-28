@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [
     solid(),
     VitePWA({
-      registerType: "autoUpdate",
+      injectRegister: "script-defer",
       manifest: {
         name: "Chess Clock",
         short_name: "ChessClock",
