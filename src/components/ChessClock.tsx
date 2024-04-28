@@ -4,12 +4,12 @@ import styles from "./ChessClock.module.scss";
 
 import { onMount } from "solid-js";
 import { formatTimeToHoursMinutesSeconds } from "../utils/formatTimeToHoursMinutesSeconds";
-import { useSettingsStore } from "../stores/settingsStore";
+import { useSettingsStoreContext } from "../contexts/SettingsStoreContext";
 import { audioPlayer } from "../libs/libsSetup";
 import { useChessClockStore } from "../stores/chessClockStore";
 
 export const ChessClock = () => {
-  const { settings } = useSettingsStore();
+  const { settings } = useSettingsStoreContext();
   let player1ButtonRef!: HTMLButtonElement;
   let player2ButtonRef!: HTMLButtonElement;
   const { chessClockStore, switchTo } = useChessClockStore();

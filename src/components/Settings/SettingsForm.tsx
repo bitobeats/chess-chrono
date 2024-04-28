@@ -6,7 +6,7 @@ import styles from "./SettingsForm.module.scss";
 import { For } from "solid-js";
 import { GlobalSettings } from "./GlobalSettings";
 import { PlayerSettings } from "./PlayerSettings";
-import { useSettingsStore } from "../../stores/settingsStore";
+import { useSettingsStoreContext } from "../../contexts/SettingsStoreContext";
 
 type SettingsFormProps = {
   onCancel: () => void;
@@ -20,7 +20,7 @@ type Player = {
 
 export const SettingsForm = (props: SettingsFormProps) => {
   let formRef!: HTMLFormElement;
-  const { saveSettings, settings, setSettings } = useSettingsStore();
+  const { saveSettings, settings, setSettings } = useSettingsStoreContext();
 
   const players: () => Player[] = () => [
     {
