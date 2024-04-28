@@ -20,7 +20,7 @@ export class AudioPlayer {
       return;
     }
 
-    const offlineContext = new OfflineAudioContext({ numberOfChannels: 1, sampleRate: 48000, length: 48000 });
+    const offlineContext = new OfflineAudioContext({ numberOfChannels: 1, sampleRate: 48000, length: 1 });
 
     this.#switchAudioBuffer = await offlineContext.decodeAudioData(this.#switchAudioArrayBuffer);
 
