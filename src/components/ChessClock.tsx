@@ -15,7 +15,7 @@ export const ChessClock = () => {
   const { chessClockStore, switchTo } = useChessClockStoreContext();
 
   onMount(async () => {
-    await audioPlayer.preloadAssets();
+    await audioPlayer.init();
   });
 
   const toggle = (toPlayer: ActivePlayer) => {

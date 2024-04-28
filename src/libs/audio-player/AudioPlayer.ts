@@ -7,33 +7,23 @@ export class AudioPlayer {
   #initialized: boolean = false;
   #assetsPreloaded: boolean = false;
 
-  async preloadAssets() {
-    if (this.#assetsPreloaded) {
-      return;
-    }
-
-    const canPlayXCaf = new Audio().canPlayType("audio/x-caf");
-    const switchAudioData = await fetch(canPlayXCaf ? CLOCK_TOGGLE_AUDIO_URL_CAF : CLOCK_TOGGLE_AUDIO_URL_WEBM);
-    this.#switchAudioArrayBuffer = await switchAudioData.arrayBuffer();
-    this.#assetsPreloaded = true;
-  }
-
   async init() {
     if (this.#initialized) {
       return;
     }
 
     if (!this.#assetsPreloaded) {
-      await this.preloadAssets();
+      await this.#preloadAssets();
     }
 
     if (!this.#switchAudioArrayBuffer) {
       return;
     }
 
-    this.#audioCtx = new AudioContext();
+    const offlineContext = new OfflineAudioContext({ numberOfChannels: 1, sampleRate: 48000, length: 48000 });
 
-    this.#switchAudioBuffer = await this.#audioCtx.decodeAudioData(this.#switchAudioArrayBuffer);
+    this.#switchAudioBuffer = await offlineContext.decodeAudioData(this.#switchAudioArrayBuffer);
+
     this.#initialized = true;
   }
 
@@ -42,8 +32,9 @@ export class AudioPlayer {
       await this.init();
     }
     if (!this.#audioCtx) {
-      return;
+      this.#audioCtx = new AudioContext();
     }
+
     if (this.#audioCtx.state === "suspended") {
       await this.#audioCtx.resume();
     }
@@ -63,5 +54,16 @@ export class AudioPlayer {
     const min = 1;
     const max = 1.1;
     return Math.random() * (max - min) + min;
+  }
+
+  async #preloadAssets() {
+    if (this.#assetsPreloaded) {
+      return;
+    }
+
+    const canPlayXCaf = new Audio().canPlayType("audio/x-caf");
+    const switchAudioData = await fetch(canPlayXCaf ? CLOCK_TOGGLE_AUDIO_URL_CAF : CLOCK_TOGGLE_AUDIO_URL_WEBM);
+    this.#switchAudioArrayBuffer = await switchAudioData.arrayBuffer();
+    this.#assetsPreloaded = true;
   }
 }
