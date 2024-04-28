@@ -6,16 +6,19 @@ export function changeTheme(theme: Theme) {
   const rootClasses = document.documentElement.classList;
 
   rootClasses.remove(Theme.Light, Theme.Dark);
+
   switch (theme) {
     case Theme.System: {
       break;
     }
     case Theme.Dark: {
       rootClasses.add(Theme.Dark);
+      changeThemeColor("black");
       break;
     }
     case Theme.Light: {
       rootClasses.add(Theme.Light);
+      changeThemeColor("white");
       break;
     }
   }
@@ -23,4 +26,11 @@ export function changeTheme(theme: Theme) {
 
 function changeColorScheme(colorScheme: "light" | "dark" | "light dark") {
   document.documentElement.style.colorScheme = colorScheme;
+}
+
+function changeThemeColor(color: string) {
+  const themeColor = document.querySelector<HTMLMetaElement>(`meta[name="theme-color"]`);
+  if (themeColor) {
+    themeColor.content = color;
+  }
 }

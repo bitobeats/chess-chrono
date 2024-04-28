@@ -30,6 +30,8 @@ body {
   height: 100dvh;
   box-sizing: border-box;
   margin: 0;
+  padding: 10px;
+
   padding-top: calc(10px + env(safe-area-inset-top));
   padding-bottom: calc(10px + env(safe-area-inset-bottom));
   padding-right: calc(10px + env(safe-area-inset-right));
