@@ -12,9 +12,11 @@ export function changeTheme(theme: Theme) {
     }
     case Theme.Dark: {
       rootClasses.add(Theme.Dark);
+      break;
     }
     case Theme.Light: {
       rootClasses.add(Theme.Light);
+      break;
     }
   }
 }
