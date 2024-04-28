@@ -1,4 +1,4 @@
-import type { ActivePlayer } from "../libs/chess-clock-service/types/ActivePlayer";
+import type { Player } from "../libs/chess-clock-service/types/Player";
 import type { ChessClockState } from "../libs/chess-clock-service/types/ChessClockState";
 import type { ChessClockService } from "../libs/chess-clock-service/ChessClockService";
 
@@ -10,7 +10,7 @@ const TIMER_REQUESTER_INTERVAL = 123;
 type ChessClockStore = {
   chessClockState: ChessClockService["state"];
   activePlayer: ChessClockService["activePlayer"];
-  defeatedPlayer: ActivePlayer | null;
+  defeatedPlayer: Player | null;
   playerTimes: ChessClockService["playerTimes"];
 };
 
@@ -29,7 +29,7 @@ export function createChessClockStore(chessClockService: ChessClockService) {
       setChessClockStore("chessClockState", state);
     }
 
-    function activePlayerChangeEventListener(activePlayer: ActivePlayer) {
+    function activePlayerChangeEventListener(activePlayer: Player) {
       setChessClockStore("activePlayer", activePlayer);
     }
 
@@ -37,7 +37,7 @@ export function createChessClockStore(chessClockService: ChessClockService) {
       setChessClockStore("playerTimes", reconcile(chessClockService.playerTimes));
     }
 
-    function playerDefeatEventListener(defeatedPlayer: ActivePlayer | null) {
+    function playerDefeatEventListener(defeatedPlayer: Player | null) {
       setChessClockStore("defeatedPlayer", defeatedPlayer);
     }
 
@@ -76,7 +76,7 @@ export function createChessClockStore(chessClockService: ChessClockService) {
     setChessClockStore("playerTimes", reconcile(chessClockService.playerTimes));
   }
 
-  function switchTo(player: ActivePlayer) {
+  function switchTo(player: Player) {
     if (intervalId === null) {
       intervalId = setInterval(handleInterval, TIMER_REQUESTER_INTERVAL);
     }

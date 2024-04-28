@@ -1,5 +1,5 @@
 import type { PlayerConfig } from "./types/PlayerConfig";
-import type { ActivePlayer } from "./types/ActivePlayer";
+import type { Player } from "./types/Player";
 import type { ChessClockState } from "./types/ChessClockState";
 
 import { SimpleEventTarget } from "vrls-simple-event-target";
@@ -13,12 +13,12 @@ import { CustomWakeLock } from "./CustomWakeLock";
 type ChessClockServiceEventMap = {
   statechange: (state: ChessClockState) => void;
   playerconfigchange: (player1Config: Readonly<PlayerConfig>, player2Config: Readonly<PlayerConfig>) => void;
-  activeplayerchange: (activePlayer: ActivePlayer) => void;
-  playerdefeat: (defeatedPlayer: ActivePlayer | null) => void;
+  activeplayerchange: (activePlayer: Player) => void;
+  playerdefeat: (defeatedPlayer: Player | null) => void;
 };
 export class ChessClockService extends SimpleEventTarget<ChessClockServiceEventMap> {
   #state: ChessClockState = "ready";
-  #activePlayer: ActivePlayer = 1;
+  #activePlayer: Player = 1;
   #wakeLock = new CustomWakeLock();
 
   #playerTimes: [number, number];
@@ -38,7 +38,7 @@ export class ChessClockService extends SimpleEventTarget<ChessClockServiceEventM
       timer.addEventListener("finish", () => {
         timer.pause();
         this.#updateState("finished");
-        this.dispatchEvent("playerdefeat", (index + 1) as ActivePlayer);
+        this.dispatchEvent("playerdefeat", (index + 1) as Player);
       });
     });
   }
@@ -57,7 +57,7 @@ export class ChessClockService extends SimpleEventTarget<ChessClockServiceEventM
     return this.#activePlayer;
   }
 
-  startWith(player: ActivePlayer) {
+  startWith(player: Player) {
     if (this.#state !== "ready") {
       throw new UnexpectedCallWhileNotReadyError();
     }
@@ -66,7 +66,7 @@ export class ChessClockService extends SimpleEventTarget<ChessClockServiceEventM
     this.switchTo(player);
   }
 
-  switchTo(player: ActivePlayer) {
+  switchTo(player: Player) {
     if (this.#state !== "running") {
       throw new UnexpectedCallWhileNotRunningError();
     }

@@ -1,4 +1,4 @@
-import type { ActivePlayer } from "../libs/chess-clock-service/types/ActivePlayer";
+import type { Player } from "../libs/chess-clock-service/types/Player";
 
 import styles from "./ChessClock.module.scss";
 
@@ -18,7 +18,7 @@ export const ChessClock = () => {
     await audioPlayer.init();
   });
 
-  const toggle = (toPlayer: ActivePlayer) => {
+  const toggle = (toPlayer: Player) => {
     switchTo(toPlayer);
 
     switch (toPlayer) {
