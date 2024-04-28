@@ -14,6 +14,7 @@ type ChessClockServiceEventMap = {
   statechange: (state: ChessClockState) => void;
   playerconfigchange: (player1Config: Readonly<PlayerConfig>, player2Config: Readonly<PlayerConfig>) => void;
   activeplayerchange: (activePlayer: ActivePlayer) => void;
+  playerdefeat: (defeatedPlayer: ActivePlayer | null) => void;
 };
 export class ChessClockService extends SimpleEventTarget<ChessClockServiceEventMap> {
   #state: ChessClockState = "ready";
@@ -25,7 +26,7 @@ export class ChessClockService extends SimpleEventTarget<ChessClockServiceEventM
   #player2Timer: Timer;
 
   constructor(public player1Config: PlayerConfig, public player2Config: PlayerConfig) {
-    super(["statechange", "playerconfigchange", "activeplayerchange"]);
+    super(["statechange", "playerconfigchange", "activeplayerchange", "playerdefeat"]);
 
     [this.#player1Timer, this.#player2Timer] = [player1Config, player2Config].map(
       (playerConfig) => new Timer(playerConfig)
@@ -33,10 +34,11 @@ export class ChessClockService extends SimpleEventTarget<ChessClockServiceEventM
 
     this.#playerTimes = [this.#player1Timer.remainingTime, this.#player2Timer.remainingTime];
 
-    [this.#player1Timer, this.#player2Timer].forEach((timer) => {
+    [this.#player1Timer, this.#player2Timer].forEach((timer, index) => {
       timer.addEventListener("finish", () => {
         timer.pause();
         this.#updateState("finished");
+        this.dispatchEvent("playerdefeat", (index + 1) as ActivePlayer);
       });
     });
   }
@@ -145,6 +147,7 @@ export class ChessClockService extends SimpleEventTarget<ChessClockServiceEventM
       timer.reset();
     });
     this.#wakeLock.releaseWakeLock();
+    this.dispatchEvent("playerdefeat", null);
     this.#updateState("ready");
   }
 

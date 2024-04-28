@@ -2,7 +2,7 @@ import type { ActivePlayer } from "../libs/chess-clock-service/types/ActivePlaye
 import type { ChessClockState } from "../libs/chess-clock-service/types/ChessClockState";
 import type { ChessClockService } from "../libs/chess-clock-service/ChessClockService";
 
-import { createEffect, onMount, onCleanup } from "solid-js";
+import { onMount, onCleanup } from "solid-js";
 import { createStore, reconcile } from "solid-js/store";
 
 const TIMER_REQUESTER_INTERVAL = 123;
@@ -37,14 +37,20 @@ export function createChessClockStore(chessClockService: ChessClockService) {
       setChessClockStore("playerTimes", reconcile(chessClockService.playerTimes));
     }
 
+    function playerDefeatEventListener(defeatedPlayer: ActivePlayer | null) {
+      setChessClockStore("defeatedPlayer", defeatedPlayer);
+    }
+
     chessClockService.addEventListener("statechange", stateChangeEventListener);
     chessClockService.addEventListener("activeplayerchange", activePlayerChangeEventListener);
     chessClockService.addEventListener("playerconfigchange", playerConfigChangeEventListener);
+    chessClockService.addEventListener("playerdefeat", playerDefeatEventListener);
 
     onCleanup(() => {
       chessClockService.removeEventListener("statechange", stateChangeEventListener);
       chessClockService.removeEventListener("activeplayerchange", activePlayerChangeEventListener);
       chessClockService.removeEventListener("playerconfigchange", playerConfigChangeEventListener);
+      chessClockService.removeEventListener("playerdefeat", playerDefeatEventListener);
     });
   });
 
@@ -82,27 +88,6 @@ export function createChessClockStore(chessClockService: ChessClockService) {
     }
   }
 
-  createEffect(() => {
-    if (chessClockStore.chessClockState === "ready") {
-      setChessClockStore("defeatedPlayer", null);
-    }
-    if (chessClockStore.chessClockState !== "finished") {
-      return null;
-    }
-
-    const [player1Time, player2Time] = chessClockService.playerTimes;
-
-    if (player1Time <= 0) {
-      setChessClockStore("defeatedPlayer", 1);
-      return;
-    } else if (player2Time <= 0) {
-      setChessClockStore("defeatedPlayer", 2);
-      return;
-    } else {
-      setChessClockStore("defeatedPlayer", null);
-      return;
-    }
-  });
   return {
     chessClockStore,
     suspend,
