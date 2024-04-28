@@ -62,6 +62,7 @@ export const ChessClock = () => {
         ref={player2ButtonRef}
         title={"Clock switch"}
         onClick={[toggle, 1]}
+        onTouchStart={[toggle, 1]}
         disabled={
           switchesDisabled() || (chessClockStore.chessClockState === "running" && chessClockStore.activePlayer === 1)
         }>
