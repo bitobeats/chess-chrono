@@ -15,6 +15,11 @@
   background-color: var(--background-color);
 }
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
 #root {
   display: grid;
   grid-template-areas:
@@ -27,7 +32,10 @@
   height: 100dvh;
   box-sizing: border-box;
   margin: 0;
-  padding: 10px 10px;
+  padding-top: calc(10px + env(safe-area-inset-top));
+  padding-bottom: calc(10px + env(safe-area-inset-bottom));
+  padding-right: calc(10px + env(safe-area-inset-right));
+  padding-left: calc(10px + env(safe-area-inset-left));
 
   @media (orientation: "portrait") {
     grid-template-areas: "#{consts.$grid-main} #{consts.$grid-menu}";
