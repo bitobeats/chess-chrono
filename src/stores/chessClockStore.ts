@@ -1,6 +1,5 @@
 import type { ActivePlayer } from "../libs/chess-clock-service/types/ActivePlayer";
 import type { ChessClockState } from "../libs/chess-clock-service/types/ChessClockState";
-import type { TimerConfig } from "../libs/chess-clock-service/types/TimerConfig";
 import type { ChessClockService } from "../libs/chess-clock-service/ChessClockService";
 
 import { createEffect, onMount, onCleanup } from "solid-js";
@@ -34,8 +33,8 @@ export function createChessClockStore(chessClockService: ChessClockService) {
       setChessClockStore("activePlayer", activePlayer);
     }
 
-    function playerConfigChangeEventListener(player1Config: TimerConfig, player2Config: TimerConfig) {
-      setChessClockStore("playerTimes", [player1Config.countdownFrom, player2Config.countdownFrom]);
+    function playerConfigChangeEventListener() {
+      setChessClockStore("playerTimes", reconcile(chessClockService.playerTimes));
     }
 
     chessClockService.addEventListener("statechange", stateChangeEventListener);
