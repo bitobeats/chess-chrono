@@ -15,50 +15,16 @@ type ChessClockStore = {
   playerTimes: typeof chessClockService.playerTimes;
 };
 
-const [chessClockStore, setChessClockStore] = createStore<ChessClockStore>({
-  chessClockState: chessClockService.state,
-  activePlayer: chessClockService.activePlayer,
-  defeatedPlayer: null,
-  playerTimes: [...chessClockService.playerTimes],
-});
-
-let intervalId: number | null = null;
-
-function handleInterval() {
-  setChessClockStore("playerTimes", reconcile(chessClockService.playerTimes));
-}
-
-function suspend() {
-  clearInterval(intervalId ?? undefined);
-  intervalId = null;
-  chessClockService.suspend();
-}
-
-function resume() {
-  intervalId = setInterval(handleInterval, TIMER_REQUESTER_INTERVAL);
-  chessClockService.resume();
-}
-
-function reset() {
-  clearInterval(intervalId ?? undefined);
-  intervalId = null;
-  chessClockService.reset();
-  setChessClockStore("playerTimes", reconcile(chessClockService.playerTimes));
-}
-
-function switchTo(player: ActivePlayer) {
-  if (intervalId === null) {
-    intervalId = setInterval(handleInterval, TIMER_REQUESTER_INTERVAL);
-  }
-
-  if (chessClockService.state === "ready") {
-    chessClockService.startWith(player);
-  } else {
-    chessClockService.switchTo(player);
-  }
-}
-
 export function createChessClockStore() {
+  const [chessClockStore, setChessClockStore] = createStore<ChessClockStore>({
+    chessClockState: chessClockService.state,
+    activePlayer: chessClockService.activePlayer,
+    defeatedPlayer: null,
+    playerTimes: [...chessClockService.playerTimes],
+  });
+
+  let intervalId: number | null = null;
+
   onMount(() => {
     function stateChangeEventListener(state: ChessClockState) {
       setChessClockStore("chessClockState", state);
@@ -82,6 +48,40 @@ export function createChessClockStore() {
       chessClockService.removeEventListener("playerconfigchange", playerConfigChangeEventListener);
     });
   });
+
+  function handleInterval() {
+    setChessClockStore("playerTimes", reconcile(chessClockService.playerTimes));
+  }
+
+  function suspend() {
+    clearInterval(intervalId ?? undefined);
+    intervalId = null;
+    chessClockService.suspend();
+  }
+
+  function resume() {
+    intervalId = setInterval(handleInterval, TIMER_REQUESTER_INTERVAL);
+    chessClockService.resume();
+  }
+
+  function reset() {
+    clearInterval(intervalId ?? undefined);
+    intervalId = null;
+    chessClockService.reset();
+    setChessClockStore("playerTimes", reconcile(chessClockService.playerTimes));
+  }
+
+  function switchTo(player: ActivePlayer) {
+    if (intervalId === null) {
+      intervalId = setInterval(handleInterval, TIMER_REQUESTER_INTERVAL);
+    }
+
+    if (chessClockService.state === "ready") {
+      chessClockService.startWith(player);
+    } else {
+      chessClockService.switchTo(player);
+    }
+  }
 
   createEffect(() => {
     if (chessClockStore.chessClockState === "ready") {
