@@ -1,3 +1,5 @@
+import type { Settings } from "./settings-manager/types/Settings";
+
 import { ChessClockService } from "./chess-clock-service/ChessClockService";
 import { SettingsManager } from "./settings-manager/SettingsManager";
 import { AudioPlayer } from "./audio-player/AudioPlayer";
@@ -19,11 +21,11 @@ settingsManager.addEventListener("settingsloaded", updateSettings);
 
 settingsManager.addEventListener("settingssaved", updateSettings);
 
-function updateSettings() {
-  chessClockService.player1Config.countdownFrom = settingsManager.lastLoadedSettings.player1.startTime;
-  chessClockService.player1Config.incrementBy = settingsManager.lastLoadedSettings.player1.incrementBy;
-  chessClockService.player2Config.countdownFrom = settingsManager.lastLoadedSettings.player2.startTime;
-  chessClockService.player2Config.incrementBy = settingsManager.lastLoadedSettings.player2.incrementBy;
+function updateSettings(newSettings: Readonly<Settings>) {
+  chessClockService.player1Config.countdownFrom = newSettings.player1.startTime;
+  chessClockService.player1Config.incrementBy = newSettings.player1.incrementBy;
+  chessClockService.player2Config.countdownFrom = newSettings.player2.startTime;
+  chessClockService.player2Config.incrementBy = newSettings.player2.incrementBy;
   chessClockService.dispatchEvent(
     "playerconfigchange",
     chessClockService.player1Config,
