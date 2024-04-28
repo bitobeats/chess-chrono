@@ -2,7 +2,7 @@ import type { Player } from "../libs/chess-clock-service/types/Player";
 
 import styles from "./ChessClock.module.scss";
 
-import { onMount } from "solid-js";
+import { createResource } from "solid-js";
 import { formatTimeToHoursMinutesSeconds } from "../utils/formatTimeToHoursMinutesSeconds";
 import { useSettingsStoreContext } from "../contexts/SettingsStoreContext";
 import { audioPlayer } from "../libs/libsSetup";
@@ -14,7 +14,7 @@ export const ChessClock = () => {
   let player2ButtonRef!: HTMLButtonElement;
   const { chessClockStore, switchTo } = useChessClockStoreContext();
 
-  onMount(async () => {
+  createResource(async () => {
     await audioPlayer.init();
   });
 
