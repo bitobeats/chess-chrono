@@ -9,6 +9,15 @@ export function changeTheme(theme: Theme) {
 
   switch (theme) {
     case Theme.System: {
+      const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+      const lightModeQuery = window.matchMedia("(prefers-color-scheme: light)");
+
+      if (darkModeQuery) {
+        changeThemeColor("black");
+      }
+      if (lightModeQuery) {
+        changeThemeColor("white");
+      }
       break;
     }
     case Theme.Dark: {
