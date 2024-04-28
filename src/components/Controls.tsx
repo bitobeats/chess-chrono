@@ -3,7 +3,7 @@ import styles from "./Controls.module.scss";
 import { lazy, Suspense } from "solid-js";
 
 import { OpenSettingsModalButton } from "./OpenSettingsModalButton";
-import { useChessClockStore } from "../stores/chessClockStore";
+import { useChessClockStoreContext } from "../contexts/ChessClockStoreContext";
 import { audioPlayer } from "../libs/libsSetup";
 
 const SettingsView = lazy(async () => {
@@ -13,7 +13,7 @@ const SettingsView = lazy(async () => {
 export const Controls = () => {
   let dialogRef!: HTMLDialogElement;
 
-  const { chessClockStore, resume, suspend, reset } = useChessClockStore();
+  const { chessClockStore, resume, suspend, reset } = useChessClockStoreContext();
 
   function handlePause() {
     if (chessClockStore.chessClockState === "suspended") {

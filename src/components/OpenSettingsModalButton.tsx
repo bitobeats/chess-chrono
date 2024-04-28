@@ -1,6 +1,6 @@
 import type { JSXElement } from "solid-js";
 
-import { useChessClockStore } from "../stores/chessClockStore";
+import { useChessClockStoreContext } from "../contexts/ChessClockStoreContext";
 
 type SettingsModalOpenerProps = {
   modalRef: () => HTMLDialogElement;
@@ -9,7 +9,7 @@ type SettingsModalOpenerProps = {
 };
 
 export const OpenSettingsModalButton = (props: SettingsModalOpenerProps) => {
-  const { chessClockStore } = useChessClockStore();
+  const { chessClockStore } = useChessClockStoreContext();
 
   const isDisabled = () => chessClockStore.chessClockState === "running";
 

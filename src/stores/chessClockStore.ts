@@ -67,7 +67,7 @@ const switchTo = (player: ActivePlayer) => {
     chessClockService.switchTo(player);
   }
 };
-export function useChessClockStore() {
+export function createChessClockStore() {
   createEffect(() => {
     if (chessClockStore.chessClockState === "ready") {
       setChessClockStore("defeatedPlayer", null);

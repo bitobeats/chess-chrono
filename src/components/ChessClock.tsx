@@ -6,13 +6,13 @@ import { onMount } from "solid-js";
 import { formatTimeToHoursMinutesSeconds } from "../utils/formatTimeToHoursMinutesSeconds";
 import { useSettingsStoreContext } from "../contexts/SettingsStoreContext";
 import { audioPlayer } from "../libs/libsSetup";
-import { useChessClockStore } from "../stores/chessClockStore";
+import { useChessClockStoreContext } from "../contexts/ChessClockStoreContext";
 
 export const ChessClock = () => {
   const { settings } = useSettingsStoreContext();
   let player1ButtonRef!: HTMLButtonElement;
   let player2ButtonRef!: HTMLButtonElement;
-  const { chessClockStore, switchTo } = useChessClockStore();
+  const { chessClockStore, switchTo } = useChessClockStoreContext();
 
   onMount(async () => {
     await audioPlayer.preloadAssets();
