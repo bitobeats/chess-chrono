@@ -23,6 +23,7 @@ export const PlayerSettings = (props: PlayerSettingsProps) => {
       <div class={styles.settingContainer}>
         <label for={`startTime-${componentUniqueId}`}>Start time (minutes)</label>
         <input
+          class={styles.input}
           type="number"
           inputMode="numeric"
           placeholder="10"
@@ -41,6 +42,7 @@ export const PlayerSettings = (props: PlayerSettingsProps) => {
       <div class={styles.settingContainer}>
         <label for={`incrementBy-${componentUniqueId}`}>Increment by (seconds)</label>
         <input
+          class={styles.input}
           type="number"
           inputMode="numeric"
           placeholder="0"
