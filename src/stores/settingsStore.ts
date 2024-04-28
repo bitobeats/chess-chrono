@@ -5,10 +5,10 @@ import { changeTheme } from "../utils/changeTheme";
 import { settingsManager } from "../libs/libsSetup";
 
 export function createSettingsStore() {
-  const [settings, setSettings] = createStore({ ...settingsManager.settings });
+  const [settings, setSettings] = createStore({ ...settingsManager.lastLoadedSettings });
 
   function settingsSavedEventListener() {
-    setSettings(reconcile(settingsManager.settings));
+    setSettings(reconcile(settingsManager.lastLoadedSettings));
   }
 
   async function saveSettings() {

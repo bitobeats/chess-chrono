@@ -19,7 +19,7 @@ export class SettingsManager extends SimpleEventTarget<EventsMap> {
     this.#settings = settings ? structuredClone(settings) : DEFAULT_SETTINGS;
   }
 
-  get settings(): Readonly<Settings> {
+  get lastLoadedSettings(): Readonly<Settings> {
     return this.#settings;
   }
 
@@ -35,7 +35,6 @@ export class SettingsManager extends SimpleEventTarget<EventsMap> {
 
   setSettings(callback: (currentSettings: Readonly<Settings>) => Settings) {
     this.#settings = callback(this.#settings);
-    this.dispatchEvent("settingssaved", this.#settings);
   }
 
   async saveSettings() {
@@ -43,6 +42,7 @@ export class SettingsManager extends SimpleEventTarget<EventsMap> {
       throw new Error("You must initialize SettingsManager before using.");
     }
     await this.#persistentSettings.set(this.#settings);
+    this.dispatchEvent("settingssaved", this.#settings);
   }
 
   async loadSettings() {
