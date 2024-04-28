@@ -33,16 +33,12 @@ export class SettingsManager extends SimpleEventTarget<EventsMap> {
     this.#initialized = true;
   }
 
-  setSettings(callback: (newSettings: Readonly<Settings>) => Settings) {
-    this.#defaultSettings = callback(this.#defaultSettings);
-  }
-
-  async saveSettings() {
+  async saveSettings(newSettings: Readonly<Settings>) {
     if (!this.#persistentSettings) {
       throw new Error("You must initialize SettingsManager before using.");
     }
-    await this.#persistentSettings.set(this.#defaultSettings);
-    this.dispatchEvent("settingssaved", this.#defaultSettings);
+    await this.#persistentSettings.set(newSettings);
+    this.dispatchEvent("settingssaved", newSettings);
   }
 
   async loadSettings() {
@@ -50,8 +46,8 @@ export class SettingsManager extends SimpleEventTarget<EventsMap> {
       throw new Error("You must initialize SettingsManager before using.");
     }
 
-    this.#defaultSettings = await this.#persistentSettings.get();
-    this.dispatchEvent("settingsloaded", this.#defaultSettings);
-    return this.#defaultSettings;
+    const loadedSettings = await this.#persistentSettings.get();
+    this.dispatchEvent("settingsloaded", loadedSettings);
+    return loadedSettings;
   }
 }
