@@ -6,11 +6,6 @@ import { OpenSettingsModalButton } from "./OpenSettingsModalButton";
 import { useChessClockStore } from "../stores/chessClockStore";
 import { audioPlayer } from "../libs/libsSetup";
 
-import playIcon from "../assets/icons/play.svg";
-import restartIcon from "../assets/icons/restart.svg";
-import settingsIcon from "../assets/icons/settings.svg";
-import pauseIcon from "../assets/icons/pause.svg";
-
 const SettingsView = lazy(async () => {
   const { SettingsView } = await import("./Settings/SettingsView");
   return { default: SettingsView };
@@ -41,17 +36,17 @@ export const Controls = () => {
   return (
     <menu class={styles.container}>
       <button
+        class={styles.iconButton}
         disabled={suspendResumeButtonDisabled()}
-        class={styles.playPauseButton}
         onClick={handlePause}
         title="Pause/Resume">
-        <img src={chessClockStore.chessClockState === "suspended" ? playIcon : pauseIcon} />
+        {chessClockStore.chessClockState === "suspended" ? ">" : "||"}
       </button>
-      <button onClick={reset} title={"Reset"} class={styles.resetButton}>
-        <img src={restartIcon} />
+      <button onClick={reset} title={"Reset"} class={styles.iconButton}>
+        ♺
       </button>
-      <OpenSettingsModalButton class={styles.settingsButton} modalRef={() => dialogRef}>
-        <img src={settingsIcon} />
+      <OpenSettingsModalButton class={styles.iconButton} modalRef={() => dialogRef}>
+        ⛭
       </OpenSettingsModalButton>
       <dialog ref={dialogRef} onClick={handleClickOutside}>
         <Suspense fallback="Loading...">

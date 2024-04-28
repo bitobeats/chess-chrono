@@ -24,26 +24,8 @@
     width: max-content;
     height: max-content;
   }
+}
 
-  .playPauseButton {
-    img path {
-      fill: var(--primary-color);
-      color: var(--primary-color);
-    }
-  }
-
-  .resetButton {
-    path {
-      color: var(--primary-color);
-      stroke: var(--primary-color);
-    }
-  }
-
-  .settingsButton {
-    stroke: var(--primary-color);
-
-    path {
-      fill: var(--primary-color);
-    }
-  }
+.iconButton {
+  font-size: xx-large;
 }
