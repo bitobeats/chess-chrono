@@ -36,40 +36,22 @@ export const SettingsForm = (props: SettingsFormProps) => {
   ];
 
   async function onChangeIncrementBy(newValue: string, player: Player) {
-    setSettings((currSettings) => ({
-      ...currSettings,
-      [player.key]: { ...currSettings[player.key], incrementBy: parseInt(newValue) },
-    }));
+    setSettings(player.key, "incrementBy", parseInt(newValue));
     await saveSettings();
   }
 
   async function onChangeStartTime(newValue: string, player: Player) {
-    setSettings((currSettings) => ({
-      ...currSettings,
-      [player.key]: { ...currSettings[player.key], startTime: parseFloat(newValue) * 60 },
-    }));
+    setSettings(player.key, "startTime", parseFloat(newValue) * 60);
     await saveSettings();
   }
 
   async function onChangeTheme(newValue: Theme) {
-    setSettings((currSettings) => ({
-      ...currSettings,
-      global: {
-        ...currSettings.global,
-        theme: newValue,
-      },
-    }));
+    setSettings("global", "theme", newValue);
     await saveSettings();
   }
 
   async function onChangeSoundOn(newValue: boolean) {
-    setSettings((currSettings) => ({
-      ...currSettings,
-      global: {
-        ...currSettings.global,
-        soundOn: newValue,
-      },
-    }));
+    setSettings("global", "soundOn", newValue);
     await saveSettings();
   }
 
