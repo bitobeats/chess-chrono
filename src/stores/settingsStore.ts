@@ -4,8 +4,6 @@ import { createStore, reconcile } from "solid-js/store";
 import { changeTheme } from "../utils/changeTheme";
 import { settingsManager } from "../libs/libsSetup";
 
-let init = false;
-
 const [settingsStore, setSettingsStore] = createStore({ ...settingsManager.settings });
 
 settingsManager.addEventListener("settingsloaded", (newSettings) => {
@@ -24,15 +22,12 @@ export function createSettingsStore() {
   const saveSettings = settingsManager.saveSettings.bind(settingsManager);
 
   onMount(async () => {
-    if (!init) {
-      try {
-        await settingsManager.init();
-        await settingsManager.loadSettings();
-        setPersistentStorageStatus("ready");
-      } catch {
-        setPersistentStorageStatus("error");
-      }
-      init = true;
+    try {
+      await settingsManager.init();
+      await settingsManager.loadSettings();
+      setPersistentStorageStatus("ready");
+    } catch {
+      setPersistentStorageStatus("error");
     }
   });
 
