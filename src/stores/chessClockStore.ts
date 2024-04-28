@@ -1,6 +1,6 @@
 import type { ActivePlayer } from "../libs/chess-clock-service/types/ActivePlayer";
 
-import { createEffect } from "solid-js";
+import { createEffect, untrack } from "solid-js";
 import { createStore, reconcile } from "solid-js/store";
 import { chessClockService } from "../libs/libsSetup";
 
@@ -76,18 +76,20 @@ export function createChessClockStore() {
       return null;
     }
 
-    const [player1Time, player2Time] = chessClockService.playerTimes;
+    untrack(() => {
+      const [player1Time, player2Time] = chessClockService.playerTimes;
 
-    if (player1Time <= 0) {
-      setChessClockStore("defeatedPlayer", 1);
-      return;
-    } else if (player2Time <= 0) {
-      setChessClockStore("defeatedPlayer", 2);
-      return;
-    } else {
-      setChessClockStore("defeatedPlayer", null);
-      return;
-    }
+      if (player1Time <= 0) {
+        setChessClockStore("defeatedPlayer", 1);
+        return;
+      } else if (player2Time <= 0) {
+        setChessClockStore("defeatedPlayer", 2);
+        return;
+      } else {
+        setChessClockStore("defeatedPlayer", null);
+        return;
+      }
+    });
   });
   return {
     chessClockStore,
