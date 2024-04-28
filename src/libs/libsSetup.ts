@@ -8,12 +8,12 @@ const settingsManager = new SettingsManager();
 
 const chessClockService = new ChessClockService(
   {
-    countdownFrom: settingsManager.lastLoadedSettings.player1.startTime,
-    incrementBy: settingsManager.lastLoadedSettings.player1.incrementBy,
+    countdownFrom: settingsManager.defaultSettings.player1.startTime,
+    incrementBy: settingsManager.defaultSettings.player1.incrementBy,
   },
   {
-    countdownFrom: settingsManager.lastLoadedSettings.player2.startTime,
-    incrementBy: settingsManager.lastLoadedSettings.player2.incrementBy,
+    countdownFrom: settingsManager.defaultSettings.player2.startTime,
+    incrementBy: settingsManager.defaultSettings.player2.incrementBy,
   }
 );
 

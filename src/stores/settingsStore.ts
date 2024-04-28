@@ -6,7 +6,7 @@ import { createStore, reconcile } from "solid-js/store";
 import { changeTheme } from "../utils/changeTheme";
 
 export function createSettingsStore(settingsManager: SettingsManager) {
-  const [settings, setSettings] = createStore({ ...settingsManager.lastLoadedSettings });
+  const [settings, setSettings] = createStore({ ...settingsManager.defaultSettings });
 
   async function saveSettings() {
     settingsManager.setSettings(() => ({ ...settings }));
@@ -15,7 +15,7 @@ export function createSettingsStore(settingsManager: SettingsManager) {
 
   onMount(() => {
     function settingsSavedEventListener() {
-      setSettings(reconcile(settingsManager.lastLoadedSettings));
+      setSettings(reconcile(settingsManager.defaultSettings));
     }
 
     settingsManager.addEventListener("settingssaved", settingsSavedEventListener);

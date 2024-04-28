@@ -5,22 +5,22 @@ import { PersistentRecord } from "../persister/PersistentRecord";
 import { DEFAULT_SETTINGS } from "./DEFAULT_SETTINGS";
 
 type EventsMap = {
-  settingssaved: (currentSettings: Readonly<Settings>) => void;
-  settingsloaded: (currentSettings: Readonly<Settings>) => void;
+  settingssaved: (newSettings: Readonly<Settings>) => void;
+  settingsloaded: (newSettings: Readonly<Settings>) => void;
 };
 
 export class SettingsManager extends SimpleEventTarget<EventsMap> {
-  #settings: Settings;
+  #defaultSettings: Settings;
   #persistentSettings: PersistentRecord<Settings> | null = null;
   #initialized: boolean = false;
 
-  constructor(settings?: Settings) {
+  constructor(defaultSettings?: Settings) {
     super(["settingssaved", "settingsloaded"]);
-    this.#settings = settings ? structuredClone(settings) : DEFAULT_SETTINGS;
+    this.#defaultSettings = defaultSettings ? structuredClone(defaultSettings) : DEFAULT_SETTINGS;
   }
 
-  get lastLoadedSettings(): Readonly<Settings> {
-    return this.#settings;
+  get defaultSettings(): Readonly<Settings> {
+    return this.#defaultSettings;
   }
 
   async init() {
@@ -28,21 +28,21 @@ export class SettingsManager extends SimpleEventTarget<EventsMap> {
       return;
     }
 
-    this.#persistentSettings = new PersistentRecord("settings", this.#settings);
+    this.#persistentSettings = new PersistentRecord("settings", this.#defaultSettings);
     await this.#persistentSettings.init();
     this.#initialized = true;
   }
 
-  setSettings(callback: (currentSettings: Readonly<Settings>) => Settings) {
-    this.#settings = callback(this.#settings);
+  setSettings(callback: (newSettings: Readonly<Settings>) => Settings) {
+    this.#defaultSettings = callback(this.#defaultSettings);
   }
 
   async saveSettings() {
     if (!this.#persistentSettings) {
       throw new Error("You must initialize SettingsManager before using.");
     }
-    await this.#persistentSettings.set(this.#settings);
-    this.dispatchEvent("settingssaved", this.#settings);
+    await this.#persistentSettings.set(this.#defaultSettings);
+    this.dispatchEvent("settingssaved", this.#defaultSettings);
   }
 
   async loadSettings() {
@@ -50,8 +50,8 @@ export class SettingsManager extends SimpleEventTarget<EventsMap> {
       throw new Error("You must initialize SettingsManager before using.");
     }
 
-    this.#settings = await this.#persistentSettings.get();
-    this.dispatchEvent("settingsloaded", this.#settings);
-    return this.#settings;
+    this.#defaultSettings = await this.#persistentSettings.get();
+    this.dispatchEvent("settingsloaded", this.#defaultSettings);
+    return this.#defaultSettings;
   }
 }
