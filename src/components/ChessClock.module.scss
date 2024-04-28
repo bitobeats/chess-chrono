@@ -20,19 +20,12 @@
 }
 
 .clockSwitch {
-  background-color: var(--clock-switch-background-color);
-  color: var(--primary-color);
-
   font-size: 50px;
   font-weight: bold;
   width: 40vw;
   min-width: max-content;
   height: 30vh;
   min-height: max-content;
-
-  &:disabled {
-    color: var(--secondary-color);
-  }
 
   @media (orientation: "portrait") {
     & {
