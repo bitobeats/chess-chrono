@@ -1,10 +1,11 @@
+import type { SettingsManager } from "../libs/settings-manager/SettingsManager";
+
 import { createEffect, createResource, onMount, onCleanup } from "solid-js";
 import { createStore, reconcile } from "solid-js/store";
 
 import { changeTheme } from "../utils/changeTheme";
-import { settingsManager } from "../libs/libsSetup";
 
-export function createSettingsStore() {
+export function createSettingsStore(settingsManager: SettingsManager) {
   const [settings, setSettings] = createStore({ ...settingsManager.lastLoadedSettings });
 
   async function saveSettings() {

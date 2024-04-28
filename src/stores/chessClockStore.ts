@@ -1,21 +1,21 @@
 import type { ActivePlayer } from "../libs/chess-clock-service/types/ActivePlayer";
 import type { ChessClockState } from "../libs/chess-clock-service/types/ChessClockState";
 import type { TimerConfig } from "../libs/chess-clock-service/types/TimerConfig";
+import type { ChessClockService } from "../libs/chess-clock-service/ChessClockService";
 
 import { createEffect, onMount, onCleanup } from "solid-js";
 import { createStore, reconcile } from "solid-js/store";
-import { chessClockService } from "../libs/libsSetup";
 
 const TIMER_REQUESTER_INTERVAL = 123;
 
 type ChessClockStore = {
-  chessClockState: typeof chessClockService.state;
-  activePlayer: typeof chessClockService.activePlayer;
+  chessClockState: ChessClockService["state"];
+  activePlayer: ChessClockService["activePlayer"];
   defeatedPlayer: ActivePlayer | null;
-  playerTimes: typeof chessClockService.playerTimes;
+  playerTimes: ChessClockService["playerTimes"];
 };
 
-export function createChessClockStore() {
+export function createChessClockStore(chessClockService: ChessClockService) {
   const [chessClockStore, setChessClockStore] = createStore<ChessClockStore>({
     chessClockState: chessClockService.state,
     activePlayer: chessClockService.activePlayer,
