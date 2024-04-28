@@ -18,7 +18,7 @@ settingsManager.addEventListener("settingssaved", () => {
 
 const [persistentStorageStatus, setPersistentStorageStatus] = createSignal<"loading" | "ready" | "error">("loading");
 
-export function useSettingsStore() {
+export function createSettingsStore() {
   const settings = settingsStore;
   const setSettings = settingsManager.setSettings.bind(settingsManager);
   const saveSettings = settingsManager.saveSettings.bind(settingsManager);

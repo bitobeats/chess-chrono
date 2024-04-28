@@ -1,7 +1,7 @@
-import type { useSettingsStore } from "../stores/settingsStore";
+import type { createSettingsStore } from "../stores/settingsStore";
 
 import { createContext, useContext } from "solid-js";
-const SettingsStoreContext = createContext<ReturnType<typeof useSettingsStore>>();
+const SettingsStoreContext = createContext<ReturnType<typeof createSettingsStore>>();
 
 export const SettingsStoreContextProvider = SettingsStoreContext.Provider;
 

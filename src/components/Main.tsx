@@ -1,11 +1,11 @@
 import { SettingsStoreContextProvider } from "../contexts/SettingsStoreContext";
-import { useSettingsStore } from "../stores/settingsStore";
+import { createSettingsStore } from "../stores/settingsStore";
 
 import { Controls } from "./Controls";
 import { ChessClock } from "./ChessClock";
 
 export const Main = () => {
-  const settingsStore = useSettingsStore();
+  const settingsStore = createSettingsStore();
 
   return (
     <SettingsStoreContextProvider value={settingsStore}>
