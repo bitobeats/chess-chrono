@@ -15,18 +15,24 @@ type ChessClockServiceEventMap = {
   playerconfigchange: (player1Config: Readonly<PlayerConfig>, player2Config: Readonly<PlayerConfig>) => void;
   activeplayerchange: (activePlayer: Player) => void;
   playerdefeat: (defeatedPlayer: Player | null) => void;
+  remainingtimeupdate: (player1RemainingTime: number, player2RemainingTime: number) => void;
 };
 export class ChessClockService extends SimpleEventTarget<ChessClockServiceEventMap> {
   #state: ChessClockState = "ready";
   #activePlayer: Player = 1;
   #wakeLock = new CustomWakeLock();
+  #timeCheckerIntervalId: number | null = null;
 
   #playerTimes: [number, number];
   #player1Timer: Timer;
   #player2Timer: Timer;
 
-  constructor(public player1Config: PlayerConfig, public player2Config: PlayerConfig) {
-    super(["statechange", "playerconfigchange", "activeplayerchange", "playerdefeat"]);
+  constructor(
+    public player1Config: PlayerConfig,
+    public player2Config: PlayerConfig,
+    public timeCheckerIntervalValue: number = 123
+  ) {
+    super(["statechange", "playerconfigchange", "activeplayerchange", "playerdefeat", "remainingtimeupdate"]);
 
     [this.#player1Timer, this.#player2Timer] = [player1Config, player2Config].map(
       (playerConfig) => new Timer(playerConfig)
@@ -43,7 +49,7 @@ export class ChessClockService extends SimpleEventTarget<ChessClockServiceEventM
     });
   }
 
-  get playerTimes(): readonly [number, number] {
+  get playerTimes(): [number, number] {
     this.#playerTimes[0] = this.#player1Timer.remainingTime;
     this.#playerTimes[1] = this.#player2Timer.remainingTime;
     return this.#playerTimes;
@@ -94,6 +100,13 @@ export class ChessClockService extends SimpleEventTarget<ChessClockServiceEventM
       }
     }
 
+    if (!this.#timeCheckerIntervalId) {
+      this.#timeCheckerIntervalId = setInterval(
+        this.#handleTimeCheckerInterval.bind(this),
+        this.timeCheckerIntervalValue
+      );
+    }
+
     this.#wakeLock.requestWakeLock();
 
     this.dispatchEvent("activeplayerchange", this.#activePlayer);
@@ -114,6 +127,9 @@ export class ChessClockService extends SimpleEventTarget<ChessClockServiceEventM
         break;
       }
     }
+
+    clearInterval(this.#timeCheckerIntervalId ?? undefined);
+    this.#timeCheckerIntervalId = null;
 
     this.#wakeLock.releaseWakeLock();
 
@@ -136,6 +152,11 @@ export class ChessClockService extends SimpleEventTarget<ChessClockServiceEventM
       }
     }
 
+    this.#timeCheckerIntervalId = setInterval(
+      this.#handleTimeCheckerInterval.bind(this),
+      this.timeCheckerIntervalValue
+    );
+
     this.#wakeLock.requestWakeLock();
 
     this.#updateState("running");
@@ -147,6 +168,11 @@ export class ChessClockService extends SimpleEventTarget<ChessClockServiceEventM
       timer.reset();
     });
     this.#wakeLock.releaseWakeLock();
+
+    clearInterval(this.#timeCheckerIntervalId ?? undefined);
+    this.#timeCheckerIntervalId = null;
+
+    this.dispatchEvent("remainingtimeupdate", this.#player1Timer.remainingTime, this.#player2Timer.remainingTime);
     this.dispatchEvent("playerdefeat", null);
     this.#updateState("ready");
   }
@@ -154,5 +180,9 @@ export class ChessClockService extends SimpleEventTarget<ChessClockServiceEventM
   #updateState(state: ChessClockState) {
     this.#state = state;
     this.dispatchEvent("statechange", state);
+  }
+
+  #handleTimeCheckerInterval() {
+    this.dispatchEvent("remainingtimeupdate", this.#player1Timer.remainingTime, this.#player2Timer.remainingTime);
   }
 }

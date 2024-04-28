@@ -5,8 +5,6 @@ import type { ChessClockService } from "../libs/chess-clock-service/ChessClockSe
 import { onMount, onCleanup } from "solid-js";
 import { createStore, reconcile } from "solid-js/store";
 
-const TIMER_REQUESTER_INTERVAL = 123;
-
 type ChessClockStore = {
   chessClockState: ChessClockService["state"];
   activePlayer: ChessClockService["activePlayer"];
@@ -21,8 +19,6 @@ export function createChessClockStore(chessClockService: ChessClockService) {
     defeatedPlayer: null,
     playerTimes: [...chessClockService.playerTimes],
   });
-
-  let intervalId: number | null = null;
 
   onMount(() => {
     function stateChangeEventListener(state: ChessClockState) {
@@ -41,46 +37,26 @@ export function createChessClockStore(chessClockService: ChessClockService) {
       setChessClockStore("defeatedPlayer", defeatedPlayer);
     }
 
+    function remainingTimeEventListener(player1RemainingTime: number, player2RemainingTime: number) {
+      setChessClockStore("playerTimes", 0, player1RemainingTime);
+      setChessClockStore("playerTimes", 1, player2RemainingTime);
+    }
+
     chessClockService.addEventListener("statechange", stateChangeEventListener);
     chessClockService.addEventListener("activeplayerchange", activePlayerChangeEventListener);
     chessClockService.addEventListener("playerconfigchange", playerConfigChangeEventListener);
     chessClockService.addEventListener("playerdefeat", playerDefeatEventListener);
-
+    chessClockService.addEventListener("remainingtimeupdate", remainingTimeEventListener);
     onCleanup(() => {
       chessClockService.removeEventListener("statechange", stateChangeEventListener);
       chessClockService.removeEventListener("activeplayerchange", activePlayerChangeEventListener);
       chessClockService.removeEventListener("playerconfigchange", playerConfigChangeEventListener);
       chessClockService.removeEventListener("playerdefeat", playerDefeatEventListener);
+      chessClockService.removeEventListener("remainingtimeupdate", remainingTimeEventListener);
     });
   });
 
-  function handleInterval() {
-    setChessClockStore("playerTimes", reconcile(chessClockService.playerTimes));
-  }
-
-  function suspend() {
-    clearInterval(intervalId ?? undefined);
-    intervalId = null;
-    chessClockService.suspend();
-  }
-
-  function resume() {
-    intervalId = setInterval(handleInterval, TIMER_REQUESTER_INTERVAL);
-    chessClockService.resume();
-  }
-
-  function reset() {
-    clearInterval(intervalId ?? undefined);
-    intervalId = null;
-    chessClockService.reset();
-    setChessClockStore("playerTimes", reconcile(chessClockService.playerTimes));
-  }
-
   function switchTo(player: Player) {
-    if (intervalId === null) {
-      intervalId = setInterval(handleInterval, TIMER_REQUESTER_INTERVAL);
-    }
-
     if (chessClockService.state === "ready") {
       chessClockService.startWith(player);
     } else {
@@ -90,9 +66,9 @@ export function createChessClockStore(chessClockService: ChessClockService) {
 
   return {
     chessClockStore,
-    suspend,
-    resume,
-    reset,
+    suspend: chessClockService.suspend.bind(chessClockService),
+    resume: chessClockService.resume.bind(chessClockService),
+    reset: chessClockService.reset.bind(chessClockService),
     switchTo,
   };
 }
