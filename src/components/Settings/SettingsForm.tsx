@@ -96,7 +96,7 @@ export const SettingsForm = (props: SettingsFormProps) => {
         onChangeSoundOn={onChangeSoundOn}
       />
 
-      <menu>
+      <menu class={styles.optionsMenu}>
         <button type="button" onClick={props.onCancel} autofocus>
           Ok
         </button>

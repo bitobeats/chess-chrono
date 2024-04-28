@@ -14,18 +14,15 @@
     justify-content: space-around;
     margin: 0;
   }
-
-  button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    background-color: transparent;
-    width: max-content;
-    height: max-content;
-  }
 }
 
 .iconButton {
   font-size: xx-large;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: transparent;
+  width: max-content;
+  height: max-content;
 }
