@@ -1,21 +1,18 @@
-import { createEffect, createResource } from "solid-js";
+import { createEffect, createResource, onMount, onCleanup } from "solid-js";
 import { createStore, reconcile } from "solid-js/store";
 
 import { changeTheme } from "../utils/changeTheme";
 import { settingsManager } from "../libs/libsSetup";
 
-const [settingsStore, setSettingsStore] = createStore({ ...settingsManager.settings });
-
-settingsManager.addEventListener("settingssaved", () => {
-  setSettingsStore(reconcile(settingsManager.settings));
-});
-
 export function createSettingsStore() {
-  const settings = settingsStore;
-  const setSettings = setSettingsStore;
+  const [settings, setSettings] = createStore({ ...settingsManager.settings });
+
+  function settingsSavedEventListener() {
+    setSettings(reconcile(settingsManager.settings));
+  }
 
   async function saveSettings() {
-    settingsManager.setSettings(() => ({ ...settingsStore }));
+    settingsManager.setSettings(() => ({ ...settings }));
     await settingsManager.saveSettings();
   }
 
@@ -24,14 +21,22 @@ export function createSettingsStore() {
     const loadedSettings = await settingsManager.loadSettings();
 
     if (loadedSettings) {
-      setSettingsStore(loadedSettings);
+      setSettings(loadedSettings);
     }
 
     return await settingsManager.loadSettings();
   });
 
   createEffect(() => {
-    changeTheme(settingsStore.global.theme);
+    changeTheme(settings.global.theme);
+  });
+
+  onMount(() => {
+    settingsManager.addEventListener("settingssaved", settingsSavedEventListener);
+  });
+
+  onCleanup(() => {
+    settingsManager.removeEventListener("settingssaved", settingsSavedEventListener);
   });
 
   return { settings, setSettings, saveSettings };
