@@ -40,7 +40,7 @@ export const Controls = () => {
         disabled={suspendResumeButtonDisabled()}
         onClick={handlePause}
         title="Pause/Resume">
-        {chessClockStore.chessClockState === "suspended" ? ">" : "||"}
+        {chessClockStore.chessClockState === "suspended" ? "▶︎" : "||"}
       </button>
       <button onClick={reset} title={"Reset"} class={styles.iconButton}>
         ♺
