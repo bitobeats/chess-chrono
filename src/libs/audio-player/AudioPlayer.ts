@@ -5,16 +5,13 @@ export class AudioPlayer {
   #switchAudioArrayBuffer: ArrayBuffer | null = null;
   #switchAudioBuffer: AudioBuffer | null = null;
   #initialized: boolean = false;
-  #assetsPreloaded: boolean = false;
 
   async init() {
     if (this.#initialized) {
       return;
     }
 
-    if (!this.#assetsPreloaded) {
-      await this.#preloadAssets();
-    }
+    await this.#preloadAssets();
 
     if (!this.#switchAudioArrayBuffer) {
       return;
@@ -29,8 +26,9 @@ export class AudioPlayer {
 
   async play() {
     if (!this.#initialized) {
-      await this.init();
+      throw new Error("AudioPlayer must be initialized first");
     }
+
     if (!this.#audioCtx) {
       this.#audioCtx = new AudioContext();
     }
@@ -57,13 +55,8 @@ export class AudioPlayer {
   }
 
   async #preloadAssets() {
-    if (this.#assetsPreloaded) {
-      return;
-    }
-
     const canPlayXCaf = new Audio().canPlayType("audio/x-caf");
     const switchAudioData = await fetch(canPlayXCaf ? CLOCK_TOGGLE_AUDIO_URL_CAF : CLOCK_TOGGLE_AUDIO_URL_WEBM);
     this.#switchAudioArrayBuffer = await switchAudioData.arrayBuffer();
-    this.#assetsPreloaded = true;
   }
 }
