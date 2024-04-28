@@ -8,6 +8,37 @@ export default defineConfig({
     solid(),
     VitePWA({
       registerType: "autoUpdate",
+      manifest: {
+        name: "Chess Clock",
+        short_name: "ChessClock",
+        theme_color: "transparent",
+        icons: [
+          {
+            src: "assets-pwa/manifest-icon-192.maskable.png",
+            sizes: "192x192",
+            type: "image/png",
+            purpose: "any",
+          },
+          {
+            src: "assets-pwa/manifest-icon-192.maskable.png",
+            sizes: "192x192",
+            type: "image/png",
+            purpose: "maskable",
+          },
+          {
+            src: "assets-pwa/manifest-icon-512.maskable.png",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: "any",
+          },
+          {
+            src: "assets-pwa/manifest-icon-512.maskable.png",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: "maskable",
+          },
+        ],
+      },
       devOptions: {
         enabled: true,
       },
