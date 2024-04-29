@@ -1,15 +1,10 @@
 import styles from "./Controls.module.scss";
 
-import { lazy, Suspense } from "solid-js";
-
 import { OpenSettingsModalButton } from "./OpenSettingsModalButton";
 import { useChessClockStoreContext } from "../contexts/ChessClockStoreContext";
+import { SettingsView } from "./Settings/SettingsView";
 import { audioPlayer } from "../libs/libsSetup";
 
-const SettingsView = lazy(async () => {
-  const { SettingsView } = await import("./Settings/SettingsView");
-  return { default: SettingsView };
-});
 export const Controls = () => {
   let dialogRef!: HTMLDialogElement;
 
@@ -49,9 +44,7 @@ export const Controls = () => {
         ⛭
       </OpenSettingsModalButton>
       <dialog ref={dialogRef} onClick={handleClickOutside}>
-        <Suspense fallback="Loading...">
-          <SettingsView onCancel={() => dialogRef.close()} />
-        </Suspense>
+        <SettingsView onCancel={() => dialogRef.close()} />
       </dialog>
     </menu>
   );
