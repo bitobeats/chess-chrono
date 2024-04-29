@@ -2,10 +2,12 @@ import { defineConfig } from "vite";
 import solid from "vite-plugin-solid";
 import autoprefixer from "autoprefixer";
 import { VitePWA } from "vite-plugin-pwa";
+import devtools from "solid-devtools/vite";
 
 export default defineConfig({
   plugins: [
     solid(),
+    devtools(),
     VitePWA({
       injectRegister: "script-defer",
       manifest: {

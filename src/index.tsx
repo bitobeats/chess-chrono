@@ -4,6 +4,8 @@ import { render } from "solid-js/web";
 import { App } from "./App";
 import "./styles/globals.scss";
 
+import "solid-devtools";
+
 const root = document.getElementById("root");
 
 render(() => <App />, root!);
