@@ -37,8 +37,13 @@ export class SettingsManager extends SimpleEventTarget<EventsMap> {
     if (!this.#persistentSettings) {
       throw new Error("You must initialize SettingsManager before using.");
     }
-    await this.#persistentSettings.set(newSettings);
-    this.dispatchEvent("settingssaved", newSettings);
+
+    try {
+      await this.#persistentSettings.set(newSettings);
+      this.dispatchEvent("settingssaved", newSettings);
+    } catch (err) {
+      console.error("Couldn't persist settings. Error: " + err);
+    }
   }
 
   async loadSettings() {
@@ -46,8 +51,13 @@ export class SettingsManager extends SimpleEventTarget<EventsMap> {
       throw new Error("You must initialize SettingsManager before using.");
     }
 
-    const loadedSettings = await this.#persistentSettings.get();
-    this.dispatchEvent("settingsloaded", loadedSettings);
-    return loadedSettings;
+    try {
+      const loadedSettings = await this.#persistentSettings.get();
+      this.dispatchEvent("settingsloaded", loadedSettings);
+      return loadedSettings;
+    } catch (err) {
+      console.error("Couldn't load persistent settings. Returning default settings. Error: " + err);
+      return DEFAULT_SETTINGS;
+    }
   }
 }
