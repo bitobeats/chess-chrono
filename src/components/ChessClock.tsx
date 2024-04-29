@@ -43,6 +43,12 @@ export const ChessClock = () => {
   const switchesDisabled = () =>
     chessClockStore.chessClockState === "suspended" || chessClockStore.chessClockState === "finished";
 
+  const player1Disabled = () =>
+    switchesDisabled() || (chessClockStore.chessClockState === "running" && chessClockStore.activePlayer === 2);
+
+  const player2Disabled = () =>
+    switchesDisabled() || (chessClockStore.chessClockState === "running" && chessClockStore.activePlayer === 1);
+
   return (
     <main class={styles.container}>
       <button
@@ -51,9 +57,7 @@ export const ChessClock = () => {
         title={"Clock switch"}
         onClick={[toggle, 2]}
         onTouchStart={[toggle, 2]}
-        disabled={
-          switchesDisabled() || (chessClockStore.chessClockState === "running" && chessClockStore.activePlayer === 2)
-        }>
+        disabled={player1Disabled()}>
         <time>{formatTimeToHoursMinutesSeconds(chessClockStore.playerTimes[0])}</time>
       </button>
 
@@ -63,9 +67,7 @@ export const ChessClock = () => {
         title={"Clock switch"}
         onClick={[toggle, 1]}
         onTouchStart={[toggle, 1]}
-        disabled={
-          switchesDisabled() || (chessClockStore.chessClockState === "running" && chessClockStore.activePlayer === 1)
-        }>
+        disabled={player2Disabled()}>
         <time>{formatTimeToHoursMinutesSeconds(chessClockStore.playerTimes[1])}</time>
       </button>
     </main>
