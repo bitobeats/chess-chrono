@@ -32,8 +32,6 @@ export function createSettingsStore(settingsManager: SettingsManager) {
     if (loadedSettings) {
       setSettings(loadedSettings);
     }
-
-    return await settingsManager.loadSettings();
   });
 
   createEffect(() => {

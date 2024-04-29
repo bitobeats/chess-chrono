@@ -2,7 +2,7 @@ import type { Player } from "../libs/chess-clock-service/types/Player";
 import type { ChessClockState } from "../libs/chess-clock-service/types/ChessClockState";
 import type { ChessClockService } from "../libs/chess-clock-service/ChessClockService";
 
-import { onMount, onCleanup } from "solid-js";
+import { onMount, onCleanup, batch } from "solid-js";
 import { createStore, reconcile } from "solid-js/store";
 
 type ChessClockStore = {
@@ -38,8 +38,10 @@ export function createChessClockStore(chessClockService: ChessClockService) {
     }
 
     function remainingTimeEventListener(player1RemainingTime: number, player2RemainingTime: number) {
-      setChessClockStore("playerTimes", 0, player1RemainingTime);
-      setChessClockStore("playerTimes", 1, player2RemainingTime);
+      batch(() => {
+        setChessClockStore("playerTimes", 0, player1RemainingTime);
+        setChessClockStore("playerTimes", 1, player2RemainingTime);
+      });
     }
 
     chessClockService.addEventListener("statechange", stateChangeEventListener);
