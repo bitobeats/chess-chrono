@@ -56,6 +56,7 @@ export const ChessClock = () => {
         ref={player1ButtonRef}
         title={"Clock switch"}
         onClick={[toggle, 2]}
+        onDblClick={(ev) => ev.preventDefault()}
         onTouchStart={[toggle, 2]}
         disabled={player1Disabled()}>
         <time>{formatTimeToHoursMinutesSeconds(chessClockStore.playerTimes[0])}</time>
@@ -65,6 +66,7 @@ export const ChessClock = () => {
         classList={{ [styles.clockSwitch]: true, [styles.defeatedPlayer]: chessClockStore.defeatedPlayer === 2 }}
         ref={player2ButtonRef}
         title={"Clock switch"}
+        onDblClick={(ev) => ev.preventDefault()}
         onClick={[toggle, 1]}
         onTouchStart={[toggle, 1]}
         disabled={player2Disabled()}>
