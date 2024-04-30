@@ -13,4 +13,9 @@
 
 .input {
   font-size: large;
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    appearance: none;
+  }
 }
