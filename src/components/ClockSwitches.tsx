@@ -9,9 +9,10 @@ import { audioPlayer } from "../libs/libsSetup";
 import { useChessClockStoreContext } from "../contexts/ChessClockStoreContext";
 
 export const ClockSwitches = () => {
-  const { settings } = useSettingsStoreContext();
   let player1ButtonRef!: HTMLButtonElement;
   let player2ButtonRef!: HTMLButtonElement;
+
+  const { settings } = useSettingsStoreContext();
   const { chessClockStore, switchTo } = useChessClockStoreContext();
 
   const switchesDisabled = () =>
