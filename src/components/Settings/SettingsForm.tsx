@@ -20,6 +20,7 @@ type Player = {
 
 export const SettingsForm = (props: SettingsFormProps) => {
   let formRef!: HTMLFormElement;
+
   const { saveSettings, settings, setSettings } = useSettingsStoreContext();
 
   const players: () => Player[] = () => [
@@ -35,13 +36,13 @@ export const SettingsForm = (props: SettingsFormProps) => {
     },
   ];
 
-  async function onChangeIncrementBy(newValue: string, player: Player) {
-    setSettings(player.key, "incrementBy", parseInt(newValue));
+  async function onChangeIncrementBy(player: Player, event: Event & { target: HTMLInputElement }) {
+    setSettings(player.key, "incrementBy", parseInt(event.target.value));
     await saveSettings();
   }
 
-  async function onChangeStartTime(newValue: string, player: Player) {
-    setSettings(player.key, "startTime", parseFloat(newValue) * 60);
+  async function onChangeStartTime(player: Player, event: Event & { target: HTMLInputElement }) {
+    setSettings(player.key, "startTime", parseFloat(event.target.value) * 60);
     await saveSettings();
   }
 
@@ -63,8 +64,8 @@ export const SettingsForm = (props: SettingsFormProps) => {
             <PlayerSettings
               incrementBy={{ value: player.playerSettings.incrementBy, min: 0, max: 36000 }}
               legend={player.legend}
-              onChangeIncrementBy={(newValue) => onChangeIncrementBy(newValue, player)}
-              onChangeStartTime={(newValue) => onChangeStartTime(newValue, player)}
+              onChangeIncrementBy={[onChangeIncrementBy, player]}
+              onChangeStartTime={[onChangeStartTime, player]}
               startTime={{ value: player.playerSettings.startTime / 60, min: 0.01, max: 600 }}
             />
           )}

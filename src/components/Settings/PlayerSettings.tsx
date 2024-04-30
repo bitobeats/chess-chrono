@@ -1,5 +1,7 @@
-import styles from "./PlayerSettings.module.scss";
+import type { JSX } from "solid-js";
+
 import { createUniqueId } from "solid-js";
+import styles from "./PlayerSettings.module.scss";
 
 type ValueMinMax = {
   value: number;
@@ -11,8 +13,8 @@ type PlayerSettingsProps = {
   startTime: ValueMinMax;
   incrementBy: ValueMinMax;
   legend: string;
-  onChangeStartTime: (value: string) => void;
-  onChangeIncrementBy: (value: string) => void;
+  onChangeStartTime: JSX.ChangeEventHandlerUnion<HTMLInputElement, Event>;
+  onChangeIncrementBy: JSX.ChangeEventHandlerUnion<HTMLInputElement, Event>;
 };
 
 export const PlayerSettings = (props: PlayerSettingsProps) => {
@@ -33,9 +35,7 @@ export const PlayerSettings = (props: PlayerSettingsProps) => {
           min={props.startTime.min}
           max={props.startTime.max}
           value={props.startTime.value.toString()}
-          onChange={(ev) => {
-            props.onChangeStartTime(ev.target.value);
-          }}
+          onChange={props.onChangeStartTime}
         />
       </div>
 
@@ -51,7 +51,7 @@ export const PlayerSettings = (props: PlayerSettingsProps) => {
           value={props.incrementBy.value.toString()}
           min={props.incrementBy.min}
           max={props.incrementBy.max}
-          onChange={(ev) => props.onChangeIncrementBy(ev.target.value)}
+          onChange={props.onChangeIncrementBy}
         />
       </div>
     </fieldset>
