@@ -4,7 +4,7 @@ import type { Settings } from "../libs/settings-manager/types/Settings";
 import { createEffect, createResource, onMount, onCleanup } from "solid-js";
 import { createStore, reconcile, unwrap } from "solid-js/store";
 
-import { changeTheme } from "../utils/changeTheme";
+import { changeTheme, changeThemeColor } from "../utils/changeTheme";
 
 export function createSettingsStore(settingsManager: SettingsManager) {
   const [settings, setSettings] = createStore({ ...settingsManager.defaultSettings });
@@ -18,10 +18,18 @@ export function createSettingsStore(settingsManager: SettingsManager) {
       setSettings(reconcile(newSettings));
     }
 
+    function darkModeQueryChangeEventListener(ev: MediaQueryListEvent) {
+      changeThemeColor(ev.matches ? "black" : "white");
+    }
+
     settingsManager.addEventListener("settingssaved", settingsSavedEventListener);
+
+    const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    darkModeQuery.addEventListener("change", darkModeQueryChangeEventListener);
 
     onCleanup(() => {
       settingsManager.removeEventListener("settingssaved", settingsSavedEventListener);
+      darkModeQuery.removeEventListener("change", darkModeQueryChangeEventListener);
     });
   });
 

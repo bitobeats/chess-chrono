@@ -35,7 +35,7 @@ function changeColorScheme(colorScheme: "light" | "dark" | "light dark") {
   document.documentElement.style.colorScheme = colorScheme;
 }
 
-function changeThemeColor(color: string) {
+export function changeThemeColor(color: string) {
   const themeColor = document.querySelector<HTMLMetaElement>(`meta[name="theme-color"]`);
   if (themeColor) {
     themeColor.content = color;
