@@ -28,6 +28,14 @@ export const Controls = () => {
     }
   }
 
+  function handleResetClick() {
+    const shouldReset = confirm("Are you sure you want to finish the current game?");
+
+    if (shouldReset) {
+      reset();
+    }
+  }
+
   return (
     <menu class={styles.container}>
       <button
@@ -37,7 +45,7 @@ export const Controls = () => {
         title="Pause/Resume">
         {chessClockStore.chessClockState === "suspended" ? "▶︎" : "||"}
       </button>
-      <button onClick={reset} title={"Reset"} class={styles.iconButton}>
+      <button onClick={handleResetClick} title={"Reset"} class={styles.iconButton}>
         ♺
       </button>
       <OpenSettingsModalButton class={styles.iconButton} modalRef={() => dialogRef}>
