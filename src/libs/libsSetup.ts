@@ -22,10 +22,20 @@ settingsManager.addEventListener("settingsloaded", updateSettings);
 settingsManager.addEventListener("settingssaved", updateSettings);
 
 function updateSettings(newSettings: Readonly<Settings>) {
+  if (
+    chessClockService.player1Config.countdownFrom !== newSettings.player1.startTime ||
+    chessClockService.player1Config.incrementBy !== newSettings.player1.incrementBy ||
+    chessClockService.player2Config.countdownFrom !== newSettings.player2.startTime ||
+    chessClockService.player2Config.incrementBy !== newSettings.player2.incrementBy
+  ) {
+    chessClockService.reset();
+  }
+
   chessClockService.player1Config.countdownFrom = newSettings.player1.startTime;
   chessClockService.player1Config.incrementBy = newSettings.player1.incrementBy;
   chessClockService.player2Config.countdownFrom = newSettings.player2.startTime;
   chessClockService.player2Config.incrementBy = newSettings.player2.incrementBy;
+
   chessClockService.dispatchEvent(
     "playerconfigchange",
     chessClockService.player1Config,
