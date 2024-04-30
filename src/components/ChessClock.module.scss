@@ -4,7 +4,8 @@
   grid-area: #{consts.$grid-main};
   display: flex;
   flex-direction: row;
-  padding: 10px 0;
+  padding: 0;
+  margin: 10px 0;
   justify-content: center;
   align-items: flex-start;
   gap: 20px;
