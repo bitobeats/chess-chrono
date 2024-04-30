@@ -1,6 +1,6 @@
 import type { Player } from "../libs/chess-clock-service/types/Player";
 
-import styles from "./ChessClock.module.scss";
+import styles from "./ClockSwitches.module.scss";
 
 import { createResource } from "solid-js";
 import { formatTimeToHoursMinutesSeconds } from "../utils/formatTimeToHoursMinutesSeconds";
@@ -8,7 +8,7 @@ import { useSettingsStoreContext } from "../contexts/SettingsStoreContext";
 import { audioPlayer } from "../libs/libsSetup";
 import { useChessClockStoreContext } from "../contexts/ChessClockStoreContext";
 
-export const ChessClock = () => {
+export const ClockSwitches = () => {
   const { settings } = useSettingsStoreContext();
   let player1ButtonRef!: HTMLButtonElement;
   let player2ButtonRef!: HTMLButtonElement;

@@ -1,11 +1,11 @@
 import { ContextsProvider } from "../contexts/ContextsProvider";
 import { Controls } from "./Controls";
-import { ChessClock } from "./ChessClock";
+import { ClockSwitches } from "./ClockSwitches";
 
 export const Main = () => {
   return (
     <ContextsProvider>
-      <ChessClock />
+      <ClockSwitches />
       <Controls />
     </ContextsProvider>
   );
