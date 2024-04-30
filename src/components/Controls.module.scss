@@ -31,3 +31,14 @@
     width: 100%;
   }
 }
+
+.settingsModal {
+  display: block;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+  inset: 0;
+
+  &[open] {
+    opacity: 100;
+  }
+}

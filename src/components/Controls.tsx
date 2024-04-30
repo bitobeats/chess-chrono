@@ -1,11 +1,13 @@
 import styles from "./Controls.module.scss";
 
+import { Show, createSignal } from "solid-js";
 import { useChessClockStoreContext } from "../contexts/ChessClockStoreContext";
 import { SettingsView } from "./Settings/SettingsView";
 import { audioPlayer } from "../libs/libsSetup";
 
 export const Controls = () => {
-  let dialogRef!: HTMLDialogElement;
+  const [isSettingsOpen, setIsSettingsOpen] = createSignal(false);
+  const [dialogRef, setDialogRef] = createSignal<HTMLDialogElement>();
 
   const { chessClockStore, resume, suspend, reset } = useChessClockStoreContext();
 
@@ -24,21 +26,23 @@ export const Controls = () => {
   }
 
   function handleClickOutside(ev: MouseEvent) {
-    if (ev.target === dialogRef) {
-      dialogRef.close();
+    if (ev.target === dialogRef()) {
+      handleCloseModal();
     }
   }
 
   function handleOpenModal() {
-    dialogRef.showModal();
+    setIsSettingsOpen(true);
+    setTimeout(() => dialogRef()?.showModal());
+  }
+
+  function handleCloseModal() {
+    dialogRef()?.close();
   }
 
   function handleResetClick() {
     const shouldReset = confirm("Are you sure you want to finish the current game?");
-
-    if (shouldReset) {
-      reset();
-    }
+    shouldReset && reset();
   }
 
   return (
@@ -62,9 +66,15 @@ export const Controls = () => {
         ⛭
       </button>
 
-      <dialog ref={dialogRef} onClick={handleClickOutside}>
-        <SettingsView onCancel={() => dialogRef.close()} />
-      </dialog>
+      <Show when={isSettingsOpen()}>
+        <dialog
+          class={styles.settingsModal}
+          ref={setDialogRef}
+          onClick={handleClickOutside}
+          onClose={[setIsSettingsOpen, false]}>
+          <SettingsView onCancel={handleCloseModal} />
+        </dialog>
+      </Show>
     </menu>
   );
 };
