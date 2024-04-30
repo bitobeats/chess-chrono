@@ -57,7 +57,7 @@ export const SettingsForm = (props: SettingsFormProps) => {
   }
 
   return (
-    <form ref={formRef} class={styles.form}>
+    <form ref={formRef} class={styles.form} autocomplete="off">
       <div class={styles.playerSettingsContainer}>
         <For each={players()}>
           {(player) => (
