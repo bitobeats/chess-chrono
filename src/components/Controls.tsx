@@ -9,6 +9,11 @@ export const Controls = () => {
 
   const { chessClockStore, resume, suspend, reset } = useChessClockStoreContext();
 
+  const suspendResumeButtonDisabled = () =>
+    !(chessClockStore.chessClockState === "running" || chessClockStore.chessClockState === "suspended");
+
+  const openSettingsButtonDisabled = () => chessClockStore.chessClockState === "running";
+
   function handlePause() {
     if (chessClockStore.chessClockState === "suspended") {
       resume();
@@ -17,11 +22,6 @@ export const Controls = () => {
     }
     audioPlayer.suspend();
   }
-
-  const suspendResumeButtonDisabled = () =>
-    !(chessClockStore.chessClockState === "running" || chessClockStore.chessClockState === "suspended");
-
-  const openSettingsButtonDisabled = () => chessClockStore.chessClockState === "running";
 
   function handleClickOutside(ev: MouseEvent) {
     if (ev.target === dialogRef) {
