@@ -17,17 +17,17 @@ export const ClockSwitches = () => {
   const switchesDisabled = () =>
     chessClockStore.chessClockState === "suspended" || chessClockStore.chessClockState === "finished";
 
-  const player1Disabled = () =>
-    switchesDisabled() || (chessClockStore.chessClockState === "running" && chessClockStore.activePlayer === 2);
-
-  const player2Disabled = () =>
-    switchesDisabled() || (chessClockStore.chessClockState === "running" && chessClockStore.activePlayer === 1);
-
   createResource(async () => {
     await audioPlayer.init();
   });
 
-  const toggle = (toPlayer: Player) => {
+  function isPlayerSwitchDisabled(player: Player) {
+    return (
+      switchesDisabled() || (chessClockStore.chessClockState === "running" && chessClockStore.activePlayer !== player)
+    );
+  }
+
+  function toggle(toPlayer: Player) {
     switchTo(toPlayer);
 
     switch (toPlayer) {
@@ -47,7 +47,7 @@ export const ClockSwitches = () => {
         console.error("Error playing audio file. " + error);
       }
     }
-  };
+  }
 
   function handleDblClick(ev: MouseEvent) {
     ev.preventDefault();
@@ -59,10 +59,10 @@ export const ClockSwitches = () => {
         classList={{ [styles.clockSwitch]: true, [styles.defeatedPlayer]: chessClockStore.defeatedPlayer === 1 }}
         ref={player1ButtonRef}
         title={"Clock switch"}
-        onClick={[toggle, 2]}
         onDblClick={handleDblClick}
+        onClick={[toggle, 2]}
         onTouchStart={[toggle, 2]}
-        disabled={player1Disabled()}>
+        disabled={isPlayerSwitchDisabled(1)}>
         <time>{formatTimeToHoursMinutesSeconds(chessClockStore.playerTimes[0])}</time>
       </button>
 
@@ -73,7 +73,7 @@ export const ClockSwitches = () => {
         onDblClick={handleDblClick}
         onClick={[toggle, 1]}
         onTouchStart={[toggle, 1]}
-        disabled={player2Disabled()}>
+        disabled={isPlayerSwitchDisabled(2)}>
         <time>{formatTimeToHoursMinutesSeconds(chessClockStore.playerTimes[1])}</time>
       </button>
     </main>
