@@ -6,7 +6,8 @@ import { SettingsView } from "./Settings/SettingsView";
 import { audioPlayer } from "../libs/libsSetup";
 
 export const Controls = () => {
-  let dialogRef!: HTMLDialogElement;
+  let dialogRef: HTMLDialogElement | undefined;
+
   const [isSettingsOpen, setIsSettingsOpen] = createSignal(false);
 
   const { chessClockStore, resume, suspend, reset } = useChessClockStoreContext();
@@ -45,6 +46,14 @@ export const Controls = () => {
     shouldReset && reset();
   }
 
+  function handleOnClose() {
+    if (dialogRef) {
+      dialogRef.ontransitionend = () => {
+        setIsSettingsOpen(false);
+      };
+    }
+  }
+
   return (
     <menu class={styles.container}>
       <button
@@ -67,11 +76,7 @@ export const Controls = () => {
       </button>
 
       <Show when={isSettingsOpen()}>
-        <dialog
-          class={styles.settingsModal}
-          ref={dialogRef}
-          onClick={handleClickOutside}
-          onClose={[setIsSettingsOpen, false]}>
+        <dialog class={styles.settingsModal} ref={dialogRef} onClick={handleClickOutside} onClose={handleOnClose}>
           <SettingsView onCancel={handleCloseModal} />
         </dialog>
       </Show>
