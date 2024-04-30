@@ -18,18 +18,12 @@ export const Controls = () => {
   const openSettingsButtonDisabled = () => chessClockStore.chessClockState === "running";
 
   function handlePause() {
-    if (chessClockStore.chessClockState === "suspended") {
-      resume();
-    } else {
-      suspend();
-    }
+    chessClockStore.chessClockState === "suspended" ? resume() : suspend();
     audioPlayer.suspend();
   }
 
   function handleClickOutside(ev: MouseEvent) {
-    if (ev.target === dialogRef) {
-      handleCloseModal();
-    }
+    ev.target === dialogRef && handleCloseModal();
   }
 
   function handleOpenModal() {
