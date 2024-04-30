@@ -1,6 +1,5 @@
 import styles from "./Controls.module.scss";
 
-import { OpenSettingsModalButton } from "./OpenSettingsModalButton";
 import { useChessClockStoreContext } from "../contexts/ChessClockStoreContext";
 import { SettingsView } from "./Settings/SettingsView";
 import { audioPlayer } from "../libs/libsSetup";
@@ -22,10 +21,16 @@ export const Controls = () => {
   const suspendResumeButtonDisabled = () =>
     !(chessClockStore.chessClockState === "running" || chessClockStore.chessClockState === "suspended");
 
+  const openSettingsButtonDisabled = () => chessClockStore.chessClockState === "running";
+
   function handleClickOutside(ev: MouseEvent) {
     if (ev.target === dialogRef) {
       dialogRef.close();
     }
+  }
+
+  function handleOpenModal() {
+    dialogRef.showModal();
   }
 
   function handleResetClick() {
@@ -48,9 +53,15 @@ export const Controls = () => {
       <button onClick={handleResetClick} title={"Reset"} class={styles.iconButton}>
         ♺
       </button>
-      <OpenSettingsModalButton class={styles.iconButton} modalRef={() => dialogRef}>
+
+      <button
+        title="Settings"
+        class={styles.iconButton}
+        onClick={handleOpenModal}
+        disabled={openSettingsButtonDisabled()}>
         ⛭
-      </OpenSettingsModalButton>
+      </button>
+
       <dialog ref={dialogRef} onClick={handleClickOutside}>
         <SettingsView onCancel={() => dialogRef.close()} />
       </dialog>
