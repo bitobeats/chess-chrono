@@ -14,6 +14,15 @@ export const ChessClock = () => {
   let player2ButtonRef!: HTMLButtonElement;
   const { chessClockStore, switchTo } = useChessClockStoreContext();
 
+  const switchesDisabled = () =>
+    chessClockStore.chessClockState === "suspended" || chessClockStore.chessClockState === "finished";
+
+  const player1Disabled = () =>
+    switchesDisabled() || (chessClockStore.chessClockState === "running" && chessClockStore.activePlayer === 2);
+
+  const player2Disabled = () =>
+    switchesDisabled() || (chessClockStore.chessClockState === "running" && chessClockStore.activePlayer === 1);
+
   createResource(async () => {
     await audioPlayer.init();
   });
@@ -40,14 +49,9 @@ export const ChessClock = () => {
     }
   };
 
-  const switchesDisabled = () =>
-    chessClockStore.chessClockState === "suspended" || chessClockStore.chessClockState === "finished";
-
-  const player1Disabled = () =>
-    switchesDisabled() || (chessClockStore.chessClockState === "running" && chessClockStore.activePlayer === 2);
-
-  const player2Disabled = () =>
-    switchesDisabled() || (chessClockStore.chessClockState === "running" && chessClockStore.activePlayer === 1);
+  function handleDblClick(ev: MouseEvent) {
+    ev.preventDefault();
+  }
 
   return (
     <main class={styles.container}>
@@ -56,7 +60,7 @@ export const ChessClock = () => {
         ref={player1ButtonRef}
         title={"Clock switch"}
         onClick={[toggle, 2]}
-        onDblClick={(ev) => ev.preventDefault()}
+        onDblClick={handleDblClick}
         onTouchStart={[toggle, 2]}
         disabled={player1Disabled()}>
         <time>{formatTimeToHoursMinutesSeconds(chessClockStore.playerTimes[0])}</time>
@@ -66,7 +70,7 @@ export const ChessClock = () => {
         classList={{ [styles.clockSwitch]: true, [styles.defeatedPlayer]: chessClockStore.defeatedPlayer === 2 }}
         ref={player2ButtonRef}
         title={"Clock switch"}
-        onDblClick={(ev) => ev.preventDefault()}
+        onDblClick={handleDblClick}
         onClick={[toggle, 1]}
         onTouchStart={[toggle, 1]}
         disabled={player2Disabled()}>
