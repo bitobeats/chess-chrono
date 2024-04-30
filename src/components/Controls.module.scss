@@ -12,6 +12,7 @@
     flex-direction: column;
     height: 100%;
     justify-content: space-around;
+    align-items: center;
     margin: 0;
   }
 }
@@ -25,4 +26,8 @@
   background-color: transparent;
   width: max-content;
   height: max-content;
+
+  @media (orientation: "portrait") {
+    width: 100%;
+  }
 }
