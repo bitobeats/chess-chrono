@@ -38,16 +38,24 @@ export const SettingsForm = (props: SettingsFormProps) => {
     },
   ];
 
-  async function onChangeIncrementBy(player: Player, event: Event & { target: HTMLInputElement }) {
+  function passConfirmationGuard(target: HTMLInputElement, oldValue: string) {
     if (chessClockStore.chessClockState === "suspended") {
       const confirmChangeSetting = confirm(
         "There's a game going on. If you change this setting, the game will be restarted with the new settings."
       );
 
       if (!confirmChangeSetting) {
-        event.target.value = settings[player.key].incrementBy.toString();
-        return;
+        target.value = oldValue;
+        return false;
       }
+    }
+
+    return true;
+  }
+
+  async function onChangeIncrementBy(player: Player, event: Event & { target: HTMLInputElement }) {
+    if (!passConfirmationGuard(event.target, settings[player.key].incrementBy.toString())) {
+      return;
     }
 
     setSettings(player.key, "incrementBy", parseInt(event.target.value));
@@ -55,15 +63,8 @@ export const SettingsForm = (props: SettingsFormProps) => {
   }
 
   async function onChangeStartTime(player: Player, event: Event & { target: HTMLInputElement }) {
-    if (chessClockStore.chessClockState === "suspended") {
-      const confirmChangeSetting = confirm(
-        "There's a game going on. If you change this setting, the game will be restarted with the new settings."
-      );
-
-      if (!confirmChangeSetting) {
-        event.target.value = (settings[player.key].startTime / 60).toString();
-        return;
-      }
+    if (!passConfirmationGuard(event.target, (settings[player.key].startTime / 60).toString())) {
+      return;
     }
 
     setSettings(player.key, "startTime", parseFloat(event.target.value) * 60);
