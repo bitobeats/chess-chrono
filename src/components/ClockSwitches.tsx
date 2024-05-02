@@ -2,7 +2,7 @@ import type { Player } from "../libs/chess-clock-service/types/Player";
 
 import styles from "./ClockSwitches.module.scss";
 
-import { createResource, createSignal, createMemo } from "solid-js";
+import { createResource, createSignal } from "solid-js";
 import { formatTimeToHoursMinutesSeconds } from "../utils/formatTimeToHoursMinutesSeconds";
 import { useSettingsStoreContext } from "../contexts/SettingsStoreContext";
 import { audioPlayer } from "../libs/libsSetup";
@@ -13,8 +13,6 @@ export const ClockSwitches = () => {
 
   const { settings } = useSettingsStoreContext();
   const { chessClockStore, switchTo } = useChessClockStoreContext();
-
-  const isReady = createMemo(() => chessClockStore.chessClockState === "ready");
 
   let [player1ButtonRef, setPlayer1ButtonRef] = createSignal<HTMLButtonElement>();
   let [player2ButtonRef, setPlayer2ButtonRef] = createSignal<HTMLButtonElement>();
@@ -54,7 +52,7 @@ export const ClockSwitches = () => {
   }
 
   function handleTouchStart(fromPlayer: Player) {
-    if (!isReady()) {
+    if (chessClockStore.chessClockState !== "ready") {
       toggle(fromPlayer);
     }
   }
