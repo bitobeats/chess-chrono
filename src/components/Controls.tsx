@@ -44,14 +44,10 @@ export const Controls = () => {
     }
   }
 
-  function handleOnClose() {
-    dialogRef?.addEventListener(
-      "transitionend",
-      () => {
-        setIsSettingsOpen(false);
-      },
-      { once: true }
-    );
+  function handleTransitionEnd() {
+    if (!dialogRef?.open) {
+      setIsSettingsOpen(false);
+    }
   }
 
   return (
@@ -76,7 +72,11 @@ export const Controls = () => {
       </button>
 
       <Show when={isSettingsOpen()}>
-        <dialog class={styles.settingsModal} ref={dialogRef} onClick={handleClickOutside} onClose={handleOnClose}>
+        <dialog
+          class={styles.settingsModal}
+          ref={dialogRef}
+          onClick={handleClickOutside}
+          onTransitionEnd={handleTransitionEnd}>
           <SettingsView onCancel={handleCloseModal} />
         </dialog>
       </Show>
