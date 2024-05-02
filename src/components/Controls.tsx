@@ -15,6 +15,8 @@ export const Controls = () => {
 
   const openSettingsButtonDisabled = () => chessClockStore.chessClockState === "running";
 
+  const resetButtonDisabled = () => chessClockStore.chessClockState === "ready";
+
   function handlePause() {
     chessClockStore.chessClockState === "suspended" ? resume() : suspend();
     audioPlayer.suspend();
@@ -39,7 +41,7 @@ export const Controls = () => {
         {chessClockStore.chessClockState === "suspended" ? "▶︎" : "||"}
       </button>
 
-      <button onClick={handleResetClick} title={"Reset"} class={styles.iconButton}>
+      <button onClick={handleResetClick} title={"Reset"} class={styles.iconButton} disabled={resetButtonDisabled()}>
         ♺
       </button>
 
