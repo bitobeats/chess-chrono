@@ -3,7 +3,6 @@ import type { Theme } from "../../libs/settings-manager/enums/Theme";
 
 import styles from "./SettingsForm.module.scss";
 
-import { For } from "solid-js";
 import { GlobalSettings } from "./GlobalSettings";
 import { PlayerSettings } from "./PlayerSettings";
 import { useSettingsStoreContext } from "../../contexts/SettingsStoreContext";
@@ -84,17 +83,15 @@ export const SettingsForm = (props: SettingsFormProps) => {
   return (
     <form ref={formRef} class={styles.form} autocomplete="off">
       <div class={styles.playerSettingsContainer}>
-        <For each={players}>
-          {(player) => (
-            <PlayerSettings
-              incrementBy={{ value: player.playerSettings.incrementBy, min: 0, max: 36000 }}
-              legend={player.legend}
-              onChangeIncrementBy={[onChangeIncrementBy, player]}
-              onChangeStartTime={[onChangeStartTime, player]}
-              startTime={{ value: player.playerSettings.startTime / 60, min: 0.01, max: 600 }}
-            />
-          )}
-        </For>
+        {players.map((player) => (
+          <PlayerSettings
+            incrementBy={{ value: player.playerSettings.incrementBy, min: 0, max: 36000 }}
+            legend={player.legend}
+            onChangeIncrementBy={[onChangeIncrementBy, player]}
+            onChangeStartTime={[onChangeStartTime, player]}
+            startTime={{ value: player.playerSettings.startTime / 60, min: 0.01, max: 600 }}
+          />
+        ))}
       </div>
 
       <GlobalSettings

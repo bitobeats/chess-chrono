@@ -1,6 +1,6 @@
 import styles from "./GlobalSettings.module.scss";
 
-import { createSelector, For } from "solid-js";
+import { createSelector } from "solid-js";
 import { Theme } from "../../libs/settings-manager/enums/Theme";
 
 type GlobalSettingsProps = {
@@ -38,13 +38,11 @@ export const GlobalSettings = (props: GlobalSettingsProps) => {
       <div class={styles.optionContainer}>
         <label for="select-theme">Theme</label>
         <select name="theme" id="select-theme" onChange={(ev) => handleThemeChange(ev.target.value as Theme)}>
-          <For each={themeOptions}>
-            {(themeOption) => (
-              <option value={themeOption.theme} selected={selectedTheme(themeOption.theme)}>
-                {themeOption.text}
-              </option>
-            )}
-          </For>
+          {themeOptions.map((themeOption) => (
+            <option value={themeOption.theme} selected={selectedTheme(themeOption.theme)}>
+              {themeOption.text}
+            </option>
+          ))}
         </select>
       </div>
 
