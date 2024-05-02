@@ -7,6 +7,7 @@ import { For } from "solid-js";
 import { GlobalSettings } from "./GlobalSettings";
 import { PlayerSettings } from "./PlayerSettings";
 import { useSettingsStoreContext } from "../../contexts/SettingsStoreContext";
+import { useChessClockStoreContext } from "../../contexts/ChessClockStoreContext";
 
 type SettingsFormProps = {
   onCancel: () => void;
@@ -22,6 +23,7 @@ export const SettingsForm = (props: SettingsFormProps) => {
   let formRef!: HTMLFormElement;
 
   const { saveSettings, settings, setSettings } = useSettingsStoreContext();
+  const { chessClockStore } = useChessClockStoreContext();
 
   const players: Player[] = [
     {
@@ -37,11 +39,33 @@ export const SettingsForm = (props: SettingsFormProps) => {
   ];
 
   async function onChangeIncrementBy(player: Player, event: Event & { target: HTMLInputElement }) {
+    if (chessClockStore.chessClockState === "suspended") {
+      const confirmChangeSetting = confirm(
+        "There's a game going on. If you change this setting, the game will be restarted with the new settings."
+      );
+
+      if (!confirmChangeSetting) {
+        event.target.value = settings[player.key].incrementBy.toString();
+        return;
+      }
+    }
+
     setSettings(player.key, "incrementBy", parseInt(event.target.value));
     await saveSettings();
   }
 
   async function onChangeStartTime(player: Player, event: Event & { target: HTMLInputElement }) {
+    if (chessClockStore.chessClockState === "suspended") {
+      const confirmChangeSetting = confirm(
+        "There's a game going on. If you change this setting, the game will be restarted with the new settings."
+      );
+
+      if (!confirmChangeSetting) {
+        event.target.value = (settings[player.key].startTime / 60).toString();
+        return;
+      }
+    }
+
     setSettings(player.key, "startTime", parseFloat(event.target.value) * 60);
     await saveSettings();
   }
