@@ -45,9 +45,13 @@ export const Controls = () => {
   }
 
   function handleOnClose() {
-    dialogRef?.addEventListener("transitionend", () => {
-      setIsSettingsOpen(false);
-    });
+    dialogRef?.addEventListener(
+      "transitionend",
+      () => {
+        setIsSettingsOpen(false);
+      },
+      { once: true }
+    );
   }
 
   return (
