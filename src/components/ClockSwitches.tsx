@@ -28,16 +28,16 @@ export const ClockSwitches = () => {
     );
   }
 
-  function toggle(toPlayer: Player) {
-    switchTo(toPlayer);
+  function toggle(fromPlayer: Player) {
+    switchTo(fromPlayer === 1 ? 2 : 1);
 
-    switch (toPlayer) {
+    switch (fromPlayer) {
       case 1: {
-        player1ButtonRef.focus();
+        player2ButtonRef.focus();
         break;
       }
       case 2: {
-        player2ButtonRef.focus();
+        player1ButtonRef.focus();
       }
     }
 
@@ -61,8 +61,8 @@ export const ClockSwitches = () => {
         ref={player1ButtonRef}
         title={"Clock switch"}
         onDblClick={handleDblClick}
-        onClick={[toggle, 2]}
-        onTouchStart={[toggle, 2]}
+        onClick={[toggle, 1]}
+        onTouchStart={[toggle, 1]}
         disabled={isPlayerSwitchDisabled(1)}>
         <time>{formatTimeToHoursMinutesSeconds(chessClockStore.playerTimes[0])}</time>
       </button>
@@ -72,8 +72,8 @@ export const ClockSwitches = () => {
         ref={player2ButtonRef}
         title={"Clock switch"}
         onDblClick={handleDblClick}
-        onClick={[toggle, 1]}
-        onTouchStart={[toggle, 1]}
+        onClick={[toggle, 2]}
+        onTouchStart={[toggle, 2]}
         disabled={isPlayerSwitchDisabled(2)}>
         <time>{formatTimeToHoursMinutesSeconds(chessClockStore.playerTimes[1])}</time>
       </button>
