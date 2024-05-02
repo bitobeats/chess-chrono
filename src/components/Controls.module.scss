@@ -24,8 +24,7 @@
   align-items: center;
   padding: 10px;
   background-color: transparent;
-  width: max-content;
-  height: max-content;
+  aspect-ratio: 1;
 
   @media (orientation: "portrait") {
     width: 100%;
