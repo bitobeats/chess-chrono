@@ -19,16 +19,15 @@ export const ClockSwitches = () => {
   let [player1ButtonRef, setPlayer1ButtonRef] = createSignal<HTMLButtonElement>();
   let [player2ButtonRef, setPlayer2ButtonRef] = createSignal<HTMLButtonElement>();
 
-  const switchesDisabled = () =>
-    chessClockStore.chessClockState === "suspended" || chessClockStore.chessClockState === "finished";
-
   createResource(async () => {
     await audioPlayer.init();
   });
 
   function isPlayerSwitchDisabled(player: Player) {
     return (
-      switchesDisabled() || (chessClockStore.chessClockState === "running" && chessClockStore.activePlayer !== player)
+      chessClockStore.chessClockState === "suspended" ||
+      chessClockStore.chessClockState === "finished" ||
+      (chessClockStore.chessClockState === "running" && chessClockStore.activePlayer !== player)
     );
   }
 
