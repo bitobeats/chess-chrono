@@ -2,20 +2,22 @@ import type { Player } from "../libs/chess-clock-service/types/Player";
 
 import styles from "./ClockSwitches.module.scss";
 
-import { createResource, createSignal } from "solid-js";
+import { createResource, createSignal, createMemo } from "solid-js";
 import { formatTimeToHoursMinutesSeconds } from "../utils/formatTimeToHoursMinutesSeconds";
 import { useSettingsStoreContext } from "../contexts/SettingsStoreContext";
 import { audioPlayer } from "../libs/libsSetup";
 import { useChessClockStoreContext } from "../contexts/ChessClockStoreContext";
 
 export const ClockSwitches = () => {
-  let [player1ButtonRef, setPlayer1ButtonRef] = createSignal<HTMLButtonElement>();
-  let [player2ButtonRef, setPlayer2ButtonRef] = createSignal<HTMLButtonElement>();
-
   const players = [1, 2] as const;
 
   const { settings } = useSettingsStoreContext();
   const { chessClockStore, switchTo } = useChessClockStoreContext();
+
+  const isReady = createMemo(() => chessClockStore.chessClockState === "ready");
+
+  let [player1ButtonRef, setPlayer1ButtonRef] = createSignal<HTMLButtonElement>();
+  let [player2ButtonRef, setPlayer2ButtonRef] = createSignal<HTMLButtonElement>();
 
   const switchesDisabled = () =>
     chessClockStore.chessClockState === "suspended" || chessClockStore.chessClockState === "finished";
@@ -52,6 +54,12 @@ export const ClockSwitches = () => {
     }
   }
 
+  function handleTouchStart(fromPlayer: Player) {
+    if (!isReady()) {
+      toggle(fromPlayer);
+    }
+  }
+
   function handleDblClick(ev: MouseEvent) {
     ev.preventDefault();
   }
@@ -65,7 +73,7 @@ export const ClockSwitches = () => {
           title={"Clock switch"}
           onDblClick={handleDblClick}
           onClick={[toggle, player]}
-          onTouchStart={[toggle, player]}
+          onTouchStart={[handleTouchStart, player]}
           disabled={isPlayerSwitchDisabled(player)}>
           <time>{formatTimeToHoursMinutesSeconds(chessClockStore.playerTimes[player - 1])}</time>
         </button>
