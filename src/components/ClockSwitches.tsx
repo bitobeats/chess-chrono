@@ -2,15 +2,17 @@ import type { Player } from "../libs/chess-clock-service/types/Player";
 
 import styles from "./ClockSwitches.module.scss";
 
-import { createResource } from "solid-js";
+import { createResource, createSignal } from "solid-js";
 import { formatTimeToHoursMinutesSeconds } from "../utils/formatTimeToHoursMinutesSeconds";
 import { useSettingsStoreContext } from "../contexts/SettingsStoreContext";
 import { audioPlayer } from "../libs/libsSetup";
 import { useChessClockStoreContext } from "../contexts/ChessClockStoreContext";
 
 export const ClockSwitches = () => {
-  let player1ButtonRef!: HTMLButtonElement;
-  let player2ButtonRef!: HTMLButtonElement;
+  let [player1ButtonRef, setPlayer1ButtonRef] = createSignal<HTMLButtonElement>();
+  let [player2ButtonRef, setPlayer2ButtonRef] = createSignal<HTMLButtonElement>();
+
+  const players = [1, 2] as const;
 
   const { settings } = useSettingsStoreContext();
   const { chessClockStore, switchTo } = useChessClockStoreContext();
@@ -33,11 +35,11 @@ export const ClockSwitches = () => {
 
     switch (fromPlayer) {
       case 1: {
-        player2ButtonRef.focus();
+        player2ButtonRef()?.focus();
         break;
       }
       case 2: {
-        player1ButtonRef.focus();
+        player1ButtonRef()?.focus();
       }
     }
 
@@ -56,27 +58,18 @@ export const ClockSwitches = () => {
 
   return (
     <main class={styles.container}>
-      <button
-        classList={{ [styles.clockSwitch]: true, [styles.defeatedPlayer]: chessClockStore.defeatedPlayer === 1 }}
-        ref={player1ButtonRef}
-        title={"Clock switch"}
-        onDblClick={handleDblClick}
-        onClick={[toggle, 1]}
-        onTouchStart={[toggle, 1]}
-        disabled={isPlayerSwitchDisabled(1)}>
-        <time>{formatTimeToHoursMinutesSeconds(chessClockStore.playerTimes[0])}</time>
-      </button>
-
-      <button
-        classList={{ [styles.clockSwitch]: true, [styles.defeatedPlayer]: chessClockStore.defeatedPlayer === 2 }}
-        ref={player2ButtonRef}
-        title={"Clock switch"}
-        onDblClick={handleDblClick}
-        onClick={[toggle, 2]}
-        onTouchStart={[toggle, 2]}
-        disabled={isPlayerSwitchDisabled(2)}>
-        <time>{formatTimeToHoursMinutesSeconds(chessClockStore.playerTimes[1])}</time>
-      </button>
+      {players.map((player) => (
+        <button
+          classList={{ [styles.clockSwitch]: true, [styles.defeatedPlayer]: chessClockStore.defeatedPlayer === player }}
+          ref={player === 1 ? setPlayer1ButtonRef : setPlayer2ButtonRef}
+          title={"Clock switch"}
+          onDblClick={handleDblClick}
+          onClick={[toggle, player]}
+          onTouchStart={[toggle, player]}
+          disabled={isPlayerSwitchDisabled(player)}>
+          <time>{formatTimeToHoursMinutesSeconds(chessClockStore.playerTimes[player - 1])}</time>
+        </button>
+      ))}
     </main>
   );
 };
