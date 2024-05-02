@@ -23,7 +23,7 @@ export const SettingsForm = (props: SettingsFormProps) => {
 
   const { saveSettings, settings, setSettings } = useSettingsStoreContext();
 
-  const players: () => Player[] = () => [
+  const players: Player[] = [
     {
       legend: "Player 1 settings",
       playerSettings: settings.player1,
@@ -59,7 +59,7 @@ export const SettingsForm = (props: SettingsFormProps) => {
   return (
     <form ref={formRef} class={styles.form} autocomplete="off">
       <div class={styles.playerSettingsContainer}>
-        <For each={players()}>
+        <For each={players}>
           {(player) => (
             <PlayerSettings
               incrementBy={{ value: player.playerSettings.incrementBy, min: 0, max: 36000 }}
