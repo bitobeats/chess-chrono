@@ -59,6 +59,7 @@ export const Controls = () => {
         title="Pause/Resume">
         {chessClockStore.chessClockState === "suspended" ? "▶︎" : "||"}
       </button>
+
       <button onClick={handleResetClick} title={"Reset"} class={styles.iconButton}>
         ♺
       </button>
