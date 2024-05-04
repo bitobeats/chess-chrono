@@ -33,6 +33,7 @@
 
 .settingsModal {
   display: block;
+  box-sizing: border-box;
   opacity: 0;
   transition: all 0.2s ease-in-out;
   inset: 0;
@@ -40,9 +41,11 @@
 
   &[open] {
     opacity: 100;
+    transform: none;
   }
 
   @media (orientation: "portrait") {
     margin-bottom: 0;
+    transform: translateY(100%);
   }
 }
