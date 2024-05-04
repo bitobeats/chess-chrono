@@ -2,6 +2,7 @@ import styles from "./GlobalSettings.module.scss";
 
 import { createSelector } from "solid-js";
 import { Theme } from "../../../libs/settings-manager/enums/Theme";
+import { ToggleSwitch } from "../../Generic/ToggleSwitch/ToggleSwitch";
 
 type GlobalSettingsProps = {
   theme: Theme;
@@ -52,13 +53,11 @@ export const GlobalSettings = (props: GlobalSettingsProps) => {
 
       <div class={styles.optionContainer}>
         <label for="checkbox-sound">Sound</label>
-        <input
-          type="checkbox"
-          class={styles.soundToggle}
+        <ToggleSwitch
+          checked={props.soundOn}
+          onChange={(ev) => props.onChangeSoundOn(ev.currentTarget.checked)}
           name="toggle-sound"
           id="checkbox-sound"
-          checked={props.soundOn}
-          onChange={(ev) => props.onChangeSoundOn(ev.target.checked)}
         />
       </div>
     </div>
