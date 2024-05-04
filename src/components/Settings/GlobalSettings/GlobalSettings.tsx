@@ -16,10 +16,6 @@ type ThemeOption = {
   theme: Theme;
 };
 export const GlobalSettings = (props: GlobalSettingsProps) => {
-  function handleThemeChange(theme: Theme) {
-    props.onChangeTheme(theme);
-  }
-
   const selectedTheme = createSelector(() => props.theme);
 
   const themeOptions: ThemeOption[] = [
@@ -34,15 +30,29 @@ export const GlobalSettings = (props: GlobalSettingsProps) => {
     },
   ];
 
+  function handleThemeChange(
+    ev: Event & {
+      currentTarget: HTMLSelectElement;
+      target: HTMLSelectElement;
+    }
+  ) {
+    props.onChangeTheme(ev.target.value as Theme);
+  }
+
+  function handleToggleSound(
+    ev: Event & {
+      currentTarget: HTMLInputElement;
+      target: Element;
+    }
+  ) {
+    props.onChangeSoundOn(ev.currentTarget.checked);
+  }
+
   return (
     <div class={styles.container}>
       <div class={styles.optionContainer}>
         <label for="select-theme">Theme</label>
-        <select
-          name="theme"
-          id="select-theme"
-          class={styles.themeSelector}
-          onChange={(ev) => handleThemeChange(ev.target.value as Theme)}>
+        <select name="theme" id="select-theme" class={styles.themeSelector} onChange={handleThemeChange}>
           {themeOptions.map((themeOption) => (
             <option value={themeOption.theme} selected={selectedTheme(themeOption.theme)}>
               {themeOption.text}
@@ -53,12 +63,7 @@ export const GlobalSettings = (props: GlobalSettingsProps) => {
 
       <div class={styles.optionContainer}>
         <label for="checkbox-sound">Sound</label>
-        <ToggleSwitch
-          checked={props.soundOn}
-          onChange={(ev) => props.onChangeSoundOn(ev.currentTarget.checked)}
-          name="toggle-sound"
-          id="checkbox-sound"
-        />
+        <ToggleSwitch checked={props.soundOn} onChange={handleToggleSound} name="toggle-sound" id="checkbox-sound" />
       </div>
     </div>
   );
