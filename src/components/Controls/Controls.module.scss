@@ -41,4 +41,8 @@
   &[open] {
     opacity: 100;
   }
+
+  @media (orientation: "portrait") {
+    margin-bottom: 0;
+  }
 }
