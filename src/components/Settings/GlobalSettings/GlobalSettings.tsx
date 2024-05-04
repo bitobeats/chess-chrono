@@ -1,7 +1,7 @@
 import styles from "./GlobalSettings.module.scss";
 
 import { createSelector } from "solid-js";
-import { Theme } from "../../libs/settings-manager/enums/Theme";
+import { Theme } from "../../../libs/settings-manager/enums/Theme";
 
 type GlobalSettingsProps = {
   theme: Theme;

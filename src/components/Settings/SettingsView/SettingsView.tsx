@@ -1,6 +1,6 @@
 import styles from "./SettingsView.module.scss";
 
-import { SettingsForm } from "./SettingsForm";
+import { SettingsForm } from "../SettingsForm/SettingsForm";
 
 type SettingsViewProps = {
   onCancel: () => void;

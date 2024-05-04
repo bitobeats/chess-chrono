@@ -1,9 +1,9 @@
 import styles from "./Controls.module.scss";
 
-import { useChessClockStoreContext } from "../contexts/ChessClockStoreContext";
-import { SettingsView } from "./Settings/SettingsView";
-import { audioPlayer } from "../libs/libsSetup";
-import { useModal } from "../hooks/useModal";
+import { useChessClockStoreContext } from "../../contexts/ChessClockStoreContext";
+import { SettingsView } from "../Settings/SettingsView/SettingsView";
+import { audioPlayer } from "../../libs/libsSetup";
+import { useModal } from "../../hooks/useModal";
 
 export const Controls = () => {
   const { Modal, closeModal, openModal } = useModal();
