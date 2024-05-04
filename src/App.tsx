@@ -1,5 +1,12 @@
-import { Main } from "./components/Main";
+import { ContextsProvider } from "./contexts/ContextsProvider";
+import { Controls } from "./components/Controls";
+import { ClockSwitches } from "./components/ClockSwitches";
 
 export function App() {
-  return <Main />;
+  return (
+    <ContextsProvider>
+      <ClockSwitches />
+      <Controls />
+    </ContextsProvider>
+  );
 }
