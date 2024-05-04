@@ -37,7 +37,11 @@ export const GlobalSettings = (props: GlobalSettingsProps) => {
     <div class={styles.container}>
       <div class={styles.optionContainer}>
         <label for="select-theme">Theme</label>
-        <select name="theme" id="select-theme" onChange={(ev) => handleThemeChange(ev.target.value as Theme)}>
+        <select
+          name="theme"
+          id="select-theme"
+          class={styles.themeSelector}
+          onChange={(ev) => handleThemeChange(ev.target.value as Theme)}>
           {themeOptions.map((themeOption) => (
             <option value={themeOption.theme} selected={selectedTheme(themeOption.theme)}>
               {themeOption.text}
@@ -50,6 +54,7 @@ export const GlobalSettings = (props: GlobalSettingsProps) => {
         <label for="checkbox-sound">Sound</label>
         <input
           type="checkbox"
+          class={styles.soundToggle}
           name="toggle-sound"
           id="checkbox-sound"
           checked={props.soundOn}

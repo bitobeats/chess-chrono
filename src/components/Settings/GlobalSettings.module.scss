@@ -1,11 +1,18 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: large;
 }
 
 .optionContainer {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
+.themeSelector,
+.soundToggle {
+  font-size: large;
 }
