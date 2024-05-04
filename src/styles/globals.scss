@@ -3,7 +3,7 @@
 
 :root {
   color-scheme: light dark;
-  touch-action: manipulation;
+  touch-action: pinch-zoom;
   @media (prefers-color-scheme: "dark") {
     @include themes.dark();
   }
@@ -16,6 +16,9 @@
 body {
   margin: 0;
   padding: 0;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
 }
 
 #root {
@@ -26,7 +29,7 @@ body {
   grid-template-columns: 1fr;
   grid-template-rows: max-content 1fr;
   gap: 10px;
-  width: 100%;
+  width: 100dvw;
   height: 100dvh;
   box-sizing: border-box;
   margin: 0;
