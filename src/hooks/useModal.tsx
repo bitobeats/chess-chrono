@@ -34,7 +34,7 @@ export function useModal() {
 
   function openModal() {
     setIsSettingsOpen(true);
-    setTimeout(() => dialogRef?.showModal());
+    setTimeout(() => dialogRef?.showModal(), 0);
   }
 
   function closeModal() {
