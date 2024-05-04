@@ -102,7 +102,7 @@ export const SettingsForm = (props: SettingsFormProps) => {
       />
 
       <menu class={styles.optionsMenu}>
-        <button type="button" onClick={props.onCancel} autofocus>
+        <button class={styles.closeButton} type="button" onClick={props.onCancel} autofocus>
           Ok
         </button>
       </menu>
