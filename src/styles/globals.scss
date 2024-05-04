@@ -3,7 +3,7 @@
 
 :root {
   color-scheme: light dark;
-  touch-action: pinch-zoom;
+  touch-action: manipulation;
   @media (prefers-color-scheme: "dark") {
     @include themes.dark();
   }
