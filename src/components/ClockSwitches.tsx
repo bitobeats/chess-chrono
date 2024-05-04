@@ -22,10 +22,11 @@ export const ClockSwitches = () => {
   });
 
   function isPlayerSwitchDisabled(player: Player) {
+    const { chessClockState } = chessClockStore;
     return (
-      chessClockStore.chessClockState === "suspended" ||
-      chessClockStore.chessClockState === "finished" ||
-      (chessClockStore.chessClockState === "running" && chessClockStore.activePlayer !== player)
+      chessClockState === "suspended" ||
+      chessClockState === "finished" ||
+      (chessClockState === "running" && chessClockStore.activePlayer !== player)
     );
   }
 
