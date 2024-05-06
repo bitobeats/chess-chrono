@@ -7,4 +7,12 @@
   padding-top: 7px;
   padding-left: max(30px, env(safe-area-inset-left));
   padding-right: max(30px, env(safe-area-inset-right));
+
+  @media (orientation: "portrait") {
+    align-items: flex-start;
+  }
+}
+
+.title {
+  margin-bottom: 40px;
 }

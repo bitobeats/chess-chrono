@@ -8,7 +8,7 @@ type SettingsViewProps = {
 export const SettingsView = (props: SettingsViewProps) => {
   return (
     <div class={styles.container}>
-      <h1>Settings</h1>
+      <h1 class={styles.title}>Settings</h1>
       <SettingsForm onCancel={props.onCancel} />
     </div>
   );
