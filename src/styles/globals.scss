@@ -2,6 +2,7 @@
 @use "./themes";
 
 :root {
+  height: 100%;
   color-scheme: light dark;
   touch-action: none;
   @media (prefers-color-scheme: "dark") {
@@ -16,6 +17,7 @@
 body {
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 
 #root {
@@ -27,20 +29,24 @@ body {
   grid-template-rows: max-content 1fr;
   gap: 10px;
   width: 100%;
-  height: 100dvh;
+  height: 100%;
   box-sizing: border-box;
   margin: 0;
   padding: 10px;
 
-  padding-top: calc(5% + env(safe-area-inset-top));
-  padding-bottom: calc(5% + env(safe-area-inset-bottom));
-  padding-right: calc(2% + env(safe-area-inset-right));
-  padding-left: calc(2% + env(safe-area-inset-left));
+  padding-top: max(5% + env(safe-area-inset-top));
+  padding-bottom: max(5% + env(safe-area-inset-bottom));
+  padding-right: max(2% + env(safe-area-inset-right));
+  padding-left: max(2% + env(safe-area-inset-left));
 
   @media (orientation: "portrait") {
     grid-template-areas: "#{consts.$grid-main} #{consts.$grid-menu}";
     grid-template-columns: 1fr max-content;
     grid-template-rows: 1fr;
+  }
+
+  @media (display-mode: standalone) {
+    height: 100vh;
   }
 }
 
