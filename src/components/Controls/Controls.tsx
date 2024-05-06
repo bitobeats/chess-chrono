@@ -23,7 +23,12 @@ export const Controls = () => {
   }
 
   function handleResetClick() {
-    if (chessClockStore.chessClockState === "running" || chessClockStore.chessClockState === "suspended") {
+    const isSuspended = chessClockStore.chessClockState === "suspended";
+    const isRunning = chessClockStore.chessClockState === "running";
+    if (isRunning || isSuspended) {
+      if (isRunning) {
+        suspend();
+      }
       const shouldReset = confirm("Are you sure you want to finish the current game?");
       shouldReset && reset();
     } else {
