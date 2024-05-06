@@ -26,6 +26,10 @@ $light-dark-themes: (
     #f02e2e,
     #f02e2e,
   ),
+  "--button-hover-color": (
+    lightgrey,
+    darkgrey,
+  ),
 );
 
 @mixin light {

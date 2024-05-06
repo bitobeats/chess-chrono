@@ -24,12 +24,13 @@
   align-items: center;
   padding: 10px;
   background-color: transparent;
-  width: 5vw;
-  height: 5vw;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 100%;
 
-  @media (orientation: "portrait") {
-    width: 100%;
-    height: max-content;
+  &:not([disabled]):hover {
+    background-color: var(--button-hover-color);
   }
 }
 
