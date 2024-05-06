@@ -9,10 +9,10 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   gap: 5px;
 }
 
-.themeSelector,
-.soundToggle {
-  font-size: large;
+.themeSelector {
+  font-size: smaller;
 }
