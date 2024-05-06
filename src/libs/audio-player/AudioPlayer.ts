@@ -1,4 +1,4 @@
-import clockSwitchAudioCaf from "../../assets/audio/switch-toggle.caf?raw";
+import clockSwitchAudioCaf from "../../assets/audio/switch-toggle.caf?url";
 import clockSwitchAudioWebm from "../../assets/audio/switch-toggle.webm";
 
 export class AudioPlayer {
