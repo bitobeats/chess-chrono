@@ -29,6 +29,7 @@
   height: max(50px, 3vw);
   border: none;
   border-radius: 100%;
+  transition: all 0.1s;
 
   @media (orientation: "portrait") {
     font-size: xx-large;
