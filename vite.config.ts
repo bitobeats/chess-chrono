@@ -6,6 +6,9 @@ import devtools from "solid-devtools/vite";
 
 export default defineConfig({
   base: "/chess-clock-solid/",
+  build: {
+    target: "ES2022",
+  },
   plugins: [
     solid(),
     devtools(),
