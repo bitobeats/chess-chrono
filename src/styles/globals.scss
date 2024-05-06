@@ -2,8 +2,6 @@
 @use "./themes";
 
 :root {
-  width: 100%;
-  height: 100%;
   color-scheme: light dark;
   touch-action: none;
   @media (prefers-color-scheme: "dark") {
@@ -18,8 +16,6 @@
 body {
   margin: 0;
   padding: 0;
-  width: 100%;
-  height: 100%;
 }
 
 #root {
@@ -31,7 +27,7 @@ body {
   grid-template-rows: max-content 1fr;
   gap: 10px;
   width: 100%;
-  height: 100%;
+  height: 100dvh;
   box-sizing: border-box;
   margin: 0;
   padding: 10px;
