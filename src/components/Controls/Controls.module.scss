@@ -35,8 +35,10 @@
     font-size: xx-large;
   }
 
-  &:not([disabled]):hover {
-    background-color: var(--button-hover-color);
+  @media (hover: hover) {
+    &:not([disabled]):hover {
+      background-color: var(--button-hover-color);
+    }
   }
 
   &:active {
