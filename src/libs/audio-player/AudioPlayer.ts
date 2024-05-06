@@ -1,4 +1,5 @@
-import { CLOCK_TOGGLE_AUDIO_URL_CAF, CLOCK_TOGGLE_AUDIO_URL_WEBM } from "../../const/CLOCK_TOGGLE_AUDIO_URL";
+import clockSwitchAudioCaf from "../../assets/audio/switch-toggle.caf?raw";
+import clockSwitchAudioWebm from "../../assets/audio/switch-toggle.webm";
 
 export class AudioPlayer {
   #audioCtx: AudioContext | null = null;
@@ -56,7 +57,7 @@ export class AudioPlayer {
 
   async #preloadAssets() {
     const canPlayXCaf = new Audio().canPlayType("audio/x-caf");
-    const switchAudioData = await fetch(canPlayXCaf ? CLOCK_TOGGLE_AUDIO_URL_CAF : CLOCK_TOGGLE_AUDIO_URL_WEBM);
+    const switchAudioData = await fetch(canPlayXCaf ? clockSwitchAudioCaf : clockSwitchAudioWebm);
     this.#switchAudioArrayBuffer = await switchAudioData.arrayBuffer();
   }
 }
