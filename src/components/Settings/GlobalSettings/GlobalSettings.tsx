@@ -49,7 +49,8 @@ export const GlobalSettings = (props: GlobalSettingsProps) => {
   }
 
   return (
-    <div class={styles.container}>
+    <fieldset class={styles.container}>
+      <legend>Global</legend>
       <div class={styles.optionContainer}>
         <label for="select-theme">Theme</label>
         <select name="theme" id="select-theme" class={styles.themeSelector} onChange={handleThemeChange}>
@@ -65,6 +66,6 @@ export const GlobalSettings = (props: GlobalSettingsProps) => {
         <label for="checkbox-sound">Sound</label>
         <ToggleSwitch checked={props.soundOn} onChange={handleToggleSound} name="toggle-sound" id="checkbox-sound" />
       </div>
-    </div>
+    </fieldset>
   );
 };
