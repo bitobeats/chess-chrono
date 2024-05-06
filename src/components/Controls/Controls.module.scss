@@ -18,16 +18,20 @@
 }
 
 .iconButton {
-  font-size: xx-large;
+  font-size: 3vw;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10px;
   background-color: transparent;
-  width: 50px;
-  height: 50px;
+  width: max(50px, 3vw);
+  height: max(50px, 3vw);
   border: none;
   border-radius: 100%;
+
+  @media (orientation: "portrait") {
+    font-size: xx-large;
+  }
 
   &:not([disabled]):hover {
     background-color: var(--button-hover-color);
