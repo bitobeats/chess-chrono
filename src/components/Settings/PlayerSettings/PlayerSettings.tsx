@@ -19,6 +19,10 @@ type PlayerSettingsProps = {
 
 export const PlayerSettings = (props: PlayerSettingsProps) => {
   const componentUniqueId = createUniqueId();
+
+  function handleOnClick(ev: MouseEvent & { currentTarget: HTMLInputElement }) {
+    ev.currentTarget.select();
+  }
   return (
     <fieldset class={styles.container}>
       <legend>{props.legend}</legend>
@@ -36,6 +40,7 @@ export const PlayerSettings = (props: PlayerSettingsProps) => {
           max={props.startTime.max}
           value={props.startTime.value.toString()}
           onChange={props.onChangeStartTime}
+          onClick={handleOnClick}
         />
       </div>
 
@@ -52,6 +57,7 @@ export const PlayerSettings = (props: PlayerSettingsProps) => {
           min={props.incrementBy.min}
           max={props.incrementBy.max}
           onChange={props.onChangeIncrementBy}
+          onClick={handleOnClick}
         />
       </div>
     </fieldset>
