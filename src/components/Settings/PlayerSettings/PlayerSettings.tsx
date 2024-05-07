@@ -12,6 +12,7 @@ type PlayerSettingsProps = {
 
 export const PlayerSettings = (props: PlayerSettingsProps) => {
   const componentUniqueId = createUniqueId();
+
   const { saveSettings, setSettings, settings } = useSettingsStoreContext();
   const { chessClockStore } = useChessClockStoreContext();
 
@@ -20,15 +21,6 @@ export const PlayerSettings = (props: PlayerSettingsProps) => {
 
   function handleOnClick(ev: MouseEvent & { currentTarget: HTMLInputElement }) {
     ev.currentTarget.select();
-  }
-
-  async function onChangeStartTime(event: Event & { target: HTMLInputElement }) {
-    if (!passConfirmationGuard(event.target, (settings[playerKey].startTime / 60).toString())) {
-      return;
-    }
-
-    setSettings(playerKey, "startTime", parseFloat(event.target.value) * 60);
-    await saveSettings();
   }
 
   function passConfirmationGuard(target: HTMLInputElement, oldValue: string) {
@@ -44,6 +36,15 @@ export const PlayerSettings = (props: PlayerSettingsProps) => {
     }
 
     return true;
+  }
+
+  async function onChangeStartTime(event: Event & { target: HTMLInputElement }) {
+    if (!passConfirmationGuard(event.target, (settings[playerKey].startTime / 60).toString())) {
+      return;
+    }
+
+    setSettings(playerKey, "startTime", parseFloat(event.target.value) * 60);
+    await saveSettings();
   }
 
   async function onChangeIncrementBy(event: Event & { target: HTMLInputElement }) {
