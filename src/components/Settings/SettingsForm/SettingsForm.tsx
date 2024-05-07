@@ -10,12 +10,10 @@ type SettingsFormProps = {
 };
 
 export const SettingsForm = (props: SettingsFormProps) => {
-  let formRef!: HTMLFormElement;
-
   const players: Player[] = [1, 2];
 
   return (
-    <form ref={formRef} class={styles.form} autocomplete="off">
+    <form class={styles.form} autocomplete="off">
       <div class={styles.playerSettingsContainer}>
         {players.map((player) => (
           <PlayerSettings player={player} />
