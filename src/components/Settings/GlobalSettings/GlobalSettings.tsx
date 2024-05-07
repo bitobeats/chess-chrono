@@ -3,20 +3,16 @@ import styles from "./GlobalSettings.module.scss";
 import { createSelector } from "solid-js";
 import { Theme } from "../../../libs/settings-manager/enums/Theme";
 import { ToggleSwitch } from "../../Generic/ToggleSwitch/ToggleSwitch";
-
-type GlobalSettingsProps = {
-  theme: Theme;
-  onChangeTheme: (newValue: Theme) => void;
-  soundOn: boolean;
-  onChangeSoundOn: (newValue: boolean) => void;
-};
+import { useSettingsStoreContext } from "../../../contexts/SettingsStoreContext";
 
 type ThemeOption = {
   text: string;
   theme: Theme;
 };
-export const GlobalSettings = (props: GlobalSettingsProps) => {
-  const selectedTheme = createSelector(() => props.theme);
+
+export const GlobalSettings = () => {
+  const { saveSettings, setSettings, settings } = useSettingsStoreContext();
+  const selectedTheme = createSelector(() => settings.global.theme);
 
   const themeOptions: ThemeOption[] = [
     { text: "System", theme: Theme.System },
@@ -30,22 +26,25 @@ export const GlobalSettings = (props: GlobalSettingsProps) => {
     },
   ];
 
-  function handleThemeChange(
+  async function handleThemeChange(
     ev: Event & {
       currentTarget: HTMLSelectElement;
       target: HTMLSelectElement;
     }
   ) {
-    props.onChangeTheme(ev.target.value as Theme);
+    const theme = ev.target.value as Theme;
+    setSettings("global", "theme", theme);
+    await saveSettings();
   }
 
-  function handleToggleSound(
+  async function handleToggleSound(
     ev: Event & {
       currentTarget: HTMLInputElement;
       target: Element;
     }
   ) {
-    props.onChangeSoundOn(ev.currentTarget.checked);
+    setSettings("global", "soundOn", ev.currentTarget.checked);
+    await saveSettings();
   }
 
   return (
@@ -64,7 +63,12 @@ export const GlobalSettings = (props: GlobalSettingsProps) => {
 
       <div class={styles.optionContainer}>
         <label for="checkbox-sound">Sound</label>
-        <ToggleSwitch checked={props.soundOn} onChange={handleToggleSound} name="toggle-sound" id="checkbox-sound" />
+        <ToggleSwitch
+          checked={settings.global.soundOn}
+          onChange={handleToggleSound}
+          name="toggle-sound"
+          id="checkbox-sound"
+        />
       </div>
     </fieldset>
   );
