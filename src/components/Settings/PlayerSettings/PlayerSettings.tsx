@@ -70,7 +70,7 @@ export const PlayerSettings = (props: PlayerSettingsProps) => {
           step={0.01}
           min={0.1}
           max={600}
-          value={(settings[`player${props.player}`].startTime / 60).toString()}
+          value={(settings[playerKey].startTime / 60).toString()}
           onChange={onChangeStartTime}
           onClick={handleOnClick}
         />
