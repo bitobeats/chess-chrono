@@ -5,11 +5,7 @@ import styles from "./SettingsForm.module.scss";
 import { GlobalSettings } from "../GlobalSettings/GlobalSettings";
 import { PlayerSettings } from "../PlayerSettings/PlayerSettings";
 
-type SettingsFormProps = {
-  onCancel: () => void;
-};
-
-export const SettingsForm = (props: SettingsFormProps) => {
+export const SettingsForm = () => {
   const players: Player[] = [1, 2];
 
   return (
@@ -21,12 +17,6 @@ export const SettingsForm = (props: SettingsFormProps) => {
       </div>
 
       <GlobalSettings />
-
-      <menu class={styles.optionsMenu}>
-        <button class={styles.closeButton} type="button" onClick={props.onCancel} autofocus>
-          Ok
-        </button>
-      </menu>
     </form>
   );
 };

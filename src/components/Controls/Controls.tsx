@@ -55,7 +55,7 @@ export const Controls = () => {
       </button>
 
       <Modal class={styles.settingsModal}>
-        <SettingsView onCancel={closeModal} />
+        <SettingsView onClickClose={closeModal} />
       </Modal>
     </menu>
   );
