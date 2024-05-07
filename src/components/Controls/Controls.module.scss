@@ -48,7 +48,7 @@
 
 .settingsModal {
   overflow: clip;
-  touch-action: none;
+  touch-action: manipulation;
   display: block;
   box-sizing: border-box;
   opacity: 0;
