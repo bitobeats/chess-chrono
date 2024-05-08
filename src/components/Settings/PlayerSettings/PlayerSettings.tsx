@@ -66,7 +66,9 @@ export const PlayerSettings = (props: PlayerSettingsProps) => {
     <fieldset class={styles.container}>
       <legend>{legend}</legend>
       <div class={styles.settingContainer}>
-        <label for={`startTime-${componentUniqueId}`}>Start time</label>
+        <label class={styles.label} for={`startTime-${componentUniqueId}`}>
+          Start time
+        </label>
         <input
           ref={setStartTimeInputRef}
           class={styles.input}
@@ -82,7 +84,9 @@ export const PlayerSettings = (props: PlayerSettingsProps) => {
       </div>
 
       <div class={styles.settingContainer}>
-        <label for={`incrementBy-${componentUniqueId}`}>Increment by (seconds)</label>
+        <label class={styles.label} for={`incrementBy-${componentUniqueId}`}>
+          Increment by (seconds)
+        </label>
         <input
           class={styles.input}
           type="number"
