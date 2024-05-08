@@ -22,7 +22,7 @@ export const PlayerSettings = (props: PlayerSettingsProps) => {
   const { saveSettings, setSettings, settings } = useSettingsStoreContext();
   const { chessClockStore } = useChessClockStoreContext();
 
-  const legend = `Player ${props.player} settings`;
+  const legend = `Player ${props.player}`;
   const playerKey = `player${props.player}` as `player${1 | 2}`;
 
   function handleOnClick(ev: MouseEvent & { currentTarget: HTMLInputElement }) {
@@ -63,44 +63,46 @@ export const PlayerSettings = (props: PlayerSettingsProps) => {
   }
 
   return (
-    <fieldset class={styles.container}>
-      <legend>{legend}</legend>
-      <div class={styles.settingContainer}>
-        <label class={styles.label} for={`startTime-${componentUniqueId}`}>
-          Start time
-        </label>
-        <input
-          ref={setStartTimeInputRef}
-          class={styles.input}
-          type="text"
-          inputMode="numeric"
-          placeholder="HH:MM:SS"
-          id={`startTime-${componentUniqueId}`}
-          name="startTime"
-          value={formatTimeToHoursMinutesSeconds(settings[playerKey].startTime)}
-          onChange={onChangeStartTime}
-          onClick={handleOnClick}
-        />
-      </div>
+    <div class={styles.container}>
+      <span class={styles.label}>{legend}</span>
+      <fieldset class={styles.fieldset}>
+        <div class={styles.settingContainer}>
+          <label class={styles.label} for={`startTime-${componentUniqueId}`}>
+            Start time
+          </label>
+          <input
+            ref={setStartTimeInputRef}
+            class={styles.input}
+            type="text"
+            inputMode="numeric"
+            placeholder="HH:MM:SS"
+            id={`startTime-${componentUniqueId}`}
+            name="startTime"
+            value={formatTimeToHoursMinutesSeconds(settings[playerKey].startTime)}
+            onChange={onChangeStartTime}
+            onClick={handleOnClick}
+          />
+        </div>
 
-      <div class={styles.settingContainer}>
-        <label class={styles.label} for={`incrementBy-${componentUniqueId}`}>
-          Increment by (seconds)
-        </label>
-        <input
-          class={styles.input}
-          type="number"
-          inputMode="numeric"
-          placeholder="0"
-          id={`incrementBy-${componentUniqueId}`}
-          name="incrementBy"
-          value={settings[playerKey].incrementBy.toString()}
-          min={0}
-          max={36000}
-          onChange={onChangeIncrementBy}
-          onClick={handleOnClick}
-        />
-      </div>
-    </fieldset>
+        <div class={styles.settingContainer}>
+          <label class={styles.label} for={`incrementBy-${componentUniqueId}`}>
+            Increment by (seconds)
+          </label>
+          <input
+            class={styles.input}
+            type="number"
+            inputMode="numeric"
+            placeholder="0"
+            id={`incrementBy-${componentUniqueId}`}
+            name="incrementBy"
+            value={settings[playerKey].incrementBy.toString()}
+            min={0}
+            max={36000}
+            onChange={onChangeIncrementBy}
+            onClick={handleOnClick}
+          />
+        </div>
+      </fieldset>
+    </div>
   );
 };

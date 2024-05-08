@@ -25,7 +25,7 @@ export const SettingsDrawer: ParentComponent<SettingsDrawerProps> = (props) => {
             <Drawer.Content class={styles.content}>
               <div class={styles.notch} />
               <header class={styles.header}>
-                <Drawer.Label>{props.label}</Drawer.Label>
+                <Drawer.Label class={styles.label}>{props.label}</Drawer.Label>
                 <Drawer.Close class={styles.closeButton}>X</Drawer.Close>
               </header>
               {props.children}
