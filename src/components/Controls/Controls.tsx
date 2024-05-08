@@ -1,13 +1,11 @@
 import styles from "./Controls.module.scss";
 
 import { useChessClockStoreContext } from "../../contexts/ChessClockStoreContext";
-import { SettingsView } from "../Settings/SettingsView/SettingsView";
+import { SettingsForm } from "../Settings/SettingsForm/SettingsForm";
 import { audioPlayer } from "../../libs/libsSetup";
-import { useModal } from "../../hooks/useModal";
+import { SettingsDrawer } from "../Generic/SettingsDrawer/SettingsDrawer";
 
 export const Controls = () => {
-  const { Modal, closeModal, openModal } = useModal();
-
   const { chessClockStore, resume, suspend, reset } = useChessClockStoreContext();
 
   const suspendResumeButtonDisabled = () =>
@@ -50,13 +48,15 @@ export const Controls = () => {
         ♺
       </button>
 
-      <button title="Settings" class={styles.iconButton} onClick={openModal} disabled={openSettingsButtonDisabled()}>
-        ⛭
-      </button>
-
-      <Modal class={styles.settingsModal}>
-        <SettingsView onClickClose={closeModal} />
-      </Modal>
+      <SettingsDrawer
+        label="Settings"
+        openButton={(props) => (
+          <button {...props} title="Settings" class={styles.iconButton} disabled={openSettingsButtonDisabled()}>
+            ⛭
+          </button>
+        )}>
+        <SettingsForm />
+      </SettingsDrawer>
     </menu>
   );
 };

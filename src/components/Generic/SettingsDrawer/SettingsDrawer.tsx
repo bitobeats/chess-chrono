@@ -1,26 +1,34 @@
-import type { VoidComponent } from "solid-js";
+import type { ParentComponent, VoidComponent, JSX } from "solid-js";
 
 import styles from "./SettingsDrawer.module.scss";
 
 import { Drawer } from "corvu/drawer";
 
-export const SettingsDrawer: VoidComponent = () => {
+type SettingsDrawerProps = {
+  openButton: VoidComponent<JSX.ButtonHTMLAttributes<HTMLButtonElement>>;
+  label: string;
+};
+
+export const SettingsDrawer: ParentComponent<SettingsDrawerProps> = (props) => {
   return (
     <Drawer breakPoints={[0.75]}>
-      {(props) => (
+      {(drawerProps) => (
         <>
-          <Drawer.Trigger class={styles.trigger}>Open Drawer</Drawer.Trigger>
+          <Drawer.Trigger as={props.openButton} />
           <Drawer.Portal>
             <Drawer.Overlay
               class={styles.overlay}
               style={{
-                "background-color": `rgb(0 0 0 / ${0.5 * props.openPercentage})`,
+                "background-color": `rgb(0 0 0 / ${0.5 * drawerProps.openPercentage})`,
               }}
             />
             <Drawer.Content class={styles.content}>
               <div class={styles.notch} />
-              <Drawer.Label class={styles.label}>I'm a drawer!</Drawer.Label>
-              <Drawer.Description class={styles.description}>Drag down to close me.</Drawer.Description>
+              <header class={styles.header}>
+                <Drawer.Label>{props.label}</Drawer.Label>
+                <Drawer.Close class={styles.closeButton}>X</Drawer.Close>
+              </header>
+              {props.children}
             </Drawer.Content>
           </Drawer.Portal>
         </>

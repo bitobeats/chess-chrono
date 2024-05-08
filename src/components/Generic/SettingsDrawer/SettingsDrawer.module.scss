@@ -21,15 +21,19 @@
   bottom: 0px;
   z-index: 50;
   display: flex;
-  height: 100%;
-  max-height: 500px;
+  height: max-content;
+  max-height: max-content;
   flex-direction: column;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
   border-top-width: 4px;
   border-color: hsl(258, 79%, 74%);
   background-color: Canvas;
-  padding-top: 0.75rem;
+
+  padding-bottom: max(30px, env(safe-area-inset-bottom));
+  padding-top: 7px;
+  padding-left: max(30px, env(safe-area-inset-left));
+  padding-right: max(30px, env(safe-area-inset-right));
 
   &::after {
     content: "";
@@ -68,4 +72,20 @@
   align-self: center;
   border-radius: 9999px;
   background-color: CanvasText;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.closeButton {
+  width: min-content;
+  height: min-content;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: large;
 }
