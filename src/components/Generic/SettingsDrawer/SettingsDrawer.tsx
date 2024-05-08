@@ -1,6 +1,6 @@
 import type { VoidComponent } from "solid-js";
 
-import styles from "./Drawer.module.scss";
+import styles from "./SettingsDrawer.module.scss";
 
 import { Drawer } from "corvu/drawer";
 
