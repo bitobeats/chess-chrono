@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "corvu": "^0.5.1",
     "solid-js": "^1.8.17",
     "vrls-simple-event-target": "^0.1.1",
     "vrls-tasks": "^0.0.4"
