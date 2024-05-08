@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@maskito/core':
+        specifier: ^2.3.1
+        version: 2.3.1
+      '@maskito/kit':
+        specifier: ^2.3.1
+        version: 2.3.1(@maskito/core@2.3.1)
       corvu:
         specifier: ^0.5.1
         version: 0.5.1(solid-js@1.8.17)
@@ -828,6 +834,14 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
+
+  '@maskito/core@2.3.1':
+    resolution: {integrity: sha512-KmRGNK4g0hyXnLVKVlnCRfokPaRkOVEH4nMI8NK9p6cKPlRwC9V0l2MRxZKgBAhVvenQ8t5GM8xvl+wqOGUTFQ==}
+
+  '@maskito/kit@2.3.1':
+    resolution: {integrity: sha512-AhW7IsEC4j2pg4qmGGFcVrcAx3PFYFKiza1vf5NRn7/2LU88/5uS6fIhKs6Uvdp3VzdNAHRQUOSVU2Ek13MOTA==}
+    peerDependencies:
+      '@maskito/core': ^2.3.1
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -3197,6 +3211,12 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
+
+  '@maskito/core@2.3.1': {}
+
+  '@maskito/kit@2.3.1(@maskito/core@2.3.1)':
+    dependencies:
+      '@maskito/core': 2.3.1
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:

@@ -2,15 +2,21 @@ import type { Player } from "../../../libs/chess-clock-service/types/Player";
 
 import styles from "./PlayerSettings.module.scss";
 
-import { createUniqueId } from "solid-js";
+import { createUniqueId, createSignal } from "solid-js";
 import { useSettingsStoreContext } from "../../../contexts/SettingsStoreContext";
 import { useChessClockStoreContext } from "../../../contexts/ChessClockStoreContext";
+import { useStartTimeInputMask } from "./useStartTimeInputMask";
+import { convertFormattedTimeToSeconds } from "./convertFormattedTimeToSeconds";
+import { formatTimeToHoursMinutesSeconds } from "../../../utils/formatTimeToHoursMinutesSeconds";
 
 type PlayerSettingsProps = {
   player: Player;
 };
 
 export const PlayerSettings = (props: PlayerSettingsProps) => {
+  const [startTimeInputRef, setStartTimeInputRef] = createSignal<HTMLInputElement>();
+  useStartTimeInputMask(startTimeInputRef);
+
   const componentUniqueId = createUniqueId();
 
   const { saveSettings, setSettings, settings } = useSettingsStoreContext();
@@ -38,12 +44,12 @@ export const PlayerSettings = (props: PlayerSettingsProps) => {
     return true;
   }
 
-  async function onChangeStartTime(event: Event & { target: HTMLInputElement }) {
-    if (!passConfirmationGuard(event.target, (settings[playerKey].startTime / 60).toString())) {
+  async function onChangeStartTime(event: Event & { currentTarget: HTMLInputElement }) {
+    if (!passConfirmationGuard(event.currentTarget, formatTimeToHoursMinutesSeconds(settings[playerKey].startTime))) {
       return;
     }
 
-    setSettings(playerKey, "startTime", parseFloat(event.target.value) * 60);
+    setSettings(playerKey, "startTime", convertFormattedTimeToSeconds(event.currentTarget.value));
     await saveSettings();
   }
 
@@ -60,18 +66,16 @@ export const PlayerSettings = (props: PlayerSettingsProps) => {
     <fieldset class={styles.container}>
       <legend>{legend}</legend>
       <div class={styles.settingContainer}>
-        <label for={`startTime-${componentUniqueId}`}>Start time (minutes)</label>
+        <label for={`startTime-${componentUniqueId}`}>Start time</label>
         <input
+          ref={setStartTimeInputRef}
           class={styles.input}
-          type="number"
+          type="text"
           inputMode="numeric"
-          placeholder="10"
+          placeholder="HH:MM:SS"
           id={`startTime-${componentUniqueId}`}
           name="startTime"
-          step={0.01}
-          min={0.1}
-          max={600}
-          value={(settings[playerKey].startTime / 60).toString()}
+          value={formatTimeToHoursMinutesSeconds(settings[playerKey].startTime)}
           onChange={onChangeStartTime}
           onClick={handleOnClick}
         />
