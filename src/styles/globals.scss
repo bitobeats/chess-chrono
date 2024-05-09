@@ -38,7 +38,7 @@ body {
   padding: 10px;
 
   padding-top: max(5% + env(safe-area-inset-top));
-  padding-bottom: max(5% + env(safe-area-inset-bottom));
+  padding-bottom: 1%;
   padding-right: max(2% + env(safe-area-inset-right));
   padding-left: max(2% + env(safe-area-inset-left));
 
@@ -46,6 +46,7 @@ body {
     grid-template-areas: "#{consts.$grid-main} #{consts.$grid-menu}";
     grid-template-columns: 1fr max-content;
     grid-template-rows: 1fr;
+    padding-bottom: max(5% + env(safe-area-inset-bottom));
   }
 
   @media (display-mode: standalone) {
