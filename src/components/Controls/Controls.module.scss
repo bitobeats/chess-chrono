@@ -29,8 +29,9 @@
   height: max(50px, 3vw);
   border: none;
   border-radius: 100%;
-  transition: all 0.1s;
+  transition: filter 0.2s;
   color: var(--primary-color);
+  will-change: filter;
 
   @media (orientation: "portrait") {
     font-size: xx-large;
@@ -38,7 +39,7 @@
 
   @media (hover: hover) {
     &:not([disabled]):hover {
-      background-color: var(--button-hover-color);
+      filter: brightness(1.4);
     }
   }
 
