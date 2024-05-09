@@ -30,6 +30,7 @@
   border: none;
   border-radius: 100%;
   transition: all 0.1s;
+  color: var(--primary-color);
 
   @media (orientation: "portrait") {
     font-size: xx-large;
@@ -41,8 +42,12 @@
     }
   }
 
-  &:active {
+  &:not([disabled]):active {
     filter: brightness(85%);
+  }
+
+  &:disabled {
+    color: var(--disabled-color);
   }
 }
 

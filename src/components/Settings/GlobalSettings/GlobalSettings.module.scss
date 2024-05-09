@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   font-size: large;
+  color: var(--text-color);
 }
 
 .fieldset {
@@ -27,4 +28,5 @@
 
 .themeSelector {
   font-size: large;
+  color: var(--text-color);
 }

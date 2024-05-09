@@ -3,6 +3,7 @@
   text-align: center;
   font-size: xx-large;
   font-weight: 700;
+  color: var(--text-color);
 }
 
 .content {
@@ -20,7 +21,7 @@
   border-top-right-radius: 0.5rem;
   border-top-width: 4px;
   border-color: hsl(258, 79%, 74%);
-  background-color: Canvas;
+  background-color: var(--background-color);
 
   padding-bottom: max(30px, env(safe-area-inset-bottom));
   padding-top: 7px;
@@ -48,7 +49,6 @@
   position: fixed;
   inset: 0px;
   z-index: 40;
-  background-color: red;
 
   &[data-transitioning] {
     transition-property: background-color;
@@ -63,7 +63,7 @@
   width: 2.5rem;
   align-self: center;
   border-radius: 9999px;
-  background-color: CanvasText;
+  background-color: var(--text-color);
 }
 
 .header {
@@ -80,4 +80,5 @@
   border: none;
   cursor: pointer;
   font-size: large;
+  color: var(--text-color);
 }

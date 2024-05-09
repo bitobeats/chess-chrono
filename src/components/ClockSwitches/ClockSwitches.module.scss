@@ -28,6 +28,7 @@
   min-width: max-content;
   height: min(20vw, 100%);
   min-height: max-content;
+  color: var(--primary-color);
 
   @media (orientation: "portrait") {
     width: 100%;
@@ -37,6 +38,10 @@
     &:nth-of-type(2) {
       transform: scale(-1);
     }
+  }
+
+  &:disabled {
+    color: var(--disabled-color);
   }
 }
 

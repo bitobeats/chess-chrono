@@ -3,32 +3,24 @@
 // Colors by theme; (light, dark)
 $light-dark-themes: (
   "--primary-color": (
-    #3f3471,
-    #ffffff,
-  ),
-  "--secondary-color": (
-    #7975a4,
-    #888ab1,
+    royalblue,
+    dodgerblue,
   ),
   "--background-color": (
-    #f8f5ff,
-    #2c2c36,
+    white,
+    rgb(30, 30, 30),
   ),
-  "--clock-switch-background-color": (
-    #f2ecff,
-    #1a1920,
+  "--text-color": (
+    black,
+    white,
   ),
-  "--clock-switch-background-color-disabled": (
-    #dcd9f5,
-    #393647,
-  ),
-  "--defeat-color": (
-    #f02e2e,
-    #f02e2e,
+  "--disabled-color": (
+    darkgrey,
+    dimgray,
   ),
   "--button-hover-color": (
-    lightgrey,
-    darkgrey,
+    dimgrey,
+    dimgrey,
   ),
 );
 
