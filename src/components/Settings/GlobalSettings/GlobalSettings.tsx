@@ -48,28 +48,30 @@ export const GlobalSettings = () => {
   }
 
   return (
-    <fieldset class={styles.container}>
-      <legend>Global</legend>
-      <div class={styles.optionContainer}>
-        <label for="select-theme">Theme</label>
-        <select name="theme" id="select-theme" class={styles.themeSelector} onChange={handleThemeChange}>
-          {themeOptions.map((themeOption) => (
-            <option value={themeOption.theme} selected={selectedTheme(themeOption.theme)}>
-              {themeOption.text}
-            </option>
-          ))}
-        </select>
-      </div>
+    <div class={styles.container}>
+      <span class={styles.label}>Global</span>
+      <fieldset class={styles.fieldset}>
+        <div class={styles.optionContainer}>
+          <label for="select-theme">Theme</label>
+          <select name="theme" id="select-theme" class={styles.themeSelector} onChange={handleThemeChange}>
+            {themeOptions.map((themeOption) => (
+              <option value={themeOption.theme} selected={selectedTheme(themeOption.theme)}>
+                {themeOption.text}
+              </option>
+            ))}
+          </select>
+        </div>
 
-      <div class={styles.optionContainer}>
-        <label for="checkbox-sound">Sound</label>
-        <ToggleSwitch
-          checked={settings.global.soundOn}
-          onChange={handleToggleSound}
-          name="toggle-sound"
-          id="checkbox-sound"
-        />
-      </div>
-    </fieldset>
+        <div class={styles.optionContainer}>
+          <label for="checkbox-sound">Sound</label>
+          <ToggleSwitch
+            checked={settings.global.soundOn}
+            onChange={handleToggleSound}
+            name="toggle-sound"
+            id="checkbox-sound"
+          />
+        </div>
+      </fieldset>
+    </div>
   );
 };

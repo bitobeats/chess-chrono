@@ -1,8 +1,13 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
   font-size: large;
+}
+
+.fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .optionContainer {
@@ -15,4 +20,8 @@
 
 .themeSelector {
   font-size: smaller;
+}
+
+.label {
+  width: 100%;
 }
