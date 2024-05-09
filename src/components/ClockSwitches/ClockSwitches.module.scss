@@ -29,7 +29,7 @@
   height: min(20vw, 100%);
   min-height: max-content;
   color: var(--primary-color);
-  background-color: rgb(61 61 61);
+  background-color: rgb(239, 239, 239);
   border: none;
   border-radius: 10px;
   box-shadow: -7px 1px 5px 0px rgba(0, 0, 0, 0.75);
@@ -37,7 +37,7 @@
 
   &:disabled {
     color: var(--disabled-color);
-    background-color: rgb(46 46 46);
+    background-color: rgba(239, 239, 239, 0.3);
     box-shadow: -2px 0px 2px 0px rgba(0, 0, 0, 0.75);
   }
 
@@ -62,6 +62,14 @@
     &:nth-child(2) {
       transform: scale(-1);
       box-shadow: 1px 7px 5px 0px rgba(0, 0, 0, 0.75);
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    background-color: rgb(61 61 61);
+
+    &:disabled {
+      background-color: rgb(46 46 46);
     }
   }
 }
