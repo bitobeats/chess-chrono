@@ -12,6 +12,7 @@
     "@maskito/core": "^2.3.1",
     "@maskito/kit": "^2.3.1",
     "corvu": "^0.5.1",
+    "solid-icons": "^1.1.0",
     "solid-js": "^1.8.17",
     "vrls-simple-event-target": "^0.1.1",
     "vrls-tasks": "^0.0.4"

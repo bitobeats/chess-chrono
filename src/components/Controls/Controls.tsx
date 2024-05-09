@@ -4,6 +4,7 @@ import { useChessClockStoreContext } from "../../contexts/ChessClockStoreContext
 import { SettingsForm } from "../Settings/SettingsForm/SettingsForm";
 import { audioPlayer } from "../../libs/libsSetup";
 import { SettingsDrawer } from "../Generic/SettingsDrawer/SettingsDrawer";
+import { TbSettings, TbRefresh, TbPlayerPlayFilled, TbPlayerStopFilled } from "solid-icons/tb";
 
 export const Controls = () => {
   const { chessClockStore, resume, suspend, reset } = useChessClockStoreContext();
@@ -41,18 +42,18 @@ export const Controls = () => {
         disabled={suspendResumeButtonDisabled()}
         onClick={handlePause}
         title="Pause/Resume">
-        {chessClockStore.chessClockState === "suspended" ? "▶︎" : "||"}
+        {chessClockStore.chessClockState === "suspended" ? <TbPlayerPlayFilled /> : <TbPlayerStopFilled />}
       </button>
 
       <button onClick={handleResetClick} title={"Reset"} class={styles.iconButton} disabled={resetButtonDisabled()}>
-        ♺
+        <TbRefresh />
       </button>
 
       <SettingsDrawer
         label="Settings"
         openButton={(props) => (
           <button {...props} title="Settings" class={styles.iconButton} disabled={openSettingsButtonDisabled()}>
-            ⛭
+            <TbSettings />
           </button>
         )}>
         <SettingsForm />
