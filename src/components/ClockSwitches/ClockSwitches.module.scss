@@ -29,6 +29,9 @@
   height: min(20vw, 100%);
   min-height: max-content;
   color: var(--primary-color);
+  background-color: rgb(61 61 61);
+  border: none;
+  border-radius: 10px;
 
   @media (orientation: "portrait") {
     width: 100%;
@@ -42,6 +45,11 @@
 
   &:disabled {
     color: var(--disabled-color);
+    background-color: rgb(46 46 46);
+  }
+
+  &:not([disabled]):active {
+    background-color: rgb(82 82 82);
   }
 }
 
