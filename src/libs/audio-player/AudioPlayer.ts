@@ -1,5 +1,5 @@
 import clockSwitchAudioCaf from "../../assets/audio/switch-toggle.caf?url";
-import clockSwitchAudioWebm from "../../assets/audio/switch-toggle.webm";
+import clockSwitchAudioWebm from "../../assets/audio/switch-toggle.webm?url";
 
 export class AudioPlayer {
   #audioCtx: AudioContext | null = null;
