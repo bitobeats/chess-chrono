@@ -23,11 +23,11 @@ $light-dark-themes: (
     dimgrey,
   ),
   "--clock-switch-background-color": (
-    rgb(239, 239, 239),
+    rgba(239, 239, 239, 0.3),
     rgb(61 61 61),
   ),
   "--clock-switch-disabled-background-color": (
-    rgba(239, 239, 239, 0.3),
+    rgb(239, 239, 239),
     rgb(46 46 46),
   ),
   "--clock-switch-box-shadow-landscape": (
