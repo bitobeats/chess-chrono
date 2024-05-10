@@ -1,12 +1,9 @@
 import { onMount, onCleanup } from "solid-js";
-import { Maskito } from "@maskito/core";
-import { maskitoTimeOptionsGenerator } from "@maskito/kit";
+import { Maskito, type MaskitoOptions } from "@maskito/core";
 
-export function useStartTimeInputMask(inputElementRef: () => HTMLInputElement | undefined) {
+export function useMaskito(inputElementRef: () => HTMLInputElement | undefined, options: MaskitoOptions) {
   onMount(() => {
     let maskedInput: Maskito | null = null;
-
-    const options = maskitoTimeOptionsGenerator({ mode: "HH:MM:SS", timeSegmentMaxValues: { hours: 99 } });
 
     const element = inputElementRef();
 

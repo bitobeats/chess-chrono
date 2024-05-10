@@ -5,10 +5,11 @@ import styles from "./PlayerSettings.module.scss";
 import { createUniqueId, createSignal } from "solid-js";
 import { useSettingsStoreContext } from "../../../contexts/SettingsStoreContext";
 import { useChessClockStoreContext } from "../../../contexts/ChessClockStoreContext";
-import { useStartTimeInputMask } from "./useStartTimeInputMask";
-import { useIncrementByInputMask } from "./useIncrementByInputMask";
 import { convertFormattedTimeToSeconds } from "./convertFormattedTimeToSeconds";
 import { formatTimeToHoursMinutesSeconds } from "../../../utils/formatTimeToHoursMinutesSeconds";
+import { maskitoTimeOptionsGenerator } from "@maskito/kit";
+import { maskitoNumberOptionsGenerator } from "@maskito/kit";
+import { useMaskito } from "../../../hooks/useMaskito";
 
 type PlayerSettingsProps = {
   player: Player;
@@ -18,8 +19,14 @@ export const PlayerSettings = (props: PlayerSettingsProps) => {
   const [startTimeInputRef, setStartTimeInputRef] = createSignal<HTMLInputElement>();
   const [incrementByInputRef, setIncrementByInputRef] = createSignal<HTMLInputElement>();
 
-  useStartTimeInputMask(startTimeInputRef);
-  useIncrementByInputMask(incrementByInputRef);
+  const startTimeMaskitoOptions = maskitoTimeOptionsGenerator({
+    mode: "HH:MM:SS",
+    timeSegmentMaxValues: { hours: 99 },
+  });
+  const incrementByMaskitoOptions = maskitoNumberOptionsGenerator({});
+
+  useMaskito(startTimeInputRef, startTimeMaskitoOptions);
+  useMaskito(incrementByInputRef, incrementByMaskitoOptions);
 
   const componentUniqueId = createUniqueId();
 
