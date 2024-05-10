@@ -49,7 +49,13 @@ export const PlayerSettings = (props: PlayerSettingsProps) => {
       return;
     }
 
-    setSettings(playerKey, "startTime", convertFormattedTimeToSeconds(event.currentTarget.value));
+    let convertedTime = convertFormattedTimeToSeconds(event.currentTarget.value);
+
+    if (Number.isNaN(convertedTime)) {
+      convertedTime = 600;
+    }
+
+    setSettings(playerKey, "startTime", convertedTime);
     await saveSettings();
   }
 
