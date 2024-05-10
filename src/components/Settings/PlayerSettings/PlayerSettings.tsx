@@ -6,6 +6,7 @@ import { createUniqueId, createSignal } from "solid-js";
 import { useSettingsStoreContext } from "../../../contexts/SettingsStoreContext";
 import { useChessClockStoreContext } from "../../../contexts/ChessClockStoreContext";
 import { useStartTimeInputMask } from "./useStartTimeInputMask";
+import { useIncrementByInputMask } from "./useIncrementByInputMask";
 import { convertFormattedTimeToSeconds } from "./convertFormattedTimeToSeconds";
 import { formatTimeToHoursMinutesSeconds } from "../../../utils/formatTimeToHoursMinutesSeconds";
 
@@ -15,7 +16,10 @@ type PlayerSettingsProps = {
 
 export const PlayerSettings = (props: PlayerSettingsProps) => {
   const [startTimeInputRef, setStartTimeInputRef] = createSignal<HTMLInputElement>();
+  const [incrementByInputRef, setIncrementByInputRef] = createSignal<HTMLInputElement>();
+
   useStartTimeInputMask(startTimeInputRef);
+  useIncrementByInputMask(incrementByInputRef);
 
   const componentUniqueId = createUniqueId();
 
@@ -101,8 +105,9 @@ export const PlayerSettings = (props: PlayerSettingsProps) => {
             Increment by (seconds)
           </label>
           <input
+            ref={setIncrementByInputRef}
             class={styles.input}
-            type="number"
+            type="text"
             inputMode="numeric"
             placeholder="0"
             id={`incrementBy-${componentUniqueId}`}
