@@ -1,5 +1,8 @@
 @use "../../styles/consts";
 
+$drop-shadow-light: drop-shadow(1px 1px 0px rgba(0, 0, 0, 0.3));
+$drop-shadow-dark: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.85));
+
 .container {
   display: flex;
   flex-direction: row;
@@ -29,11 +32,15 @@
   height: max(50px, 3vw);
   border: none;
   border-radius: 100%;
-  transition: filter 0.3s;
+  transition: filter 0.2s;
   color: var(--primary-color);
   will-change: filter;
 
-  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.75)) brightness(1);
+  filter: #{$drop-shadow-light} brightness(1);
+
+  @media (prefers-color-scheme: dark) {
+    filter: #{$drop-shadow-dark} brightness(1);
+  }
 
   @media (orientation: portrait) {
     font-size: xx-large;
@@ -41,7 +48,11 @@
 
   @media (hover: hover) {
     &:not([disabled]):hover {
-      filter: brightness(1.4);
+      filter: #{$drop-shadow-light} brightness(1.4);
+
+      @media (prefers-color-scheme: dark) {
+        filter: #{$drop-shadow-dark} brightness(1.4);
+      }
     }
   }
 
@@ -52,37 +63,5 @@
   &:disabled {
     color: var(--disabled-color);
     filter: drop-shadow(0px 0px 0px transparent);
-  }
-}
-
-.settingsModal {
-  overflow: clip;
-  touch-action: manipulation;
-  display: block;
-  box-sizing: border-box;
-  opacity: 0;
-  transition: all 0.2s ease-in-out;
-  inset: 0;
-  padding: 0;
-  border: none;
-  border-radius: 30px;
-  box-shadow: 1px 4px 15px -11px rgba(0, 0, 0, 0.75);
-
-  &[open] {
-    opacity: 100;
-    transform: none;
-  }
-
-  @media (orientation: portrait) {
-    margin-bottom: 0;
-    max-width: 100vw;
-    width: 100vw;
-    transform: translateY(100%);
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-
-    &[open] {
-      box-shadow: -7px 11px 57px 0 rgba(0, 0, 0, 0.75);
-    }
   }
 }
