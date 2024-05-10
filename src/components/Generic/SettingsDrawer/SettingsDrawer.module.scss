@@ -14,7 +14,7 @@
   bottom: 0px;
   z-index: 50;
   display: flex;
-  height: max-content;
+  height: min(100%, 80vh);
   max-height: max-content;
   flex-direction: column;
   border-top-left-radius: 0.5rem;
