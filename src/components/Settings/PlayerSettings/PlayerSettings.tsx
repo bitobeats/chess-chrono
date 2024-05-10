@@ -64,7 +64,13 @@ export const PlayerSettings = (props: PlayerSettingsProps) => {
       return;
     }
 
-    setSettings(playerKey, "incrementBy", parseInt(event.target.value));
+    let parsedValue = parseInt(event.target.value);
+
+    if (Number.isNaN(parsedValue)) {
+      parsedValue = 0;
+    }
+
+    setSettings(playerKey, "incrementBy", parsedValue);
     await saveSettings();
   }
 
