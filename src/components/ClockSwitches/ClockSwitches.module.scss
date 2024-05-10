@@ -35,6 +35,10 @@
   box-shadow: -7px 1px 5px 0px rgba(0, 0, 0, 0.75);
   transition: all 0.1s;
 
+  &:active {
+    color: var(--primary-color);
+    background-color: var(--clock-switch-background-color);
+  }
   &:disabled {
     color: var(--disabled-color);
     background-color: var(--clock-switch-disabled-background-color);
