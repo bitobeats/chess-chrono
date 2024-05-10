@@ -74,6 +74,7 @@
 }
 
 .closeButton {
+  will-change: filter;
   width: min-content;
   height: min-content;
   background-color: transparent;
@@ -81,8 +82,13 @@
   cursor: pointer;
   font-size: x-large;
   color: var(--text-color);
+  transition: filter 0.2s;
 
   &:focus {
     outline: none;
+  }
+
+  &:active {
+    filter: brightness(80%);
   }
 }
