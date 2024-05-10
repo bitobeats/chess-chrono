@@ -42,7 +42,7 @@
   &:disabled {
     color: var(--disabled-color);
     background-color: var(--clock-switch-disabled-background-color);
-    box-shadow: -2px 0px 2px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: -1px 0px 2px 0px rgba(0, 0, 0, 0.75);
   }
 
   // &:not([disabled]):active {
