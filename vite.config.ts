@@ -8,6 +8,7 @@ export default defineConfig({
   base: "/chess-clock-solid/",
   build: {
     target: "ES2022",
+    assetsInlineLimit: 0,
   },
   plugins: [
     solid(),
