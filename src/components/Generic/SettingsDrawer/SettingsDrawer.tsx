@@ -3,6 +3,7 @@ import type { ParentComponent, VoidComponent, JSX } from "solid-js";
 import styles from "./SettingsDrawer.module.scss";
 
 import { Drawer } from "corvu/drawer";
+import { AiFillCloseCircle } from "solid-icons/ai";
 
 type SettingsDrawerProps = {
   openButton: VoidComponent<JSX.ButtonHTMLAttributes<HTMLButtonElement>>;
@@ -26,7 +27,9 @@ export const SettingsDrawer: ParentComponent<SettingsDrawerProps> = (props) => {
               <div class={styles.notch} />
               <header class={styles.header}>
                 <Drawer.Label class={styles.label}>{props.label}</Drawer.Label>
-                <Drawer.Close class={styles.closeButton}>X</Drawer.Close>
+                <Drawer.Close class={styles.closeButton}>
+                  <AiFillCloseCircle />
+                </Drawer.Close>
               </header>
               {props.children}
             </Drawer.Content>
