@@ -36,7 +36,9 @@ $drop-shadow-dark: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.85));
   color: var(--primary-color);
   will-change: filter;
 
-  filter: #{$drop-shadow-light} brightness(1);
+  @media (prefers-color-scheme: light) {
+    filter: #{$drop-shadow-light} brightness(1);
+  }
 
   @media (prefers-color-scheme: dark) {
     filter: #{$drop-shadow-dark} brightness(1);
@@ -48,7 +50,9 @@ $drop-shadow-dark: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.85));
 
   @media (hover: hover) {
     &:not([disabled]):hover {
-      filter: #{$drop-shadow-light} brightness(1.4);
+      @media (prefers-color-scheme: light) {
+        filter: #{$drop-shadow-light} brightness(1.4);
+      }
 
       @media (prefers-color-scheme: dark) {
         filter: #{$drop-shadow-dark} brightness(1.4);
