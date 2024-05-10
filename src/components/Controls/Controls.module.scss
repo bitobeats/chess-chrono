@@ -9,7 +9,7 @@
   justify-content: space-around;
   height: 100%;
 
-  @media (orientation: "portrait") {
+  @media (orientation: portrait) {
     flex-direction: column;
 
     justify-content: space-around;
@@ -33,7 +33,7 @@
   color: var(--primary-color);
   will-change: filter;
 
-  @media (orientation: "portrait") {
+  @media (orientation: portrait) {
     font-size: xx-large;
   }
 
@@ -70,7 +70,7 @@
     transform: none;
   }
 
-  @media (orientation: "portrait") {
+  @media (orientation: portrait) {
     margin-bottom: 0;
     max-width: 100vw;
     width: 100vw;

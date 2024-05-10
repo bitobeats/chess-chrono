@@ -42,7 +42,7 @@ body {
   padding-right: max(2% + env(safe-area-inset-right));
   padding-left: max(2% + env(safe-area-inset-left));
 
-  @media (orientation: "portrait") {
+  @media (orientation: portrait) {
     grid-template-areas: "#{consts.$grid-main} #{consts.$grid-menu}";
     grid-template-columns: 1fr max-content;
     grid-template-rows: 1fr;

@@ -12,7 +12,7 @@
   width: 100%;
   height: 100%;
 
-  @media (orientation: "portrait") {
+  @media (orientation: portrait) {
     flex-direction: column-reverse;
     padding: 0;
     height: 100%;
@@ -45,7 +45,7 @@
   //   background-color: rgb(82 82 82);
   // }
 
-  @media (orientation: "portrait") {
+  @media (orientation: portrait) {
     width: 100%;
     height: 100%;
     font-size: 12vw;
