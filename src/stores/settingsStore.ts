@@ -19,7 +19,7 @@ export function createSettingsStore(settingsManager: SettingsManager) {
     }
 
     function darkModeQueryChangeEventListener(ev: MediaQueryListEvent) {
-      changeThemeColor(ev.matches ? "black" : "white");
+      changeThemeColor(ev.matches ? "rgb(30, 30, 30)" : "white");
     }
 
     settingsManager.addEventListener("settingssaved", settingsSavedEventListener);

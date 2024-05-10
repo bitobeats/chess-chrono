@@ -12,7 +12,7 @@ export function changeTheme(theme: Theme) {
       const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
       if (darkModeQuery) {
-        changeThemeColor("black");
+        changeThemeColor("rgb(30, 30, 30)");
       } else {
         changeThemeColor("white");
       }
@@ -20,7 +20,7 @@ export function changeTheme(theme: Theme) {
     }
     case Theme.Dark: {
       rootClasses.add(Theme.Dark);
-      changeThemeColor("black");
+      changeThemeColor("rgb(30, 30, 30)");
       break;
     }
     case Theme.Light: {
