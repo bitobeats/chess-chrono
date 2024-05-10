@@ -4,6 +4,11 @@
   gap: 30px;
   width: 100%;
   max-width: 500px;
+  margin: auto;
+
+  @media (orientation: portrait) {
+    max-width: unset;
+  }
 }
 
 .optionsMenu {
