@@ -74,6 +74,8 @@
 }
 
 .closeButton {
+  position: relative;
+  right: -26px;
   will-change: filter;
   width: min-content;
   height: min-content;
