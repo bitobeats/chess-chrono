@@ -1,8 +1,5 @@
 @use "../../styles/consts";
 
-$drop-shadow-light: drop-shadow(1px 1px 0px rgba(0, 0, 0, 0.3));
-$drop-shadow-dark: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.85));
-
 .container {
   display: flex;
   flex-direction: row;
@@ -14,7 +11,6 @@ $drop-shadow-dark: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.85));
 
   @media (orientation: portrait) {
     flex-direction: column;
-
     justify-content: space-around;
     align-items: center;
     margin: 0;
@@ -36,13 +32,7 @@ $drop-shadow-dark: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.85));
   color: var(--primary-color);
   will-change: filter;
 
-  @media (prefers-color-scheme: light) {
-    filter: #{$drop-shadow-light} brightness(1);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    filter: #{$drop-shadow-dark} brightness(1);
-  }
+  filter: var(--controls-icon-drop-shadow) brightness(1);
 
   @media (orientation: portrait) {
     font-size: xx-large;
@@ -50,13 +40,7 @@ $drop-shadow-dark: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.85));
 
   @media (hover: hover) {
     &:not([disabled]):hover {
-      @media (prefers-color-scheme: light) {
-        filter: #{$drop-shadow-light} brightness(1.4);
-      }
-
-      @media (prefers-color-scheme: dark) {
-        filter: #{$drop-shadow-dark} brightness(1.4);
-      }
+      filter: var(--controls-icon-drop-shadow) brightness(1.4);
     }
   }
 

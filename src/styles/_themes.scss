@@ -30,6 +30,10 @@ $light-dark-themes: (
     rgba(239, 239, 239, 0.3),
     rgb(46 46 46),
   ),
+  "--controls-icon-drop-shadow": (
+    drop-shadow(1px 1px 0px rgba(0, 0, 0, 0.3)),
+    drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.85)),
+  ),
 );
 
 @mixin light {
