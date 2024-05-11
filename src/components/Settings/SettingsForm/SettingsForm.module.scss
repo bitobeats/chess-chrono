@@ -1,14 +1,13 @@
+@use "../../../styles/consts";
+
 .form {
+  grid-area: #{consts.$settings-grid-content};
   overflow: scroll;
   display: flex;
   flex-direction: column;
   gap: 30px;
   width: 100%;
   margin: auto;
-
-  @media (orientation: portrait) {
-    max-width: unset;
-  }
 }
 
 .optionsMenu {

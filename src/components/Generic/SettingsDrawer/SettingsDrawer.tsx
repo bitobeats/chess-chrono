@@ -4,6 +4,7 @@ import styles from "./SettingsDrawer.module.scss";
 
 import { Drawer } from "corvu/drawer";
 import { AiFillCloseCircle } from "solid-icons/ai";
+import { useOrientation } from "../../../hooks/useOrientation";
 
 type SettingsDrawerProps = {
   openButton: VoidComponent<JSX.ButtonHTMLAttributes<HTMLButtonElement>>;
@@ -11,8 +12,10 @@ type SettingsDrawerProps = {
 };
 
 export const SettingsDrawer: ParentComponent<SettingsDrawerProps> = (props) => {
+  const orientation = useOrientation();
+
   return (
-    <Drawer breakPoints={[0.75]}>
+    <Drawer breakPoints={[0.75]} side={orientation() === "portrait" ? "bottom" : "top"}>
       {(drawerProps) => (
         <>
           <Drawer.Trigger as={props.openButton} />

@@ -1,3 +1,5 @@
+@use "../../../styles/consts";
+
 .label {
   user-select: none;
   text-align: center;
@@ -7,25 +9,23 @@
 }
 
 .content {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content max-content max-content;
+  gap: 0;
   user-select: none;
   position: fixed;
   left: 0px;
   right: 0px;
-  bottom: 0px;
   z-index: 50;
-  display: flex;
   height: min(100%, 80vh);
   max-height: max-content;
   max-width: 500px;
   margin: auto;
   flex-direction: column;
-  border-top-left-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
-  border-top-width: 4px;
   border-color: hsl(258, 79%, 74%);
   background-color: var(--background-color);
 
-  padding-bottom: max(30px, env(safe-area-inset-bottom));
   padding-top: 7px;
   padding-left: max(30px, env(safe-area-inset-left));
   padding-right: max(30px, env(safe-area-inset-right));
@@ -35,9 +35,42 @@
     position: absolute;
     left: 0px;
     right: 0px;
-    top: 100%;
     height: 50%;
     background-color: inherit;
+
+    @media (orientation: portrait) {
+      top: 100%;
+    }
+
+    @media (orientation: landscape) {
+      bottom: 100%;
+    }
+  }
+
+  @media (orientation: landscape) {
+    grid-template-areas:
+      "#{consts.$settings-grid-header}"
+      "#{consts.$settings-grid-content}"
+      "#{consts.$settings-grid-notch}";
+
+    top: 0;
+    border-bottom-width: 4px;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    padding-bottom: max(15px, env(safe-area-inset-bottom));
+  }
+
+  @media (orientation: portrait) {
+    grid-template-areas:
+      "#{consts.$settings-grid-notch}"
+      "#{consts.$settings-grid-header}"
+      "#{consts.$settings-grid-content}";
+
+    bottom: 0;
+    border-top-width: 4px;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    padding-bottom: max(30px, env(safe-area-inset-bottom));
   }
 
   &[data-transitioning] {
@@ -60,15 +93,23 @@
 }
 
 .notch {
+  grid-area: #{consts.$settings-grid-notch};
   margin-top: 0.5rem;
   height: 0.25rem;
   width: 2.5rem;
   align-self: center;
   border-radius: 9999px;
   background-color: var(--text-color);
+  margin-right: auto;
+  margin-left: auto;
+
+  @media (orientation: landscape) {
+    margin-top: 30px;
+  }
 }
 
 .header {
+  grid-area: #{consts.$settings-grid-header};
   display: flex;
   flex-direction: row;
   justify-content: space-between;
