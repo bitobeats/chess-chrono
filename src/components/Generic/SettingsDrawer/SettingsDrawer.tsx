@@ -26,7 +26,7 @@ export const SettingsDrawer: ParentComponent<SettingsDrawerProps> = (props) => {
                 "background-color": `rgb(0 0 0 / ${0.5 * drawerProps.openPercentage})`,
               }}
             />
-            <Drawer.Content class={styles.content}>
+            <Drawer.Content class={styles.dialog}>
               <div class={styles.notch} />
               <header class={styles.header}>
                 <Drawer.Label class={styles.label}>{props.label}</Drawer.Label>
@@ -34,7 +34,7 @@ export const SettingsDrawer: ParentComponent<SettingsDrawerProps> = (props) => {
                   <AiFillCloseCircle />
                 </Drawer.Close>
               </header>
-              {props.children}
+              <div class={styles.contentContainer}>{props.children}</div>
             </Drawer.Content>
           </Drawer.Portal>
         </>

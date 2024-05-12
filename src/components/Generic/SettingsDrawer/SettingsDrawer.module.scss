@@ -8,10 +8,10 @@
   color: var(--text-color);
 }
 
-.content {
+.dialog {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: max-content max-content max-content;
+
   gap: 0;
   user-select: none;
   position: fixed;
@@ -58,6 +58,7 @@
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
     padding-bottom: max(15px, env(safe-area-inset-bottom));
+    grid-template-rows: max-content 1fr max-content;
   }
 
   @media (orientation: portrait) {
@@ -70,7 +71,8 @@
     border-top-width: 4px;
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
-    padding-bottom: max(30px, env(safe-area-inset-bottom));
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
+    grid-template-rows: max-content max-content 1fr;
   }
 
   &[data-transitioning] {
@@ -136,4 +138,9 @@
   &:active {
     filter: brightness(80%);
   }
+}
+
+.contentContainer {
+  overflow: scroll;
+  height: inherit;
 }
