@@ -3,7 +3,7 @@ import { Theme } from "./enums/Theme";
 
 export const DEFAULT_SETTINGS: Settings = {
   global: {
-    theme: Theme.System,
+    theme: Theme.Dark,
     soundOn: true,
   },
   player1: {
