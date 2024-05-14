@@ -18,8 +18,8 @@
   left: 0px;
   right: 0px;
   z-index: 50;
-  height: min(100%, 80vh);
-  max-height: max-content;
+  max-height: 80vh;
+  min-height: 20%;
   max-width: 500px;
   margin: auto;
   flex-direction: column;
