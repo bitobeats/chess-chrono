@@ -10,7 +10,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate-pwa-assets": "pwa-asset-generator public/assets-pwa/base.png public/assets-pwa  -b #1e1e1e"
   },
   "dependencies": {
     "@maskito/core": "^2.3.1",
@@ -24,6 +25,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",
+    "pwa-asset-generator": "^6.3.1",
     "sass": "^1.77.0",
     "solid-devtools": "^0.30.1",
     "typescript": "^5.4.5",
