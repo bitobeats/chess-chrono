@@ -48,6 +48,7 @@
   }
 
   @media (orientation: landscape) {
+    grid-template-rows: max-content 1fr max-content;
     grid-template-areas:
       "#{consts.$settings-grid-header}"
       "#{consts.$settings-grid-content}"
@@ -58,10 +59,10 @@
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
     padding-bottom: max(15px, env(safe-area-inset-bottom));
-    grid-template-rows: max-content 1fr max-content;
   }
 
   @media (orientation: portrait) {
+    grid-template-rows: max-content max-content 1fr;
     grid-template-areas:
       "#{consts.$settings-grid-notch}"
       "#{consts.$settings-grid-header}"
@@ -72,7 +73,6 @@
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
     padding-bottom: max(20px, env(safe-area-inset-bottom));
-    grid-template-rows: max-content max-content 1fr;
   }
 
   &[data-transitioning] {
