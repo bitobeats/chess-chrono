@@ -119,6 +119,11 @@
 }
 
 .closeButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
   position: relative;
   right: -26px;
   will-change: filter;
