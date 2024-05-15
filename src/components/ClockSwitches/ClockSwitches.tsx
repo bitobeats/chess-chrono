@@ -1,3 +1,4 @@
+import type { VoidComponent } from "solid-js";
 import type { Player } from "../../libs/chess-clock-service/types/Player";
 
 import styles from "./ClockSwitches.module.scss";
@@ -8,7 +9,7 @@ import { useSettingsStoreContext } from "../../contexts/SettingsStoreContext";
 import { audioPlayer } from "../../libs/libsSetup";
 import { useChessClockStoreContext } from "../../contexts/ChessClockStoreContext";
 
-export const ClockSwitches = () => {
+export const ClockSwitches: VoidComponent = () => {
   const players = [1, 2] as const;
 
   const { settings } = useSettingsStoreContext();

@@ -1,4 +1,4 @@
-import type { JSX } from "solid-js";
+import type { JSX, VoidComponent } from "solid-js";
 
 import styles from "./ToggleSwitch.module.scss";
 
@@ -9,7 +9,7 @@ type ToggleSwitchProps = {
   id: string;
 };
 
-export const ToggleSwitch = (props: ToggleSwitchProps) => {
+export const ToggleSwitch: VoidComponent<ToggleSwitchProps> = (props) => {
   return (
     <label class={styles.switch}>
       <input type="checkbox" onChange={props.onChange} checked={props.checked} name={props.name} id={props.id} />

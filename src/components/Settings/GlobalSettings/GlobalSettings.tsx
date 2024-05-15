@@ -1,3 +1,5 @@
+import type { VoidComponent } from "solid-js";
+
 import styles from "./GlobalSettings.module.scss";
 
 import { createSelector } from "solid-js";
@@ -10,7 +12,7 @@ type ThemeOption = {
   theme: Theme;
 };
 
-export const GlobalSettings = () => {
+export const GlobalSettings: VoidComponent = () => {
   const { saveSettings, setSettings, settings } = useSettingsStoreContext();
   const selectedTheme = createSelector(() => settings.global.theme);
 

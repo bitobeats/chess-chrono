@@ -1,3 +1,5 @@
+import type { VoidComponent } from "solid-js";
+
 import styles from "./Controls.module.scss";
 
 import { useChessClockStoreContext } from "../../contexts/ChessClockStoreContext";
@@ -6,7 +8,7 @@ import { audioPlayer } from "../../libs/libsSetup";
 import { SettingsDrawer } from "../Generic/SettingsDrawer/SettingsDrawer";
 import { TbSettings, TbRefresh, TbPlayerPlayFilled, TbPlayerStopFilled } from "solid-icons/tb";
 
-export const Controls = () => {
+export const Controls: VoidComponent = () => {
   const { chessClockStore, resume, suspend, reset } = useChessClockStoreContext();
 
   const suspendResumeButtonDisabled = () =>

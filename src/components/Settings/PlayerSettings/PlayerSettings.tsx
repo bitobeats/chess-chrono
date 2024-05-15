@@ -1,3 +1,4 @@
+import type { VoidComponent } from "solid-js";
 import type { Player } from "../../../libs/chess-clock-service/types/Player";
 
 import styles from "./PlayerSettings.module.scss";
@@ -15,7 +16,7 @@ type PlayerSettingsProps = {
   player: Player;
 };
 
-export const PlayerSettings = (props: PlayerSettingsProps) => {
+export const PlayerSettings: VoidComponent<PlayerSettingsProps> = (props) => {
   const [startTimeInputRef, setStartTimeInputRef] = createSignal<HTMLInputElement>();
   const [incrementByInputRef, setIncrementByInputRef] = createSignal<HTMLInputElement>();
 
