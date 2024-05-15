@@ -18,7 +18,7 @@ export default defineConfig({
       manifest: {
         name: "Chess Clock",
         short_name: "ChessClock",
-        description: "An offline chess clock app.",
+        description: "An offline chess clock app. Forever free.",
         theme_color: "#1e1e1e",
         background_color: "#1e1e1e",
         categories: ["tools", "utilities", "chess", "clock"],
