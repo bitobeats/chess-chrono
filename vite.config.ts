@@ -14,6 +14,7 @@ export default defineConfig({
     solid(),
     devtools(),
     VitePWA({
+      registerType: "prompt",
       injectRegister: "script-defer",
       manifest: {
         name: "Chess Clock",
