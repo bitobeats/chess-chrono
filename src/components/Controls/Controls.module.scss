@@ -18,6 +18,7 @@
 }
 
 .iconButton {
+  cursor: pointer;
   font-size: 3vw;
   display: flex;
   justify-content: center;
@@ -51,5 +52,6 @@
   &:disabled {
     color: var(--disabled-color);
     filter: drop-shadow(0px 0px 0px transparent);
+    cursor: default;
   }
 }
