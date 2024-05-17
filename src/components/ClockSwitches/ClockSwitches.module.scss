@@ -21,7 +21,6 @@
 }
 
 .clockSwitch {
-  cursor: pointer;
   font-size: 6vw;
   font-weight: bold;
   font-family: monospace;
@@ -31,7 +30,6 @@
   min-height: max-content;
   color: var(--primary-color);
   background-color: var(--clock-switch-background-color);
-  border: none;
   border-radius: 10px;
   transition: all 0.1s;
   box-shadow: var(--clock-switch-box-shadow-landscape);
@@ -44,7 +42,6 @@
     color: var(--disabled-color);
     background-color: var(--clock-switch-disabled-background-color);
     box-shadow: var(--clock-switch-box-shadow-landscape-disabled);
-    cursor: default;
   }
 
   time {
