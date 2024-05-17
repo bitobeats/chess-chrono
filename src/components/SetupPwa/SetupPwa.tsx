@@ -1,13 +1,15 @@
-import styles from "./styles/setupPwa.module.scss";
+import type { ParentComponent } from "solid-js";
+
+import styles from "./SetupPwa.module.scss";
 
 import { useRegisterSW } from "virtual:pwa-register/solid";
 import { createEffect, on } from "solid-js";
 import toast from "solid-toast";
-import { useChessClockStoreContext } from "./contexts/ChessClockStoreContext";
+import { useChessClockStoreContext } from "../../contexts/ChessClockStoreContext";
 
-import { UpdateNeededTooltipBody } from "./components/Toast/UpdateNeededTooltipBody/UpdateNeededTooltipBody";
+import { UpdateNeededTooltipBody } from "../Toast/UpdateNeededTooltipBody/UpdateNeededTooltipBody";
 
-export function setupPwa() {
+export const SetupPwa: ParentComponent = (props) => {
   const { chessClockStore } = useChessClockStoreContext();
 
   const {
@@ -37,4 +39,6 @@ export function setupPwa() {
       }
     })
   );
-}
+
+  return props.children;
+};
