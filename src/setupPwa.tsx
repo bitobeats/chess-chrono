@@ -18,7 +18,6 @@ export function setupPwa() {
 
   createEffect(
     on([needRefresh], () => {
-      console.log("need refresh", needRefresh());
       if (needRefresh() && chessClockStore.chessClockState === "ready") {
         const updateToast = toast(
           <UpdateNeededTooltipBody update={updateServiceWorker} cancel={() => toast.dismiss(updateToast)} />,
