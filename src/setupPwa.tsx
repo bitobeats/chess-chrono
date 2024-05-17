@@ -28,7 +28,7 @@ export function setupPwa() {
   );
 
   createEffect(
-    on([needRefresh], () => {
+    on([offlineReady], () => {
       if (offlineReady() && chessClockStore.chessClockState === "ready") {
         toast.success("Ready to use offline! Add the app to the homescreen for the best experience.", {
           className: styles.tooltip,
