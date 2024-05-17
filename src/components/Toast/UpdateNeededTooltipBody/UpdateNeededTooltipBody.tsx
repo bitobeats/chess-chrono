@@ -11,7 +11,7 @@ export const UpdateNeededTooltipBody: VoidComponent<UpdateNeededtooltipBodyProps
   return (
     <div class={styles.container}>
       <div class={styles.textContainer}>
-        <span class={styles.text}>A new update is ready. Install now?</span>
+        <span class={styles.text}>A new update is ready.</span>
       </div>
 
       <div class={styles.buttonsContainer}>

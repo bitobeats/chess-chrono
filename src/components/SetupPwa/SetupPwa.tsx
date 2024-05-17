@@ -23,7 +23,10 @@ export const SetupPwa: ParentComponent = (props) => {
       if (needRefresh() && chessClockStore.chessClockState === "ready") {
         const updateToast = toast(
           <UpdateNeededTooltipBody update={updateServiceWorker} cancel={() => toast.dismiss(updateToast)} />,
-          { iconTheme: { primary: "black", secondary: "white" }, className: styles.tooltip, duration: 99999 }
+          {
+            className: styles.tooltip,
+            duration: 99999,
+          }
         );
       }
     })
