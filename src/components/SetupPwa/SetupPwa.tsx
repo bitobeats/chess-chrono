@@ -25,7 +25,7 @@ export const SetupPwa: ParentComponent = (props) => {
           <UpdateNeededTooltipBody update={updateServiceWorker} cancel={() => toast.dismiss(updateToast)} />,
           {
             className: styles.tooltip,
-            duration: 99999,
+            duration: Infinity,
           }
         );
       }
@@ -37,7 +37,10 @@ export const SetupPwa: ParentComponent = (props) => {
       if (offlineReady() && chessClockStore.chessClockState === "ready") {
         toast.success("Ready to use offline! Add the app to the homescreen for the best experience.", {
           className: styles.tooltip,
-          duration: 5000,
+          duration: 6000,
+          iconTheme: {
+            primary: "var(--primary-color)",
+          },
         });
       }
     })

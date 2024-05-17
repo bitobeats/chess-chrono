@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.contentContainer {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.closeButton {
+  display: flex;
+  font-size: x-large;
+  align-self: center;
+  will-change: filter;
+  height: min-content;
+  width: min-content;
+  color: var(--clock-switch-background-color);
+  filter: brightness(1);
+  transition: filter 0.2s;
+
+  &:hover {
+    filter: brightness(1.4);
+  }
+}

@@ -1,24 +1,30 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
 }
 
 .textContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .buttonsContainer {
   display: flex;
   flex-direction: row;
-  align-self: flex-end;
+  align-self: center;
   gap: 10px;
+  width: 100%;
 }
 
 .text {
+  font-weight: 600;
 }
 
 .button {
   appearance: none;
+  width: 100%;
   background-color: var(--clock-switch-background-color);
   color: var(--primary-color);
   border: none;
@@ -28,4 +34,10 @@
   padding-top: 5px;
   padding-bottom: 5px;
   font-size: small;
+  transition: filter 0.2s;
+  filter: brightness(1);
+
+  &:hover {
+    filter: brightness(1.4);
+  }
 }
