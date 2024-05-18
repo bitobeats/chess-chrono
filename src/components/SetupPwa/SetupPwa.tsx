@@ -6,8 +6,8 @@ import { useRegisterSW } from "virtual:pwa-register/solid";
 import { createEffect, on } from "solid-js";
 import toast from "solid-toast";
 import { useChessClockStoreContext } from "../../contexts/ChessClockStoreContext";
-
 import { UpdateNeededTooltipBody } from "../Toast/UpdateNeededTooltipBody/UpdateNeededTooltipBody";
+import { OfflineReadyTooltipBody } from "../Toast/OfflineReadyTooltipBody/OfflineReadyTooltipBody";
 
 export const SetupPwa: ParentComponent = (props) => {
   const { chessClockStore } = useChessClockStoreContext();
@@ -35,13 +35,16 @@ export const SetupPwa: ParentComponent = (props) => {
   createEffect(
     on([offlineReady], () => {
       if (offlineReady() && chessClockStore.chessClockState === "ready") {
-        toast.success("Ready to use offline! Add the app to the homescreen for the best experience.", {
-          className: styles.tooltip,
-          duration: 6000,
-          iconTheme: {
-            primary: "var(--primary-color)",
-          },
-        });
+        const offlineReadyToast = toast.success(
+          <OfflineReadyTooltipBody close={() => toast.dismiss(offlineReadyToast)} />,
+          {
+            className: styles.tooltip,
+            duration: Infinity,
+            iconTheme: {
+              primary: "var(--primary-color)",
+            },
+          }
+        );
       }
     })
   );
