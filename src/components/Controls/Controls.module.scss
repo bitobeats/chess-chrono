@@ -48,7 +48,7 @@
   }
 
   &:disabled {
-    color: var(--disabled-color);
+    color: var(--buton-background-color-disabled);
     filter: drop-shadow(0px 0px 0px transparent);
   }
 }

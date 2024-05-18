@@ -39,7 +39,7 @@
     background-color: var(--clock-switch-background-color);
   }
   &:disabled {
-    color: var(--disabled-color);
+    color: var(--buton-background-color-disabled);
     background-color: var(--clock-switch-disabled-background-color);
     box-shadow: var(--clock-switch-box-shadow-landscape-disabled);
   }
