@@ -37,7 +37,7 @@ body {
   margin: 0;
   padding: 10px;
 
-  padding-top: max(5% + env(safe-area-inset-top));
+  padding-top: env(safe-area-inset-top);
   padding-bottom: 1%;
   padding-right: max(2% + env(safe-area-inset-right));
   padding-left: max(2% + env(safe-area-inset-left));
