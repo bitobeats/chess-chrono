@@ -37,7 +37,7 @@ export const SetupPwa: ParentComponent = (props) => {
       if (offlineReady() && chessClockStore.chessClockState === "ready") {
         const offlineReadyToast = toast(<OfflineReadyTooltipBody close={() => toast.dismiss(offlineReadyToast)} />, {
           className: styles.tooltip,
-          duration: Infinity,
+          duration: 6000,
         });
       }
     })
