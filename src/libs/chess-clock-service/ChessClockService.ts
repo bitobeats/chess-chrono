@@ -21,7 +21,7 @@ export class ChessClockService extends SimpleEventTarget<ChessClockServiceEventM
   #state: ChessClockState = "ready";
   #activePlayer: Player = 1;
   #wakeLock = new CustomWakeLock();
-  #timeCheckerIntervalId: number | null = null;
+  #timeCheckerIntervalId: ReturnType<typeof setInterval> | null = null;
 
   #playerTimes: [number, number];
   #player1Timer: Timer;

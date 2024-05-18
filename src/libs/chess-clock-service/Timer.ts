@@ -9,7 +9,7 @@ export class Timer extends SimpleEventTarget<TimerEventMap> {
   #accumulatedTime: number = 0;
   #lastTimestamp: number = 0;
   #isRunning: boolean = false;
-  #finishCheckerTimeout: number | null = null;
+  #finishCheckerTimeout: ReturnType<typeof setInterval> | null = null;
 
   constructor(public timerConfig: TimerConfig) {
     super(["finish"]);
