@@ -10,7 +10,7 @@ export function App() {
       <SetupPwa>
         <ClockSwitches />
         <Controls />
-        <Toaster position="top-center" />
+        <Toaster position="bottom-center" />
       </SetupPwa>
     </ContextsProvider>
   );

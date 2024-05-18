@@ -35,16 +35,10 @@ export const SetupPwa: ParentComponent = (props) => {
   createEffect(
     on([offlineReady], () => {
       if (offlineReady() && chessClockStore.chessClockState === "ready") {
-        const offlineReadyToast = toast.success(
-          <OfflineReadyTooltipBody close={() => toast.dismiss(offlineReadyToast)} />,
-          {
-            className: styles.tooltip,
-            duration: Infinity,
-            iconTheme: {
-              primary: "var(--primary-color)",
-            },
-          }
-        );
+        const offlineReadyToast = toast(<OfflineReadyTooltipBody close={() => toast.dismiss(offlineReadyToast)} />, {
+          className: styles.tooltip,
+          duration: Infinity,
+        });
       }
     })
   );
