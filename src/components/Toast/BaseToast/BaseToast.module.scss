@@ -20,20 +20,24 @@
   color: var(--toast-close-button-color);
   filter: brightness(1);
   transition: filter 0.2s;
-
-  &:hover {
-    filter: brightness(1.4);
-  }
 }
 
 html[data-theme="light"] {
   .closeButton {
     --toast-close-button-color: rgb(180, 180, 180);
+
+    :hover {
+      filter: brightness(0.85);
+    }
   }
 }
 
 html[data-theme="dark"] {
   .closeButton {
     --toast-close-button-color: rgb(93, 93, 93);
+
+    :hover {
+      filter: brightness(1.4);
+    }
   }
 }
