@@ -15,7 +15,7 @@ export default defineConfig({
     devtools(),
     VitePWA({
       registerType: "prompt",
-      injectRegister: "script-defer",
+      injectRegister: "auto",
       manifest: {
         name: "Chess Clock",
         short_name: "ChessClock",
