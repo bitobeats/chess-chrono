@@ -1,11 +1,11 @@
 import { createEffect, onMount, onCleanup } from "solid-js";
-import { Theme } from "../libs/settings-manager/enums/Theme";
+import { ThemeOptions } from "../libs/settings-manager/enums/ThemeOptions";
 import { changeTheme } from "../utils/changeTheme";
 
-export function useTheme(theme: () => Theme) {
+export function useTheme(theme: () => ThemeOptions) {
   onMount(() => {
     function darkModeQueryChangeEventListener(ev: MediaQueryListEvent) {
-      if (theme() !== Theme.System) {
+      if (theme() !== ThemeOptions.System) {
         return;
       }
       const isOsDarkThemed = ev.matches;
@@ -24,7 +24,7 @@ export function useTheme(theme: () => Theme) {
     const currentTheme = theme();
     let newTheme: "dark" | "light";
 
-    if (currentTheme === Theme.System) {
+    if (currentTheme === ThemeOptions.System) {
       const isOsDarkThemed = window.matchMedia("(prefers-color-scheme: dark)").matches;
       newTheme = isOsDarkThemed ? "dark" : "light";
     } else {

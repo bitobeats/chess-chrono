@@ -1,9 +1,9 @@
 import type { Settings } from "./types/Settings";
-import { Theme } from "./enums/Theme";
+import { ThemeOptions } from "./enums/ThemeOptions";
 
 export const DEFAULT_SETTINGS: Settings = {
   global: {
-    theme: Theme.Dark,
+    theme: ThemeOptions.Dark,
     soundOn: true,
   },
   player1: {
