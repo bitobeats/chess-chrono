@@ -7,7 +7,7 @@ import { ThemeOption } from "../../../libs/settings-manager/enums/ThemeOption";
 import { ToggleSwitch } from "../../Generic/ToggleSwitch/ToggleSwitch";
 import { useSettingsStoreContext } from "../../../contexts/SettingsStoreContext";
 
-type ThemeOption = {
+type UiThemeOption = {
   text: string;
   theme: ThemeOption;
 };
@@ -16,7 +16,7 @@ export const GlobalSettings: VoidComponent = () => {
   const { saveSettings, setSettings, settings } = useSettingsStoreContext();
   const selectedTheme = createSelector(() => settings.global.theme);
 
-  const themeOptions: ThemeOption[] = [
+  const themeOptions: UiThemeOption[] = [
     { text: "System", theme: ThemeOption.System },
     {
       text: "Light",
