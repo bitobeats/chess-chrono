@@ -2,23 +2,24 @@
 
 .container {
   display: flex;
-  flex-direction: row;
   padding: 0;
   margin: 0;
   grid-area: #{consts.$grid-menu};
   justify-content: space-around;
+  align-items: center;
+
   height: 100%;
 
   @media (orientation: portrait) {
     flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    margin: 0;
+  }
+
+  @media (orientation: landscape) {
+    flex-direction: row;
   }
 }
 
 .iconButton {
-  font-size: 3vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,6 +36,10 @@
 
   @media (orientation: portrait) {
     font-size: xx-large;
+  }
+
+  @media (orientation: landscape) {
+    font-size: 3vw;
   }
 
   @media (hover: hover) {

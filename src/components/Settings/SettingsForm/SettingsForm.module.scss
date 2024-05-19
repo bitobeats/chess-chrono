@@ -21,12 +21,15 @@
 
 .playerSettingsContainer {
   display: flex;
-  flex-direction: row;
   justify-content: space-around;
   gap: 30px;
 
   @media (orientation: portrait) {
     flex-direction: column;
+  }
+
+  @media (orientation: landscape) {
+    flex-direction: row;
   }
 }
 
