@@ -1,7 +1,9 @@
 const DARK_THEME_COLOR = "rgb(30, 30, 30)";
 const LIGHT_THEME_COLOR = "white";
 
-export function changeTheme(theme: "light" | "dark") {
+type Theme = "light" | "dark";
+
+export function changeTheme(theme: Theme) {
   changeColorScheme(theme);
 
   const rootClasses = document.documentElement.classList;
@@ -23,15 +25,21 @@ export function changeTheme(theme: "light" | "dark") {
 function enableLightTheme(rootClasses: DOMTokenList) {
   rootClasses.add("light");
   changeThemeColor(LIGHT_THEME_COLOR);
+  changeDataTheme("light");
 }
 
 function enableDarkTheme(rootClasses: DOMTokenList) {
   rootClasses.add("dark");
   changeThemeColor(DARK_THEME_COLOR);
+  changeDataTheme("dark");
 }
 
 function changeColorScheme(colorScheme: "light" | "dark") {
   document.documentElement.style.colorScheme = colorScheme;
+}
+
+function changeDataTheme(theme: Theme) {
+  document.documentElement.setAttribute("data-theme", theme);
 }
 
 function changeThemeColor(color: string) {
