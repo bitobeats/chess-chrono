@@ -75,24 +75,28 @@
   }
 }
 
-html[data-theme="light"] .clockSwitch {
-  --clock-switch-background-color: rgba(239, 239, 239, 0.3);
-  --clock-switch-background-color-disabled: rgb(239, 239, 239);
-  --clock-switch-box-shadow-color: rgba(0, 0, 0, 0.4);
+html[data-theme="light"] {
+  .clockSwitch {
+    --clock-switch-background-color: rgba(239, 239, 239, 0.3);
+    --clock-switch-background-color-disabled: rgb(239, 239, 239);
+    --clock-switch-box-shadow-color: rgba(0, 0, 0, 0.4);
 
-  --clock-switch-box-shadow-landscape: -5px 1px 3px 0px var(--clock-switch-box-shadow-color);
-  --clock-switch-box-shadow-landscape-disabled: -1px 0px 2px 0px var(--clock-switch-box-shadow-color);
-  --clock-switch-box-shadow-portrait: -1px 5px 3px 0px var(--clock-switch-box-shadow-color);
-  --clock-switch-box-shadow-portrait-disabled: 0px 1px 2px 0px var(--clock-switch-box-shadow-color);
+    --clock-switch-box-shadow-landscape: -5px 1px 3px 0px var(--clock-switch-box-shadow-color);
+    --clock-switch-box-shadow-landscape-disabled: -1px 0px 2px 0px var(--clock-switch-box-shadow-color);
+    --clock-switch-box-shadow-portrait: -1px 5px 3px 0px var(--clock-switch-box-shadow-color);
+    --clock-switch-box-shadow-portrait-disabled: 0px 1px 2px 0px var(--clock-switch-box-shadow-color);
+  }
 }
 
-html[data-theme="dark"] .clockSwitch {
-  --clock-switch-background-color: rgb(61 61 61);
-  --clock-switch-background-color-disabled: rgb(46 46 46);
-  --clock-switch-box-shadow-color: rgba(0, 0, 0, 0.75);
+html[data-theme="dark"] {
+  .clockSwitch {
+    --clock-switch-background-color: rgb(61 61 61);
+    --clock-switch-background-color-disabled: rgb(46 46 46);
+    --clock-switch-box-shadow-color: rgba(0, 0, 0, 0.75);
 
-  --clock-switch-box-shadow-landscape: -7px 1px 5px 0px var(--clock-switch-box-shadow-color);
-  --clock-switch-box-shadow-landscape-disabled: -1px 0px 2px 0px var(--clock-switch-box-shadow-color);
-  --clock-switch-box-shadow-portrait: -1px 7px 5px 0px var(--clock-switch-box-shadow-color);
-  --clock-switch-box-shadow-portrait-disabled: 0px 1px 2px 0px var(--clock-switch-box-shadow-color);
+    --clock-switch-box-shadow-landscape: -7px 1px 5px 0px var(--clock-switch-box-shadow-color);
+    --clock-switch-box-shadow-landscape-disabled: -1px 0px 2px 0px var(--clock-switch-box-shadow-color);
+    --clock-switch-box-shadow-portrait: -1px 7px 5px 0px var(--clock-switch-box-shadow-color);
+    --clock-switch-box-shadow-portrait-disabled: 0px 1px 2px 0px var(--clock-switch-box-shadow-color);
+  }
 }
