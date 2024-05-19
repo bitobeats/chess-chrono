@@ -52,3 +52,11 @@
     filter: drop-shadow(0px 0px 0px transparent);
   }
 }
+
+html[data-theme="light"] .iconButton {
+  --controls-icon-drop-shadow: drop-shadow(1px 1px 0px rgba(0, 0, 0, 0.3));
+}
+
+html[data-theme="dark"] .iconButton {
+  --controls-icon-drop-shadow: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.85));
+}

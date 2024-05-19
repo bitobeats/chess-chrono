@@ -25,3 +25,11 @@
     filter: brightness(1.4);
   }
 }
+
+html[data-theme="light"] .closeButton {
+  --toast-close-button-color: rgb(180, 180, 180);
+}
+
+html[data-theme="dark"] .closeButton {
+  --toast-close-button-color: rgb(93, 93, 93);
+}

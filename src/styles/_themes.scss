@@ -22,14 +22,6 @@ $light-dark-themes: (
     darkgrey,
     dimgray,
   ),
-  "--toast-close-button-color": (
-    rgb(180, 180, 180),
-    rgb(93, 93, 93),
-  ),
-  "--controls-icon-drop-shadow": (
-    drop-shadow(1px 1px 0px rgba(0, 0, 0, 0.3)),
-    drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.85)),
-  ),
 );
 
 @mixin light {
