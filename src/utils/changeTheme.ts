@@ -1,41 +1,40 @@
-import { Theme } from "../libs/settings-manager/enums/Theme";
+const DARK_THEME_COLOR = "rgb(30, 30, 30)";
+const LIGHT_THEME_COLOR = "white";
 
-export function changeTheme(theme: Theme) {
-  changeColorScheme(theme === Theme.System ? "light dark" : theme);
+export function changeTheme(theme: "light" | "dark") {
+  changeColorScheme(theme);
 
   const rootClasses = document.documentElement.classList;
 
-  rootClasses.remove(Theme.Light, Theme.Dark);
+  rootClasses.remove("light", "dark");
 
   switch (theme) {
-    case Theme.System: {
-      const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-      if (darkModeQuery) {
-        changeThemeColor("rgb(30, 30, 30)");
-      } else {
-        changeThemeColor("white");
-      }
+    case "dark": {
+      enableDarkTheme(rootClasses);
       break;
     }
-    case Theme.Dark: {
-      rootClasses.add(Theme.Dark);
-      changeThemeColor("rgb(30, 30, 30)");
-      break;
-    }
-    case Theme.Light: {
-      rootClasses.add(Theme.Light);
-      changeThemeColor("white");
+    case "light": {
+      enableLightTheme(rootClasses);
       break;
     }
   }
 }
 
-function changeColorScheme(colorScheme: "light" | "dark" | "light dark") {
+function enableLightTheme(rootClasses: DOMTokenList) {
+  rootClasses.add("light");
+  changeThemeColor(LIGHT_THEME_COLOR);
+}
+
+function enableDarkTheme(rootClasses: DOMTokenList) {
+  rootClasses.add("dark");
+  changeThemeColor(DARK_THEME_COLOR);
+}
+
+function changeColorScheme(colorScheme: "light" | "dark") {
   document.documentElement.style.colorScheme = colorScheme;
 }
 
-export function changeThemeColor(color: string) {
+function changeThemeColor(color: string) {
   const themeColor = document.querySelector<HTMLMetaElement>(`meta[name="theme-color"]`);
   if (themeColor) {
     themeColor.content = color;
