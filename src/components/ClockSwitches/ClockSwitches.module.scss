@@ -78,7 +78,7 @@ html[data-theme="light"] {
     @media (orientation: portrait) {
       box-shadow: -1px 5px 3px 0px $clock-switch-box-shadow-color;
 
-      :disabled {
+      &:disabled {
         box-shadow: 0px 1px 2px 0px $clock-switch-box-shadow-color;
       }
     }
@@ -86,7 +86,7 @@ html[data-theme="light"] {
     @media (orientation: landscape) {
       box-shadow: -5px 1px 3px 0px $clock-switch-box-shadow-color;
 
-      :disabled {
+      &:disabled {
         box-shadow: -1px 0px 2px 0px $clock-switch-box-shadow-color;
       }
     }
@@ -103,7 +103,7 @@ html[data-theme="dark"] {
     @media (orientation: portrait) {
       box-shadow: -1px 7px 5px 0px $clock-switch-box-shadow-color;
 
-      :disabled {
+      &:disabled {
         box-shadow: 0px 1px 2px 0px $clock-switch-box-shadow-color;
       }
     }
@@ -111,7 +111,7 @@ html[data-theme="dark"] {
     @media (orientation: landscape) {
       box-shadow: -7px 1px 5px 0px $clock-switch-box-shadow-color;
 
-      :disabled {
+      &:disabled {
         box-shadow: -1px 0px 2px 0px $clock-switch-box-shadow-color;
       }
     }
