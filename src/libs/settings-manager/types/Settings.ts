@@ -1,8 +1,8 @@
-import { ThemeOptions } from "../enums/ThemeOptions";
+import { ThemeOption } from "../enums/ThemeOption";
 
 export type Settings = {
   global: {
-    theme: ThemeOptions;
+    theme: ThemeOption;
     soundOn: boolean;
   };
   player1: PlayerSettings;

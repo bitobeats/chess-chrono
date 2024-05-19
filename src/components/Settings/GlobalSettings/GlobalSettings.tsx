@@ -3,13 +3,13 @@ import type { VoidComponent } from "solid-js";
 import styles from "./GlobalSettings.module.scss";
 
 import { createSelector } from "solid-js";
-import { ThemeOptions } from "../../../libs/settings-manager/enums/ThemeOptions";
+import { ThemeOption } from "../../../libs/settings-manager/enums/ThemeOption";
 import { ToggleSwitch } from "../../Generic/ToggleSwitch/ToggleSwitch";
 import { useSettingsStoreContext } from "../../../contexts/SettingsStoreContext";
 
 type ThemeOption = {
   text: string;
-  theme: ThemeOptions;
+  theme: ThemeOption;
 };
 
 export const GlobalSettings: VoidComponent = () => {
@@ -17,14 +17,14 @@ export const GlobalSettings: VoidComponent = () => {
   const selectedTheme = createSelector(() => settings.global.theme);
 
   const themeOptions: ThemeOption[] = [
-    { text: "System", theme: ThemeOptions.System },
+    { text: "System", theme: ThemeOption.System },
     {
       text: "Light",
-      theme: ThemeOptions.Light,
+      theme: ThemeOption.Light,
     },
     {
       text: "Dark",
-      theme: ThemeOptions.Dark,
+      theme: ThemeOption.Dark,
     },
   ];
 
@@ -34,7 +34,7 @@ export const GlobalSettings: VoidComponent = () => {
       target: HTMLSelectElement;
     }
   ) {
-    const theme = ev.target.value as ThemeOptions;
+    const theme = ev.target.value as ThemeOption;
     setSettings("global", "theme", theme);
     await saveSettings();
   }
