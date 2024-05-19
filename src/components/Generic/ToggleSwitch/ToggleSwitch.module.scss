@@ -41,12 +41,12 @@
 }
 
 input:checked + .slider {
-  background-color: var(--primary-color);
-  border: 1px solid var(--primary-color);
+  background-color: var(--global-primary-color);
+  border: 1px solid var(--global-primary-color);
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px var(--primary-color);
+  box-shadow: 0 0 1px var(--global-primary-color);
 }
 
 input:checked + .slider:before {

@@ -2,23 +2,23 @@
 
 // Colors by theme; (light, dark)
 $light-dark-themes: (
-  "--primary-color": (
+  "--global-primary-color": (
     royalblue,
     dodgerblue,
   ),
-  "--background-color": (
+  "--global-background-color": (
     white,
     rgb(30, 30, 30),
   ),
-  "--text-color": (
+  "--global-text-color": (
     black,
     white,
   ),
-  "--button-background-color": (
+  "--global-button-background-color": (
     rgb(239, 239, 239),
     rgb(46 46 46),
   ),
-  "--button-background-color-disabled": (
+  "--global-button-background-color-disabled": (
     darkgrey,
     dimgray,
   ),

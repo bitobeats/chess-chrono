@@ -6,7 +6,7 @@
   height: 100%;
   color-scheme: light dark;
   touch-action: none;
-  background-color: var(--background-color);
+  background-color: var(--global-background-color);
 
   @media (prefers-color-scheme: "dark") {
     @include themes.dark();

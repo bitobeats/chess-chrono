@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  color: var(--text-color);
+  color: var(--global-text-color);
 }
 
 .fieldset {
@@ -30,7 +30,7 @@
   width: 100%;
   font-size: large;
   text-align: right;
-  color: var(--text-color);
+  color: var(--global-text-color);
 
   &::-webkit-inner-spin-button,
   &::-webkit-outer-spin-button {

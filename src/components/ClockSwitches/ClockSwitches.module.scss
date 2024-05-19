@@ -28,17 +28,17 @@
   min-width: max-content;
   height: min(20vw, 100%);
   min-height: max-content;
-  color: var(--primary-color);
+  color: var(--global-primary-color);
   background-color: var(--clock-switch-background-color);
   border-radius: 10px;
   transition: all 0.1s;
 
   &:active {
-    color: var(--primary-color);
+    color: var(--global-primary-color);
     background-color: var(--clock-switch-background-color);
   }
   &:disabled {
-    color: var(--button-background-color-disabled);
+    color: var(--global-button-background-color-disabled);
     background-color: var(--clock-switch-background-color-disabled);
   }
 

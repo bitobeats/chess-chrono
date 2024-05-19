@@ -28,7 +28,7 @@
   height: max(50px, 3vw);
   border-radius: 100%;
   transition: filter 0.2s;
-  color: var(--primary-color);
+  color: var(--global-primary-color);
   will-change: filter;
 
   filter: var(--controls-icon-drop-shadow) brightness(1);
@@ -48,7 +48,7 @@
   }
 
   &:disabled {
-    color: var(--button-background-color-disabled);
+    color: var(--global-button-background-color-disabled);
     filter: drop-shadow(0px 0px 0px transparent);
   }
 }
