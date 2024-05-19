@@ -67,6 +67,14 @@
   }
 }
 
+.defeatedPlayer {
+  color: red;
+
+  &:disabled {
+    color: red;
+  }
+}
+
 html[data-theme="light"] .clockSwitch {
   --clock-switch-background-color: rgba(239, 239, 239, 0.3);
   --clock-switch-background-color-disabled: rgb(239, 239, 239);
@@ -87,12 +95,4 @@ html[data-theme="dark"] .clockSwitch {
   --clock-switch-box-shadow-landscape-disabled: -1px 0px 2px 0px var(--clock-switch-box-shadow-color);
   --clock-switch-box-shadow-portrait: -1px 7px 5px 0px var(--clock-switch-box-shadow-color);
   --clock-switch-box-shadow-portrait-disabled: 0px 1px 2px 0px var(--clock-switch-box-shadow-color);
-}
-
-.defeatedPlayer {
-  color: red;
-
-  &:disabled {
-    color: red;
-  }
 }
