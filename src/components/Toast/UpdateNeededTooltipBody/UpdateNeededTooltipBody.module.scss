@@ -42,7 +42,7 @@
 
 html[data-theme="light"] {
   .button {
-    :hover {
+    &:hover {
       filter: brightness(0.85);
     }
   }
@@ -50,7 +50,7 @@ html[data-theme="light"] {
 
 html[data-theme="dark"] {
   .button {
-    :hover {
+    &:hover {
       filter: brightness(1.4);
     }
   }
