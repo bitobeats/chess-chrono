@@ -32,7 +32,6 @@
   background-color: var(--clock-switch-background-color);
   border-radius: 10px;
   transition: all 0.1s;
-  box-shadow: var(--clock-switch-box-shadow-landscape);
 
   &:active {
     color: var(--primary-color);
@@ -41,7 +40,6 @@
   &:disabled {
     color: var(--button-background-color-disabled);
     background-color: var(--clock-switch-background-color-disabled);
-    box-shadow: var(--clock-switch-box-shadow-landscape-disabled);
   }
 
   time {
@@ -53,11 +51,6 @@
     width: 100%;
     height: 100%;
     font-size: 12vw;
-    box-shadow: var(--clock-switch-box-shadow-portrait);
-
-    &:disabled {
-      box-shadow: var(--clock-switch-box-shadow-portrait-disabled);
-    }
 
     &:nth-child(2) {
       time {
@@ -79,12 +72,24 @@ html[data-theme="light"] {
   .clockSwitch {
     --clock-switch-background-color: rgba(239, 239, 239, 0.3);
     --clock-switch-background-color-disabled: rgb(239, 239, 239);
-    --clock-switch-box-shadow-color: rgba(0, 0, 0, 0.4);
 
-    --clock-switch-box-shadow-landscape: -5px 1px 3px 0px var(--clock-switch-box-shadow-color);
-    --clock-switch-box-shadow-landscape-disabled: -1px 0px 2px 0px var(--clock-switch-box-shadow-color);
-    --clock-switch-box-shadow-portrait: -1px 5px 3px 0px var(--clock-switch-box-shadow-color);
-    --clock-switch-box-shadow-portrait-disabled: 0px 1px 2px 0px var(--clock-switch-box-shadow-color);
+    $clock-switch-box-shadow-color: rgba(0, 0, 0, 0.4);
+
+    @media (orientation: portrait) {
+      box-shadow: -1px 5px 3px 0px $clock-switch-box-shadow-color;
+
+      :disabled {
+        box-shadow: 0px 1px 2px 0px $clock-switch-box-shadow-color;
+      }
+    }
+
+    @media (orientation: landscape) {
+      box-shadow: -5px 1px 3px 0px $clock-switch-box-shadow-color;
+
+      :disabled {
+        box-shadow: -1px 0px 2px 0px $clock-switch-box-shadow-color;
+      }
+    }
   }
 }
 
@@ -92,11 +97,23 @@ html[data-theme="dark"] {
   .clockSwitch {
     --clock-switch-background-color: rgb(61 61 61);
     --clock-switch-background-color-disabled: rgb(46 46 46);
-    --clock-switch-box-shadow-color: rgba(0, 0, 0, 0.75);
 
-    --clock-switch-box-shadow-landscape: -7px 1px 5px 0px var(--clock-switch-box-shadow-color);
-    --clock-switch-box-shadow-landscape-disabled: -1px 0px 2px 0px var(--clock-switch-box-shadow-color);
-    --clock-switch-box-shadow-portrait: -1px 7px 5px 0px var(--clock-switch-box-shadow-color);
-    --clock-switch-box-shadow-portrait-disabled: 0px 1px 2px 0px var(--clock-switch-box-shadow-color);
+    $clock-switch-box-shadow-color: rgba(0, 0, 0, 0.75);
+
+    @media (orientation: portrait) {
+      box-shadow: -1px 7px 5px 0px $clock-switch-box-shadow-color;
+
+      :disabled {
+        box-shadow: 0px 1px 2px 0px $clock-switch-box-shadow-color;
+      }
+    }
+
+    @media (orientation: landscape) {
+      box-shadow: -7px 1px 5px 0px $clock-switch-box-shadow-color;
+
+      :disabled {
+        box-shadow: -1px 0px 2px 0px $clock-switch-box-shadow-color;
+      }
+    }
   }
 }
