@@ -22,37 +22,9 @@ $light-dark-themes: (
     darkgrey,
     dimgray,
   ),
-  "--clock-switch-background-color": (
-    rgba(239, 239, 239, 0.3),
-    rgb(61 61 61),
-  ),
-  "--clock-switch-background-color-disabled": (
-    rgb(239, 239, 239),
-    rgb(46 46 46),
-  ),
-  "--clock-switch-box-shadow-color": (
-    rgba(0, 0, 0, 0.4),
-    rgba(0, 0, 0, 0.75),
-  ),
   "--toast-close-button-color": (
     rgb(180, 180, 180),
     rgb(93, 93, 93),
-  ),
-  "--clock-switch-box-shadow-landscape": (
-    -5px 1px 3px 0px var(--clock-switch-box-shadow-color),
-    -7px 1px 5px 0px var(--clock-switch-box-shadow-color),
-  ),
-  "--clock-switch-box-shadow-landscape-disabled": (
-    -1px 0px 2px 0px var(--clock-switch-box-shadow-color),
-    -1px 0px 2px 0px var(--clock-switch-box-shadow-color),
-  ),
-  "--clock-switch-box-shadow-portrait": (
-    -1px 5px 3px 0px var(--clock-switch-box-shadow-color),
-    -1px 7px 5px 0px var(--clock-switch-box-shadow-color),
-  ),
-  "--clock-switch-box-shadow-portrait-disabled": (
-    0px 1px 2px 0px var(--clock-switch-box-shadow-color),
-    0px 1px 2px 0px var(--clock-switch-box-shadow-color),
   ),
   "--controls-icon-drop-shadow": (
     drop-shadow(1px 1px 0px rgba(0, 0, 0, 0.3)),
