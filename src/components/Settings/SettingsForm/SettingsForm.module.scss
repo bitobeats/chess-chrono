@@ -2,7 +2,6 @@
 
 .form {
   grid-area: #{consts.$settings-grid-content};
-  overflow: scroll;
   display: flex;
   flex-direction: column;
   gap: 30px;
