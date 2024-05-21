@@ -15,8 +15,8 @@
     "generate-pwa-assets": "pwa-asset-generator public/assets-pwa/base.png public/assets-pwa -b '#1e1e1e' -v 'assets-pwa' -p '0' -f"
   },
   "dependencies": {
-    "@maskito/core": "^2.3.1",
-    "@maskito/kit": "^2.3.1",
+    "@maskito/core": "^2.3.2",
+    "@maskito/kit": "^2.3.2",
     "corvu": "^0.5.1",
     "solid-icons": "^1.1.0",
     "solid-js": "^1.8.17",
@@ -28,7 +28,7 @@
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",
     "pwa-asset-generator": "^6.3.1",
-    "sass": "^1.77.0",
+    "sass": "^1.77.2",
     "solid-devtools": "^0.30.1",
     "typescript": "^5.4.5",
     "vite": "^5.2.11",
