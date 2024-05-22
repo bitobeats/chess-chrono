@@ -15,9 +15,9 @@
     "generate-pwa-assets": "pwa-asset-generator public/assets-pwa/base.png public/assets-pwa -b '#1e1e1e' -v 'assets-pwa' -p '0' -f"
   },
   "dependencies": {
+    "@corvu/drawer": "^0.2.0",
     "@maskito/core": "^2.3.2",
     "@maskito/kit": "^2.3.2",
-    "corvu": "^0.5.1",
     "solid-icons": "^1.1.0",
     "solid-js": "^1.8.17",
     "solid-toast": "^0.5.0",

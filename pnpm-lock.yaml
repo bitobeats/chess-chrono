@@ -8,15 +8,15 @@ importers:
 
   .:
     dependencies:
+      '@corvu/drawer':
+        specifier: ^0.2.0
+        version: 0.2.0(solid-js@1.8.17)
       '@maskito/core':
         specifier: ^2.3.2
         version: 2.3.2
       '@maskito/kit':
         specifier: ^2.3.2
         version: 2.3.2(@maskito/core@2.3.2)
-      corvu:
-        specifier: ^0.5.1
-        version: 0.5.1(solid-js@1.8.17)
       solid-icons:
         specifier: ^1.1.0
         version: 1.1.0(solid-js@1.8.17)
@@ -674,13 +674,23 @@ packages:
   '@canvas/image-data@1.0.0':
     resolution: {integrity: sha512-BxOqI5LgsIQP1odU5KMwV9yoijleOPzHL18/YvNqF9KFSGF2K/DLlYAbDQsWqd/1nbaFuSkYD/191dpMtNh4vw==}
 
-  '@corvu/utils@0.1.1':
-    resolution: {integrity: sha512-NY6s6ZvOJKQw3gI6Ra9CixHslKeGTQJsaGCPBVX/K5DtDXgEPeinD5k2EnCvWmey92L2btPtasDrlGUx0sY9JA==}
+  '@corvu/dialog@0.2.0':
+    resolution: {integrity: sha512-6d6KUcjiKda/aQffIiBM9pTy6zabWH5rU/hGKqFfmcAuotKS9M5Y6Wc5NnpgAd3Bt0SRI12Nkcc12LqcQiJBdw==}
+    peerDependencies:
+      solid-js: ^1.8
+
+  '@corvu/drawer@0.2.0':
+    resolution: {integrity: sha512-71MmiCe3IwH7zLz2kC6XhD1POHtSIslba1LIy4dBV4owrim218SUTKPAc97vGumZYtLo8KLtq/qryLxhqQtApA==}
     peerDependencies:
       solid-js: ^1.8
 
   '@corvu/utils@0.2.0':
     resolution: {integrity: sha512-cY0w+SotjOtBX+9oE90vis1Mu2spwGhtcAn4jmrl7JPqQrm68DH/0Rh3R52dN2MbgPVZL06N3mvys18myF5/0Q==}
+    peerDependencies:
+      solid-js: ^1.8
+
+  '@corvu/utils@0.3.0':
+    resolution: {integrity: sha512-dLKk/AGjhPmMI2zBvVe2cUZGrRm+FaLqDyp5ECwJO0eRggsIxkTIoTDH/aqkWV+31wtqh7QPjlC6xs9hnKwbbw==}
     peerDependencies:
       solid-js: ^1.8
 
@@ -1409,11 +1419,6 @@ packages:
 
   core-js-compat@3.37.1:
     resolution: {integrity: sha512-9TNiImhKvQqSUkOvk/mMRZzOANTiEVC7WaBNhHcKM7x+/5E1l5NvsysR19zuDQScE8k+kfQXWRN3AtS/eOSHpg==}
-
-  corvu@0.5.1:
-    resolution: {integrity: sha512-S2AjKUfpSHierx0TB1NKba5Ndf9TR/fXXZMRBKTWBIRZVjqpIRuLto+xftgGg8aDwv+RziVHvocDhtKa0Re9Rw==}
-    peerDependencies:
-      solid-js: ^1.8
 
   cross-fetch@3.1.5:
     resolution: {integrity: sha512-lvb1SBsI0Z7GDwmuid+mU3kWVBwTVUbe7S0H52yaaAdQOXq2YktTCZdlAcNKFzE6QtRz0snpw9bNiPeOIkkQvw==}
@@ -3700,11 +3705,28 @@ snapshots:
   '@canvas/image-data@1.0.0':
     optional: true
 
-  '@corvu/utils@0.1.1(solid-js@1.8.17)':
+  '@corvu/dialog@0.2.0(solid-js@1.8.17)':
     dependencies:
+      '@corvu/utils': 0.3.0(solid-js@1.8.17)
+      solid-focus-trap: 0.1.6(solid-js@1.8.17)
       solid-js: 1.8.17
+      solid-presence: 0.1.6(solid-js@1.8.17)
+      solid-prevent-scroll: 0.1.7(solid-js@1.8.17)
+
+  '@corvu/drawer@0.2.0(solid-js@1.8.17)':
+    dependencies:
+      '@corvu/dialog': 0.2.0(solid-js@1.8.17)
+      '@corvu/utils': 0.3.0(solid-js@1.8.17)
+      '@solid-primitives/memo': 1.3.8(solid-js@1.8.17)
+      solid-js: 1.8.17
+      solid-transition-size: 0.1.2(solid-js@1.8.17)
 
   '@corvu/utils@0.2.0(solid-js@1.8.17)':
+    dependencies:
+      '@floating-ui/dom': 1.6.5
+      solid-js: 1.8.17
+
+  '@corvu/utils@0.3.0(solid-js@1.8.17)':
     dependencies:
       '@floating-ui/dom': 1.6.5
       solid-js: 1.8.17
@@ -4431,17 +4453,6 @@ snapshots:
   core-js-compat@3.37.1:
     dependencies:
       browserslist: 4.23.0
-
-  corvu@0.5.1(solid-js@1.8.17):
-    dependencies:
-      '@corvu/utils': 0.1.1(solid-js@1.8.17)
-      '@floating-ui/dom': 1.6.5
-      '@solid-primitives/memo': 1.3.8(solid-js@1.8.17)
-      solid-focus-trap: 0.1.6(solid-js@1.8.17)
-      solid-js: 1.8.17
-      solid-presence: 0.1.6(solid-js@1.8.17)
-      solid-prevent-scroll: 0.1.7(solid-js@1.8.17)
-      solid-transition-size: 0.1.2(solid-js@1.8.17)
 
   cross-fetch@3.1.5:
     dependencies:

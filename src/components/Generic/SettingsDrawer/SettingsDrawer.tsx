@@ -2,7 +2,7 @@ import type { ParentComponent, VoidComponent, JSX } from "solid-js";
 
 import styles from "./SettingsDrawer.module.scss";
 
-import { Drawer } from "corvu/drawer";
+import Drawer from "@corvu/drawer";
 import { AiFillCloseCircle } from "solid-icons/ai";
 import { useOrientation } from "../../../hooks/useOrientation";
 
