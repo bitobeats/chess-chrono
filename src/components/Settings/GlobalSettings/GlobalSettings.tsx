@@ -55,7 +55,12 @@ export const GlobalSettings: VoidComponent = () => {
       <fieldset class={styles.fieldset}>
         <div class={styles.optionContainer}>
           <label for="select-theme">Theme</label>
-          <select name="theme" id="select-theme" class={styles.themeSelector} onChange={handleThemeChange}>
+          <select
+            name="theme"
+            id="select-theme"
+            class={styles.themeSelector}
+            onChange={handleThemeChange}
+            onPointerDown={(ev) => ev.stopPropagation()}>
             {themeOptions.map((themeOption) => (
               <option value={themeOption.theme} selected={selectedTheme(themeOption.theme)}>
                 {themeOption.text}
