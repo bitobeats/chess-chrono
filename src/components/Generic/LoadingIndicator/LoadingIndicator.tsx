@@ -4,13 +4,15 @@ import styles from "./LoadingIndicator.module.scss";
 
 import { splitProps } from "solid-js";
 
-export const LoadingIndicator: VoidComponent<JSX.SvgSVGAttributes<SVGSVGElement>> = (props) => {
-  const [localProps, restProps] = splitProps(props, ["class"]);
+type LoadingIndicatorProps = Omit<JSX.SvgSVGAttributes<SVGSVGElement>, "class">;
+
+export const LoadingIndicator: VoidComponent<LoadingIndicatorProps> = (props) => {
+  const [localProps, restProps] = splitProps(props, ["classList"]);
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      class={`${styles.loadingIndicator} ${localProps.class}`}
+      classList={{ [styles.loadingIndicator]: true, ...localProps.classList }}
       {...restProps}>
       <g>
         <circle cx={3} cy={12} r={2}></circle>
