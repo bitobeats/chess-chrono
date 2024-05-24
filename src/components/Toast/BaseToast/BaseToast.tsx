@@ -10,7 +10,7 @@ type BaseToastProps = {
 export const BaseToast: ParentComponent<BaseToastProps> = (props) => {
   return (
     <div class={styles.container}>
-      <button class={styles.closeButton} onClick={props.onClickClose}>
+      <button title="Close" class={styles.closeButton} onClick={props.onClickClose}>
         <AiOutlineCloseCircle />
       </button>
       <div class={styles.contentContainer}>{props.children}</div>
