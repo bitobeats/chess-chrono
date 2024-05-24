@@ -30,23 +30,6 @@
   padding-left: max(30px, env(safe-area-inset-left));
   padding-right: max(30px, env(safe-area-inset-right));
 
-  &::after {
-    content: "";
-    position: absolute;
-    left: 0px;
-    right: 0px;
-    height: 50%;
-    background-color: inherit;
-
-    @media (orientation: portrait) {
-      top: 100%;
-    }
-
-    @media (orientation: landscape) {
-      bottom: 100%;
-    }
-  }
-
   @media (orientation: landscape) {
     grid-template-rows: max-content 1fr max-content;
     grid-template-areas:
@@ -79,6 +62,23 @@
     transition-property: transform;
     transition-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
     transition-duration: 500ms;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    height: 50%;
+    background-color: inherit;
+
+    @media (orientation: portrait) {
+      top: 100%;
+    }
+
+    @media (orientation: landscape) {
+      bottom: 100%;
+    }
   }
 }
 
@@ -143,4 +143,16 @@
 .contentContainer {
   overflow: auto;
   height: inherit;
+}
+
+html[data-theme="light"] {
+  .dialog {
+    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.4);
+  }
+}
+
+html[data-theme="dark"] {
+  .dialog {
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  }
 }
