@@ -2,7 +2,7 @@ import type { VoidComponent } from "solid-js";
 
 import styles from "./UpdateNeededTooltipBody.module.scss";
 
-import { BaseToast } from "../BaseToast/BaseToast";
+import { BaseToast } from "../../Generic/BaseToast/BaseToast";
 
 type UpdateNeededtooltipBodyProps = {
   update: () => Promise<void>;
