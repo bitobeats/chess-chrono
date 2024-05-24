@@ -1,13 +1,13 @@
 import type { VoidComponent } from "solid-js";
 import type { Player } from "../../libs/chess-clock-service/types/Player";
 
-import styles from "./ClockSwitches.module.scss";
-
 import { createResource, createSignal } from "solid-js";
 import { formatTimeToHoursMinutesSeconds } from "../../utils/formatTimeToHoursMinutesSeconds";
 import { useSettingsStoreContext } from "../../contexts/SettingsStoreContext";
 import { audioPlayer } from "../../libs/libsSetup";
 import { useChessClockStoreContext } from "../../contexts/ChessClockStoreContext";
+
+import styles from "./ClockSwitches.module.scss";
 
 export const ClockSwitches: VoidComponent = () => {
   const players = [1, 2] as const;

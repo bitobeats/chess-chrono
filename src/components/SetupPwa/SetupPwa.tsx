@@ -1,13 +1,13 @@
 import type { ParentComponent } from "solid-js";
 
-import styles from "./SetupPwa.module.scss";
-
 import { useRegisterSW } from "virtual:pwa-register/solid";
 import { createEffect, on } from "solid-js";
 import toast from "solid-toast";
 import { useChessClockStoreContext } from "../../contexts/ChessClockStoreContext";
 import { UpdateNeededTooltipBody } from "../Toast/UpdateNeededTooltipBody/UpdateNeededTooltipBody";
 import { OfflineReadyTooltipBody } from "../Toast/OfflineReadyTooltipBody/OfflineReadyTooltipBody";
+
+import styles from "./SetupPwa.module.scss";
 
 export const SetupPwa: ParentComponent = (props) => {
   const { chessClockStore } = useChessClockStoreContext();

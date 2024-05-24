@@ -1,8 +1,6 @@
 import type { VoidComponent } from "solid-js";
 import type { Player } from "../../../libs/chess-clock-service/types/Player";
 
-import styles from "./PlayerSettings.module.scss";
-
 import { createUniqueId, createSignal } from "solid-js";
 import { useSettingsStoreContext } from "../../../contexts/SettingsStoreContext";
 import { useChessClockStoreContext } from "../../../contexts/ChessClockStoreContext";
@@ -11,6 +9,8 @@ import { formatTimeToHoursMinutesSeconds } from "../../../utils/formatTimeToHour
 import { maskitoTimeOptionsGenerator } from "@maskito/kit";
 import { maskitoNumberOptionsGenerator } from "@maskito/kit";
 import { useMaskito } from "../../../hooks/useMaskito";
+
+import styles from "./PlayerSettings.module.scss";
 
 type PlayerSettingsProps = {
   player: Player;

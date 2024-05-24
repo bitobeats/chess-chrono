@@ -1,8 +1,8 @@
 import type { VoidComponent } from "solid-js";
 
-import styles from "./OfflineReadyTooltipBody.module.scss";
-
 import { BaseToast } from "../../Generic/BaseToast/BaseToast";
+
+import styles from "./OfflineReadyTooltipBody.module.scss";
 
 type OfflineReadyTooltipBody = {
   close: () => void;

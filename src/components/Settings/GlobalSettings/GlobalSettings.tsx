@@ -1,11 +1,11 @@
 import type { VoidComponent } from "solid-js";
 
-import styles from "./GlobalSettings.module.scss";
-
 import { createSelector } from "solid-js";
 import { ThemeOption } from "../../../libs/settings-manager/enums/ThemeOption";
 import { ToggleSwitch } from "../../Generic/ToggleSwitch/ToggleSwitch";
 import { useSettingsStoreContext } from "../../../contexts/SettingsStoreContext";
+
+import styles from "./GlobalSettings.module.scss";
 
 type UiThemeOption = {
   text: string;

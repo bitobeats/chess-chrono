@@ -1,8 +1,8 @@
 import type { ParentComponent } from "solid-js";
 
-import styles from "./BaseToast.module.scss";
-
 import { AiOutlineCloseCircle } from "solid-icons/ai";
+
+import styles from "./BaseToast.module.scss";
 
 type BaseToastProps = {
   onClickClose: () => void;

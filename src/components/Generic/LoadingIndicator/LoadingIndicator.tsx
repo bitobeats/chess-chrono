@@ -1,8 +1,8 @@
 import type { VoidComponent, JSX } from "solid-js";
 
-import styles from "./LoadingIndicator.module.scss";
-
 import { splitProps } from "solid-js";
+
+import styles from "./LoadingIndicator.module.scss";
 
 type LoadingIndicatorProps = Omit<JSX.SvgSVGAttributes<SVGSVGElement>, "class">;
 
