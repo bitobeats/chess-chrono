@@ -1,8 +1,10 @@
 import type { VoidComponent } from "solid-js";
 
-import styles from "./UpdateNeededTooltipBody.module.scss";
-
+import { createSignal } from "solid-js";
 import { BaseToast } from "../../Generic/BaseToast/BaseToast";
+import { LoadingIndicator } from "../../Generic/LoadingIndicator/LoadingIndicator";
+
+import styles from "./UpdateNeededTooltipBody.module.scss";
 
 type UpdateNeededtooltipBodyProps = {
   update: () => Promise<void>;
@@ -10,6 +12,20 @@ type UpdateNeededtooltipBodyProps = {
 };
 
 export const UpdateNeededTooltipBody: VoidComponent<UpdateNeededtooltipBodyProps> = (props) => {
+  const [isUpdating, setIsUpdating] = createSignal(false);
+
+  async function handleUpdate() {
+    setIsUpdating(true);
+    try {
+      await props.update();
+    } catch {
+      props.cancel();
+    }
+  }
+
+  const updateButtonContent = () =>
+    isUpdating() ? <LoadingIndicator classList={{ [styles.loadingIndicator]: true }} /> : "Install";
+
   return (
     <BaseToast onClickClose={props.cancel}>
       <div class={styles.container}>
@@ -18,8 +34,8 @@ export const UpdateNeededTooltipBody: VoidComponent<UpdateNeededtooltipBodyProps
         </div>
 
         <div class={styles.buttonsContainer}>
-          <button class={styles.button} onClick={props.update}>
-            Install
+          <button class={styles.button} onClick={handleUpdate} disabled={isUpdating()}>
+            {updateButtonContent()}
           </button>
         </div>
       </div>
