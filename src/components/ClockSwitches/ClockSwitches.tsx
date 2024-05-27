@@ -15,8 +15,8 @@ export const ClockSwitches: VoidComponent = () => {
   const { settings } = useSettingsStoreContext();
   const { chessClockStore, switchTo } = useChessClockStoreContext();
 
-  let [player1ButtonRef, setPlayer1ButtonRef] = createSignal<HTMLButtonElement>();
-  let [player2ButtonRef, setPlayer2ButtonRef] = createSignal<HTMLButtonElement>();
+  const [player1ButtonRef, setPlayer1ButtonRef] = createSignal<HTMLButtonElement>();
+  const [player2ButtonRef, setPlayer2ButtonRef] = createSignal<HTMLButtonElement>();
 
   createResource(async () => {
     await audioPlayer.init();
