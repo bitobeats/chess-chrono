@@ -28,7 +28,7 @@ export class SettingsManager extends SimpleEventTarget<EventsMap> {
       return;
     }
 
-    this.#persistentSettings = new PersistentRecord("settings", this.#defaultSettings);
+    this.#persistentSettings = new PersistentRecord("chess_clock-settings", this.#defaultSettings);
     await this.#persistentSettings.init();
     this.#initialized = true;
   }
