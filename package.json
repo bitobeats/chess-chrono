@@ -16,8 +16,8 @@
   },
   "dependencies": {
     "@corvu/drawer": "^0.2.0",
-    "@maskito/core": "^2.3.2",
-    "@maskito/kit": "^2.3.2",
+    "@maskito/core": "^2.4.0",
+    "@maskito/kit": "^2.4.0",
     "solid-icons": "^1.1.0",
     "solid-js": "^1.8.17",
     "solid-toast": "^0.5.0",

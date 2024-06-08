@@ -12,11 +12,11 @@ importers:
         specifier: ^0.2.0
         version: 0.2.0(solid-js@1.8.17)
       '@maskito/core':
-        specifier: ^2.3.2
-        version: 2.3.2
+        specifier: ^2.4.0
+        version: 2.4.0
       '@maskito/kit':
-        specifier: ^2.3.2
-        version: 2.3.2(@maskito/core@2.3.2)
+        specifier: ^2.4.0
+        version: 2.4.0(@maskito/core@2.4.0)
       solid-icons:
         specifier: ^1.1.0
         version: 1.1.0(solid-js@1.8.17)
@@ -866,13 +866,13 @@ packages:
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
 
-  '@maskito/core@2.3.2':
-    resolution: {integrity: sha512-Epz1bWlUC71CulXzaF2c+6Iq9ffYPPtSEgwYvfQT21IdwjV6SVMvPL+RZ4Mkd4bzXFrdrmm4BEFjPCWraCC9lA==}
+  '@maskito/core@2.4.0':
+    resolution: {integrity: sha512-0Yvo2FJjy6OHYaoiTutwIOCQxVpl6OuLpFVepDoY0m7/SHRBOJ1DEr2tVU63kMoQ+9/zRa7SyHOY6SuOZyMJrA==}
 
-  '@maskito/kit@2.3.2':
-    resolution: {integrity: sha512-wnS5J0fCe9rS/n3316+0AyC+sk/MAKtfio5Vev2Rhhtref500F8esDMqmFMFF8JRVQdqrkDDU/CaOh/NejOkww==}
+  '@maskito/kit@2.4.0':
+    resolution: {integrity: sha512-KHUO3bNACFGzVKfZy8BI8ITYGudkEcVbzE0103igBUS+plP7oTXjy9mjTiQtw55+72DsgyksGSpS1ggAXLWrNA==}
     peerDependencies:
-      '@maskito/core': ^2.3.2
+      '@maskito/core': ^2.4.0
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -3842,11 +3842,11 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
 
-  '@maskito/core@2.3.2': {}
+  '@maskito/core@2.4.0': {}
 
-  '@maskito/kit@2.3.2(@maskito/core@2.3.2)':
+  '@maskito/kit@2.4.0(@maskito/core@2.4.0)':
     dependencies:
-      '@maskito/core': 2.3.2
+      '@maskito/core': 2.4.0
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
