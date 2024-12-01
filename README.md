@@ -1,3 +1,3 @@
-# Chess Clock
+# Chess Chrono
 
 A super lightweight chess clock pwa. It works offline and your settings are persistent.
