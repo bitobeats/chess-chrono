@@ -1,4 +1,5 @@
 @use "sass:map";
+@use "sass:list";
 
 // Colors by theme; (light, dark)
 $light-dark-themes: (
@@ -26,12 +27,12 @@ $light-dark-themes: (
 
 @mixin light {
   @each $property, $values in $light-dark-themes {
-    #{$property}: nth($values, 1);
+    #{$property}: list.nth($values, 1);
   }
 }
 
 @mixin dark {
   @each $property, $values in $light-dark-themes {
-    #{$property}: nth($values, 2);
+    #{$property}: list.nth($values, 2);
   }
 }
