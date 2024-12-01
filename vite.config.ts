@@ -17,7 +17,6 @@ export default defineConfig({
       registerType: "prompt",
       injectRegister: "auto",
       manifest: {
-        id: "chess-chrono",
         name: "Chess Chrono",
         short_name: "ChessChrono",
         description: "An offline chess clock app. Free forever.",
