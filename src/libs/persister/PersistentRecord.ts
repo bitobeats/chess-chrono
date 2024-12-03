@@ -1,4 +1,4 @@
-import { PromiseTaskQueue } from "vrls-tasks";
+import { PromiseTaskQueue } from "@vrls/tasks";
 
 const STORE_NAME = "persister-user";
 const PERSISTENT_RECORD_NAME = "persistent-record";

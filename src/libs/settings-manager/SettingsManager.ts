@@ -1,6 +1,6 @@
 import type { Settings } from "./types/Settings";
 
-import { SimpleEventTarget } from "vrls-simple-event-target";
+import { SimpleEventTarget } from "@vrls/simple-event-target";
 import { PersistentRecord } from "../persister/PersistentRecord";
 import { DEFAULT_SETTINGS } from "./DEFAULT_SETTINGS";
 
