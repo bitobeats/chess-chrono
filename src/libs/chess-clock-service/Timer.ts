@@ -1,6 +1,6 @@
 import type { TimerConfig } from "./types/TimerConfig";
 
-import { SimpleEventTarget } from "vrls-simple-event-target";
+import { SimpleEventTarget } from "@vrls/simple-event-target";
 
 type TimerEventMap = {
   finish: () => void;

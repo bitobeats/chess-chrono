@@ -17,6 +17,12 @@ importers:
       '@maskito/kit':
         specifier: ^3.2.0
         version: 3.2.0(@maskito/core@3.2.0)
+      '@vrls/simple-event-target':
+        specifier: ^0.1.4
+        version: 0.1.4
+      '@vrls/tasks':
+        specifier: ^0.0.7
+        version: 0.0.7
       solid-icons:
         specifier: ^1.1.0
         version: 1.1.0(solid-js@1.9.3)
@@ -26,12 +32,6 @@ importers:
       solid-toast:
         specifier: ^0.5.0
         version: 0.5.0(solid-js@1.9.3)
-      vrls-simple-event-target:
-        specifier: ^0.1.2
-        version: 0.1.2
-      vrls-tasks:
-        specifier: ^0.0.4
-        version: 0.0.4
     devDependencies:
       autoprefixer:
         specifier: ^10.4.20
@@ -1153,6 +1153,12 @@ packages:
 
   '@types/yauzl@2.10.3':
     resolution: {integrity: sha512-oJoftv0LSuaDZE3Le4DbKX+KS9G36NzOeSap90UIK0yMA/NhKJhqlSGtNDORNRaIbQfzjXDrQa0ytJ6mNRGz/Q==}
+
+  '@vrls/simple-event-target@0.1.4':
+    resolution: {integrity: sha512-1Ad5OwCk8dzXtBBdzTriTfsLy61SCbm7GAdK4jZ6sZVx0ZKi/C2ZADpdFG76DocUKQ+FBkT68YQ3ClitSiR2gQ==}
+
+  '@vrls/tasks@0.0.7':
+    resolution: {integrity: sha512-BvYyIXtEPi/ZaB948xC0PlNBHsAWZG3oj1Lmq1tw/mKfBsU54Ww/wkyqbAjSrKRCk/2yoYjnbS+vW960CuCf1Q==}
 
   abbrev@2.0.0:
     resolution: {integrity: sha512-6/mh1E2u2YgEsCHdY0Yx5oW+61gZU+1vXaoiHHrpKeuRNNgFvS+/jrwHiQhB5apAf5oB7UB7E19ol2R2LKH8hQ==}
@@ -2706,12 +2712,6 @@ packages:
       vite:
         optional: true
 
-  vrls-simple-event-target@0.1.2:
-    resolution: {integrity: sha512-+SIo8Ubj3lFaPtY7OxeTmxVDtBhLBWwV6ric5aYSCiD8UQhSBsKEfR6N8aa5dcdRgNj3y3chbeVBgKuYyPQR2w==}
-
-  vrls-tasks@0.0.4:
-    resolution: {integrity: sha512-vB58OinxtaD2aseyOGlSrefq/Q84AuxQAV4+zpNuzndS5YmdC2ksAfsoqvKykFn9M2jzTKtWyQECbnrpZWTIUw==}
-
   webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
 
@@ -4000,6 +4000,12 @@ snapshots:
     dependencies:
       '@types/node': 22.10.1
     optional: true
+
+  '@vrls/simple-event-target@0.1.4': {}
+
+  '@vrls/tasks@0.0.7':
+    dependencies:
+      '@vrls/simple-event-target': 0.1.4
 
   abbrev@2.0.0: {}
 
@@ -5678,12 +5684,6 @@ snapshots:
   vitefu@1.0.4(vite@6.0.1(@types/node@22.10.1)(sass@1.81.0)(terser@5.36.0)):
     optionalDependencies:
       vite: 6.0.1(@types/node@22.10.1)(sass@1.81.0)(terser@5.36.0)
-
-  vrls-simple-event-target@0.1.2: {}
-
-  vrls-tasks@0.0.4:
-    dependencies:
-      vrls-simple-event-target: 0.1.2
 
   webidl-conversions@3.0.1: {}
 
