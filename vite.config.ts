@@ -5,7 +5,7 @@ import { VitePWA } from "vite-plugin-pwa";
 import devtools from "solid-devtools/vite";
 
 export default defineConfig({
-  base: "/chess-clock-solid/",
+  base: "/chess-chrono/",
   build: {
     target: "ES2022",
     assetsInlineLimit: 0,
