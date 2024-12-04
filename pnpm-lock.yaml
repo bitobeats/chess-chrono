@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@bitobeats/simple-event-target':
+        specifier: ^0.1.5
+        version: 0.1.5
+      '@bitobeats/tasks':
+        specifier: ^0.0.7
+        version: 0.0.7
       '@corvu/drawer':
         specifier: ^0.2.2
         version: 0.2.2(solid-js@1.9.3)
@@ -17,12 +23,6 @@ importers:
       '@maskito/kit':
         specifier: ^3.2.0
         version: 3.2.0(@maskito/core@3.2.0)
-      '@vrls/simple-event-target':
-        specifier: ^0.1.4
-        version: 0.1.4
-      '@vrls/tasks':
-        specifier: ^0.0.7
-        version: 0.0.7
       solid-icons:
         specifier: ^1.1.0
         version: 1.1.0(solid-js@1.9.3)
@@ -587,6 +587,12 @@ packages:
   '@babel/types@7.26.0':
     resolution: {integrity: sha512-Z/yiTPj+lDVnF7lWeKCIJzaIkI0vYO87dMpZ4bg4TDrFe4XXLFWL1TbXU27gBP3QccxV9mZICCrnjnYlJjXHOA==}
     engines: {node: '>=6.9.0'}
+
+  '@bitobeats/simple-event-target@0.1.5':
+    resolution: {integrity: sha512-WEsUx0SHZxD9dURZ+PnZQDJORKem6e/mo1hr7J60m81dnFG7MZqPy2wSJg1Crfw3ajD2KZctrTx8oqKjFrOtjA==}
+
+  '@bitobeats/tasks@0.0.7':
+    resolution: {integrity: sha512-oVvUpo+QU0WpRJFRESO1PNwz9dS0r/WJJJnZCUE0uJKdLsZ7VWeXbyv1YGTCBHp2HNL9SrtarbRM4LNS8gBNvA==}
 
   '@corvu/dialog@0.2.3':
     resolution: {integrity: sha512-1p1lG2Pdu7CtDYw0FP+gdU0Db4zsB2ljOP7UxszZIQpvVvnrAYhNPfu/8IpscB38c0hZCodEnv5hR0NaEEA/Ag==}
@@ -1153,12 +1159,6 @@ packages:
 
   '@types/yauzl@2.10.3':
     resolution: {integrity: sha512-oJoftv0LSuaDZE3Le4DbKX+KS9G36NzOeSap90UIK0yMA/NhKJhqlSGtNDORNRaIbQfzjXDrQa0ytJ6mNRGz/Q==}
-
-  '@vrls/simple-event-target@0.1.4':
-    resolution: {integrity: sha512-1Ad5OwCk8dzXtBBdzTriTfsLy61SCbm7GAdK4jZ6sZVx0ZKi/C2ZADpdFG76DocUKQ+FBkT68YQ3ClitSiR2gQ==}
-
-  '@vrls/tasks@0.0.7':
-    resolution: {integrity: sha512-BvYyIXtEPi/ZaB948xC0PlNBHsAWZG3oj1Lmq1tw/mKfBsU54Ww/wkyqbAjSrKRCk/2yoYjnbS+vW960CuCf1Q==}
 
   abbrev@2.0.0:
     resolution: {integrity: sha512-6/mh1E2u2YgEsCHdY0Yx5oW+61gZU+1vXaoiHHrpKeuRNNgFvS+/jrwHiQhB5apAf5oB7UB7E19ol2R2LKH8hQ==}
@@ -3514,6 +3514,12 @@ snapshots:
       '@babel/helper-string-parser': 7.25.9
       '@babel/helper-validator-identifier': 7.25.9
 
+  '@bitobeats/simple-event-target@0.1.5': {}
+
+  '@bitobeats/tasks@0.0.7':
+    dependencies:
+      '@bitobeats/simple-event-target': 0.1.5
+
   '@corvu/dialog@0.2.3(solid-js@1.9.3)':
     dependencies:
       '@corvu/utils': 0.4.2(solid-js@1.9.3)
@@ -4000,12 +4006,6 @@ snapshots:
     dependencies:
       '@types/node': 22.10.1
     optional: true
-
-  '@vrls/simple-event-target@0.1.4': {}
-
-  '@vrls/tasks@0.0.7':
-    dependencies:
-      '@vrls/simple-event-target': 0.1.4
 
   abbrev@2.0.0: {}
 
