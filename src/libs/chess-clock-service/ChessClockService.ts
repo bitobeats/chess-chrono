@@ -2,7 +2,7 @@ import type { PlayerConfig } from "./types/PlayerConfig";
 import type { Player } from "./types/Player";
 import type { ChessClockState } from "./types/ChessClockState";
 
-import { SimpleEventTarget } from "@vrls/simple-event-target";
+import { SimpleEventTarget } from "@bitobeats/simple-event-target";
 
 import { UnexpectedCallWhileActiveError } from "./errors/UnexpectedCallWhileActiveError";
 import { UnexpectedCallWhileNotReadyError } from "./errors/UnexpectedCallWhileNotReadyError";
