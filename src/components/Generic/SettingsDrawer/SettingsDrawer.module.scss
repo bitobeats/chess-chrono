@@ -6,6 +6,7 @@
   font-size: xx-large;
   font-weight: 700;
   color: var(--global-text-color);
+  margin: 0;
 }
 
 .dialog {
@@ -39,8 +40,8 @@
 
     top: 0;
     border-bottom-width: 4px;
-    border-bottom-left-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
     padding-bottom: max(15px, env(safe-area-inset-bottom));
   }
 
@@ -53,8 +54,8 @@
 
     bottom: 0;
     border-top-width: 4px;
-    border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
     padding-bottom: max(20px, env(safe-area-inset-bottom));
   }
 
@@ -116,6 +117,8 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-top: 10px;
+  margin-bottom: 50px;
 }
 
 .closeButton {
