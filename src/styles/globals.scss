@@ -8,13 +8,23 @@
   touch-action: none;
   background-color: var(--global-background-color);
 
-  @media (prefers-color-scheme: "dark") {
+  @media (prefers-color-scheme: dark) {
     @include themes.dark();
   }
 
-  @media (prefers-color-scheme: "light") {
+  @media (prefers-color-scheme: light) {
     @include themes.light();
   }
+}
+
+html[data-theme="light"] {
+  @include themes.light();
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  @include themes.dark();
+  color-scheme: dark;
 }
 
 body {
@@ -72,12 +82,4 @@ button {
 
 div {
   display: flex;
-}
-
-.light {
-  @include themes.light();
-}
-
-.dark {
-  @include themes.dark();
 }
