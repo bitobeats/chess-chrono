@@ -123,20 +123,19 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  will-change: filter;
   width: min-content;
   height: min-content;
   background-color: transparent;
   font-size: xx-large;
   color: var(--global-text-color);
-  transition: filter 0.2s;
+  transition: color 0.15s;
 
   &:focus {
     outline: none;
   }
 
   &:active {
-    filter: brightness(80%);
+    color: color-mix(in srgb, currentColor 70%, black);
   }
 }
 
