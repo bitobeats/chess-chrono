@@ -3,16 +3,18 @@ import { ThemeOption } from "../libs/settings-manager/enums/ThemeOption";
 import { changeTheme } from "../utils/changeTheme";
 
 export function useTheme(theme: () => ThemeOption) {
+  const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  const isOsDarkThemed = () => darkModeQuery.matches;
+
   onMount(() => {
-    function darkModeQueryChangeEventListener(ev: MediaQueryListEvent) {
+    function darkModeQueryChangeEventListener() {
       if (theme() !== ThemeOption.System) {
         return;
       }
-      const isOsDarkThemed = ev.matches;
-      changeTheme(isOsDarkThemed ? "dark" : "light");
+
+      changeTheme(isOsDarkThemed() ? "dark" : "light");
     }
 
-    const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
     darkModeQuery.addEventListener("change", darkModeQueryChangeEventListener);
 
     onCleanup(() => {
@@ -25,8 +27,7 @@ export function useTheme(theme: () => ThemeOption) {
     let newTheme: "dark" | "light";
 
     if (currentTheme === ThemeOption.System) {
-      const isOsDarkThemed = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      newTheme = isOsDarkThemed ? "dark" : "light";
+      newTheme = isOsDarkThemed() ? "dark" : "light";
     } else {
       newTheme = currentTheme;
     }

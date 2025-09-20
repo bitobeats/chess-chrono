@@ -4,38 +4,18 @@ const LIGHT_THEME_COLOR = "white";
 type Theme = "light" | "dark";
 
 export function changeTheme(theme: Theme) {
-  changeColorScheme(theme);
-
-  const rootClasses = document.documentElement.classList;
-
-  rootClasses.remove("light", "dark");
+  changeDataTheme(theme);
 
   switch (theme) {
     case "dark": {
-      enableDarkTheme(rootClasses);
+      changeThemeColor(DARK_THEME_COLOR);
       break;
     }
     case "light": {
-      enableLightTheme(rootClasses);
+      changeThemeColor(LIGHT_THEME_COLOR);
       break;
     }
   }
-}
-
-function enableLightTheme(rootClasses: DOMTokenList) {
-  rootClasses.add("light");
-  changeThemeColor(LIGHT_THEME_COLOR);
-  changeDataTheme("light");
-}
-
-function enableDarkTheme(rootClasses: DOMTokenList) {
-  rootClasses.add("dark");
-  changeThemeColor(DARK_THEME_COLOR);
-  changeDataTheme("dark");
-}
-
-function changeColorScheme(colorScheme: "light" | "dark") {
-  document.documentElement.style.colorScheme = colorScheme;
 }
 
 function changeDataTheme(theme: Theme) {
