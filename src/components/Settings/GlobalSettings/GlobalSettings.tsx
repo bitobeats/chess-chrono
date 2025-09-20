@@ -17,15 +17,15 @@ export const GlobalSettings: VoidComponent = () => {
   const selectedTheme = createSelector(() => settings.global.theme);
 
   const themeOptions: UiThemeOption[] = [
-    { text: "System", theme: ThemeOption.System },
-    {
-      text: "Light",
-      theme: ThemeOption.Light,
-    },
     {
       text: "Dark",
       theme: ThemeOption.Dark,
     },
+    {
+      text: "Light",
+      theme: ThemeOption.Light,
+    },
+    { text: "System", theme: ThemeOption.System },
   ];
 
   async function handleThemeChange(
