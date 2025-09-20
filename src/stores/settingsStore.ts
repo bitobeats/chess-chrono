@@ -1,7 +1,7 @@
 import type { SettingsManager } from "../libs/settings-manager/SettingsManager";
 import type { Settings } from "../libs/settings-manager/types/Settings";
 
-import { createResource, onMount, onCleanup } from "solid-js";
+import { onMount, onCleanup } from "solid-js";
 import { createStore, reconcile, unwrap } from "solid-js/store";
 
 import { useTheme } from "../hooks/useTheme";
@@ -16,24 +16,24 @@ export function createSettingsStore(settingsManager: SettingsManager) {
   }
 
   onMount(() => {
-    function settingsSavedEventListener(newSettings: Settings) {
+    function updateSettings(newSettings: Settings) {
       setSettings(reconcile(newSettings));
     }
 
-    settingsManager.addEventListener("settingssaved", settingsSavedEventListener);
+    settingsManager.addEventListener("settingssaved", updateSettings);
+    settingsManager.addEventListener("settingsloaded", updateSettings);
+
+    async function loadSettings() {
+      await settingsManager.init();
+      await settingsManager.loadSettings();
+    }
+
+    loadSettings();
 
     onCleanup(() => {
-      settingsManager.removeEventListener("settingssaved", settingsSavedEventListener);
+      settingsManager.removeEventListener("settingssaved", updateSettings);
+      settingsManager.removeEventListener("settingsloaded", updateSettings);
     });
-  });
-
-  createResource(async () => {
-    await settingsManager.init();
-    const loadedSettings = await settingsManager.loadSettings();
-
-    if (loadedSettings) {
-      setSettings(loadedSettings);
-    }
   });
 
   return { settings, setSettings, saveSettings };
