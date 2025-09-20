@@ -9,15 +9,15 @@ export class CustomWakeLock {
     }
 
     try {
-      const wakeLockSentinel = await navigator.wakeLock.request("screen");
-      this.#wakeLockSentinel = wakeLockSentinel;
+      this.#wakeLockSentinel = await navigator.wakeLock.request("screen");
+      this.#triedTimes = 0;
     } catch (err) {
-      this.#MAX_TRIES = this.#MAX_TRIES + 1;
+      this.#triedTimes++;
     }
   }
 
   async releaseWakeLock() {
-    if (!this.#wakeLockSentinel || this.#triedTimes === this.#MAX_TRIES) {
+    if (!this.#wakeLockSentinel) {
       return;
     }
 
