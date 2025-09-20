@@ -10,6 +10,13 @@ export class CustomWakeLock {
 
     try {
       this.#wakeLockSentinel = await navigator.wakeLock.request("screen");
+      this.#wakeLockSentinel.addEventListener(
+        "release",
+        () => {
+          this.#wakeLockSentinel = null;
+        },
+        { once: true }
+      );
       this.#triedTimes = 0;
     } catch (err) {
       this.#triedTimes++;
@@ -21,10 +28,6 @@ export class CustomWakeLock {
       return;
     }
 
-    try {
-      await this.#wakeLockSentinel.release();
-    } finally {
-      this.#wakeLockSentinel = null;
-    }
+    await this.#wakeLockSentinel.release();
   }
 }
