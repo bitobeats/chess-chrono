@@ -1,30 +1,27 @@
 @use "./consts";
-@use "./themes";
 
 :root {
+  --global-primary-color: dodgerblue;
+  --global-background-color: rgb(30, 30, 30);
+  --global-text-color: white;
+  --global-button-background-color: rgb(46 46 46);
+  --global-button-background-color-disabled: dimgray;
+
+  color-scheme: dark;
   font-family: system-ui, sans-serif;
   height: 100%;
-  color-scheme: light dark;
   touch-action: none;
   background-color: var(--global-background-color);
 
-  @media (prefers-color-scheme: dark) {
-    @include themes.dark();
+  &[data-theme="light"] {
+    --global-primary-color: royalblue;
+    --global-background-color: white;
+    --global-text-color: black;
+    --global-button-background-color: rgb(239, 239, 239);
+    --global-button-background-color-disabled: darkgrey;
+
+    color-scheme: light;
   }
-
-  @media (prefers-color-scheme: light) {
-    @include themes.light();
-  }
-}
-
-:root[data-theme="light"] {
-  @include themes.light();
-  color-scheme: light;
-}
-
-:root[data-theme="dark"] {
-  @include themes.dark();
-  color-scheme: dark;
 }
 
 body {
