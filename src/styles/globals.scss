@@ -17,12 +17,12 @@
   }
 }
 
-html[data-theme="light"] {
+:root[data-theme="light"] {
   @include themes.light();
   color-scheme: light;
 }
 
-html[data-theme="dark"] {
+:root[data-theme="dark"] {
   @include themes.dark();
   color-scheme: dark;
 }

@@ -22,7 +22,7 @@
   transition: filter 0.2s;
 }
 
-html[data-theme="light"] {
+:root[data-theme="light"] {
   .closeButton {
     --toast-close-button-color: rgb(180, 180, 180);
 
@@ -32,7 +32,7 @@ html[data-theme="light"] {
   }
 }
 
-html[data-theme="dark"] {
+:root[data-theme="dark"] {
   .closeButton {
     --toast-close-button-color: rgb(93, 93, 93);
 
