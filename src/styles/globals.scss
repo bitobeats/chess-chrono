@@ -40,10 +40,10 @@ body {
   margin: 0;
   padding: 10px;
 
-  padding-top: max(5% + env(safe-area-inset-top));
-  padding-bottom: max(5% + env(safe-area-inset-bottom));
-  padding-right: max(2% + env(safe-area-inset-right));
-  padding-left: max(2% + env(safe-area-inset-left));
+  padding-top: calc(5% + env(safe-area-inset-top));
+  padding-bottom: calc(5% + env(safe-area-inset-bottom));
+  padding-right: calc(2% + env(safe-area-inset-right));
+  padding-left: calc(2% + env(safe-area-inset-left));
 
   @media (orientation: landscape) {
     grid-template-areas:
@@ -53,7 +53,7 @@ body {
     grid-template-rows: max-content 1fr;
 
     padding-top: max(1%, env(safe-area-inset-top));
-    padding-bottom: max(1% + env(safe-area-inset-bottom));
+    padding-bottom: calc(1% + env(safe-area-inset-bottom));
   }
 
   @media (display-mode: standalone) {
