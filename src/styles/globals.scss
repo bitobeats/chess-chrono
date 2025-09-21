@@ -1,5 +1,3 @@
-@use "./consts";
-
 :root {
   --global-primary-color: dodgerblue;
   --global-background-color: rgb(30, 30, 30);
@@ -33,8 +31,8 @@ body {
 #root {
   display: grid;
   grid-template-areas:
-    "#{consts.$grid-menu}"
-    "#{consts.$grid-main}";
+    "grid-root-menu"
+    "grid-root-main";
   grid-template-columns: 1fr;
   grid-template-rows: max-content 1fr;
   gap: 2%;
@@ -50,7 +48,7 @@ body {
   padding-left: max(2% + env(safe-area-inset-left));
 
   @media (orientation: portrait) {
-    grid-template-areas: "#{consts.$grid-main} #{consts.$grid-menu}";
+    grid-template-areas: "grid-root-main grid-root-menu";
     grid-template-columns: 1fr max-content;
     grid-template-rows: 1fr;
 

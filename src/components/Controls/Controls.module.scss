@@ -1,10 +1,8 @@
-@use "../../styles/consts";
-
 .container {
   display: flex;
   padding: 0;
   margin: 0;
-  grid-area: #{consts.$grid-menu};
+  grid-area: grid-root-menu;
   justify-content: space-around;
   align-items: center;
 
