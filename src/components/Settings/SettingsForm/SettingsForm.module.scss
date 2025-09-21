@@ -1,7 +1,5 @@
-@use "../../../styles/consts";
-
 .form {
-  grid-area: #{consts.$settings-grid-content};
+  grid-area: grid-settings-content;
   display: flex;
   flex-direction: column;
   gap: 30px;

@@ -1,7 +1,5 @@
-@use "../../styles/consts";
-
 .container {
-  grid-area: #{consts.$grid-main};
+  grid-area: grid-root-main;
   display: flex;
   padding: 0;
   margin: 0;
