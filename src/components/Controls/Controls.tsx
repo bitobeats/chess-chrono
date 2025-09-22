@@ -44,18 +44,22 @@ export const Controls: VoidComponent = () => {
         disabled={suspendResumeButtonDisabled()}
         onClick={handlePause}
         title="Pause/Resume">
-        {chessClockStore.chessClockState === "suspended" ? <TbPlayerPlayFilled /> : <TbPlayerStopFilled />}
+        {chessClockStore.chessClockState === "suspended" ? (
+          <TbPlayerPlayFilled class={styles.icon} />
+        ) : (
+          <TbPlayerStopFilled class={styles.icon} />
+        )}
       </button>
 
       <button onClick={handleResetClick} title={"Reset"} class={styles.iconButton} disabled={resetButtonDisabled()}>
-        <TbRefresh />
+        <TbRefresh class={styles.icon} />
       </button>
 
       <SettingsDrawer
         label="Settings"
         openButton={(props) => (
           <button {...props} title="Settings" class={styles.iconButton} disabled={openSettingsButtonDisabled()}>
-            <TbSettings />
+            <TbSettings class={styles.icon} />
           </button>
         )}>
         <SettingsForm />
