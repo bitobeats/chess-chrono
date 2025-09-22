@@ -39,6 +39,7 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 10px;
+  align-items: center;
 
   padding-top: calc(5% + env(safe-area-inset-top));
   padding-bottom: calc(5% + env(safe-area-inset-bottom));
@@ -51,6 +52,7 @@ body {
       "grid-root-main";
     grid-template-columns: 1fr;
     grid-template-rows: max-content 1fr;
+    justify-items: center;
 
     padding-top: max(1%, env(safe-area-inset-top));
     padding-bottom: calc(1% + env(safe-area-inset-bottom));
