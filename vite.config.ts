@@ -19,7 +19,7 @@ export default defineConfig({
       manifest: {
         name: "Chess Chrono",
         short_name: "ChessChrono",
-        description: "An offline chess clock app. Free forever.",
+        description: "A free offline chess clock app.",
         theme_color: "#1e1e1e",
         background_color: "#1e1e1e",
         categories: ["tools", "utilities", "chess", "clock"],
@@ -54,7 +54,7 @@ export default defineConfig({
         enabled: true,
       },
       workbox: {
-        globPatterns: ["**/*.{js,css,html,ico,svf,woff,woff2,wasm,caf,webm}"],
+        globPatterns: ["**/*.{js,css,html,ico,svg,woff,woff2,wasm,caf,webm}"],
       },
     }),
   ],

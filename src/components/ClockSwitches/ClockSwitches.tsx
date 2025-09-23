@@ -54,9 +54,10 @@ export const ClockSwitches: VoidComponent = () => {
   }
 
   function handleTouchStart(fromPlayer: Player) {
-    if (chessClockStore.chessClockState !== "ready") {
-      toggle(fromPlayer);
+    if (!audioPlayer.isAlive()) {
+      return;
     }
+    toggle(fromPlayer);
   }
 
   function handleDblClick(ev: MouseEvent) {
