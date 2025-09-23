@@ -49,6 +49,10 @@ export class AudioPlayer {
     await this.#audioCtx?.suspend();
   }
 
+  isAlive() {
+    return this.#audioCtx?.state === "running" || this.#audioCtx?.state === "suspended";
+  }
+
   #getRandomNumber(): number {
     const min = 1;
     const max = 1.1;
