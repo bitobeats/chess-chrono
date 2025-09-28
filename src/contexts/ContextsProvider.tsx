@@ -1,5 +1,7 @@
 import type { JSXElement } from "solid-js";
 
+import { Show } from "solid-js";
+
 import { SettingsStoreContextProvider } from "../contexts/SettingsStoreContext";
 import { createSettingsStore } from "../stores/settingsStore";
 import { settingsManager } from "../libs/libsSetup";
@@ -17,8 +19,10 @@ export const ContextsProvider = (props: ContextsProviderProps) => {
   const chessClockStore = createChessClockStore(chessClockService);
 
   return (
-    <SettingsStoreContextProvider value={settingsStore}>
-      <ChessClockStoreContextProvider value={chessClockStore}>{props.children}</ChessClockStoreContextProvider>
-    </SettingsStoreContextProvider>
+    <Show when={settingsStore.isReady()}>
+      <SettingsStoreContextProvider value={settingsStore}>
+        <ChessClockStoreContextProvider value={chessClockStore}>{props.children}</ChessClockStoreContextProvider>
+      </SettingsStoreContextProvider>
+    </Show>
   );
 };
