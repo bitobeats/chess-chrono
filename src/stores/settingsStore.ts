@@ -1,13 +1,14 @@
 import type { SettingsManager } from "../libs/settings-manager/SettingsManager";
 import type { Settings } from "../libs/settings-manager/types/Settings";
 
-import { onMount, onCleanup } from "solid-js";
+import { onMount, onCleanup, createSignal } from "solid-js";
 import { createStore, reconcile, unwrap } from "solid-js/store";
 
 import { useTheme } from "../hooks/useTheme";
 
 export function createSettingsStore(settingsManager: SettingsManager) {
   const [settings, setSettings] = createStore({ ...settingsManager.defaultSettings });
+  const [isReady, setIsReady] = createSignal(false);
 
   useTheme(() => settings.global.theme);
 
@@ -26,6 +27,10 @@ export function createSettingsStore(settingsManager: SettingsManager) {
     async function loadSettings() {
       await settingsManager.init();
       await settingsManager.loadSettings();
+
+      document.startViewTransition(() => {
+        setIsReady(true);
+      });
     }
 
     loadSettings();
@@ -36,5 +41,5 @@ export function createSettingsStore(settingsManager: SettingsManager) {
     });
   });
 
-  return { settings, setSettings, saveSettings };
+  return { settings, setSettings, saveSettings, isReady };
 }
