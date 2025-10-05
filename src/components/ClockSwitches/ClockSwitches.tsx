@@ -1,7 +1,7 @@
 import type { VoidComponent } from "solid-js";
 import type { Player } from "../../libs/chess-clock-service/types/Player";
 
-import { onMount, createSignal } from "solid-js";
+import { createSignal } from "solid-js";
 import { formatTimeToHoursMinutesSeconds } from "../../utils/formatTimeToHoursMinutesSeconds";
 import { useSettingsStoreContext } from "../../contexts/SettingsStoreContext";
 import { audioPlayer } from "../../libs/libsSetup";
@@ -17,10 +17,6 @@ export const ClockSwitches: VoidComponent = () => {
 
   const [player1ButtonRef, setPlayer1ButtonRef] = createSignal<HTMLButtonElement>();
   const [player2ButtonRef, setPlayer2ButtonRef] = createSignal<HTMLButtonElement>();
-
-  onMount(() => {
-    audioPlayer.init();
-  });
 
   function isPlayerSwitchDisabled(player: Player) {
     const { chessClockState } = chessClockStore;

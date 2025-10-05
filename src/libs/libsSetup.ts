@@ -45,4 +45,6 @@ function updateSettings(newSettings: Readonly<Settings>) {
 
 const audioPlayer = new AudioPlayer();
 
+await Promise.all([settingsManager.init(), audioPlayer.init()]);
+
 export { settingsManager, chessClockService, audioPlayer };

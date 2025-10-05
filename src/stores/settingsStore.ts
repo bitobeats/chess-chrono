@@ -25,7 +25,6 @@ export function createSettingsStore(settingsManager: SettingsManager) {
     settingsManager.addEventListener("settingsloaded", updateSettings);
 
     async function loadSettings() {
-      await settingsManager.init();
       await settingsManager.loadSettings();
 
       document.startViewTransition(() => {
