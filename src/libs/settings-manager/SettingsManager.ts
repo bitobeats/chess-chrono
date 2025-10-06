@@ -2,7 +2,7 @@ import type { RecordHandler } from "../model/RecordHandler";
 import type { Settings } from "./types/Settings";
 
 import { SimpleEventTarget } from "@bitobeats/simple-event-target";
-import { DEFAULT_SETTINGS } from "./DEFAULT_SETTINGS";
+import { DEFAULT_SETTINGS } from "./consts";
 
 type EventsMap = {
   settingssaved: (newSettings: Readonly<Settings>) => void;
