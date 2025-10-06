@@ -1,5 +1,5 @@
+import type { RecordHandler } from "../model/RecordHandler";
 import type { Settings } from "./types/Settings";
-import type { DbRecordHandler } from "../persister/DbRecordHandler";
 
 import { SimpleEventTarget } from "@bitobeats/simple-event-target";
 import { DEFAULT_SETTINGS } from "./DEFAULT_SETTINGS";
@@ -10,18 +10,18 @@ type EventsMap = {
 
 export class SettingsManager extends SimpleEventTarget<EventsMap> {
   #defaultSettings: Settings;
-  #dbRecordHandler: DbRecordHandler<Settings>;
+  #recordHandler: RecordHandler<Settings>;
   #settings: Settings;
 
-  constructor(dbRecordHandler: DbRecordHandler<Settings>, defaultSettings?: Settings) {
+  constructor(recordHandler: RecordHandler<Settings>, defaultSettings?: Settings) {
     super(["settingssaved"]);
     this.#defaultSettings = defaultSettings ? structuredClone(defaultSettings) : DEFAULT_SETTINGS;
     this.#settings = this.#defaultSettings;
-    this.#dbRecordHandler = dbRecordHandler;
+    this.#recordHandler = recordHandler;
   }
   async init() {
     try {
-      this.#settings = (await this.#dbRecordHandler.get()) ?? this.#defaultSettings;
+      this.#settings = (await this.#recordHandler.get()) ?? this.#defaultSettings;
     } catch (err) {
       console.error("Couldn't load persistent settings. Returning default settings. Error: " + err);
     }
@@ -33,7 +33,7 @@ export class SettingsManager extends SimpleEventTarget<EventsMap> {
 
   async saveSettings(newSettings: Readonly<Settings>) {
     try {
-      await this.#dbRecordHandler.set(newSettings);
+      await this.#recordHandler.set(newSettings);
       this.dispatchEvent("settingssaved", newSettings);
     } catch (err) {
       console.error("Couldn't persist settings. Error: " + err);

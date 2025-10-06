@@ -1,3 +1,4 @@
+import type { RecordHandler } from "../model/RecordHandler";
 import type { StoresSpec } from "./types/StoreSpec";
 
 import { DbRecordHandler } from "./DbRecordHandler";
@@ -29,7 +30,10 @@ export class Database<T extends StoresSpec> {
     });
   }
 
-  createRecordHandler<S extends keyof T & string, R extends keyof T[S] & string>(store: S, record: R) {
+  createRecordHandler<S extends keyof T & string, R extends keyof T[S] & string>(
+    store: S,
+    record: R
+  ): RecordHandler<T[S][R]> {
     return new DbRecordHandler<T[S][R]>({ db: this.#getDb(), storeName: store, recordName: record });
   }
 

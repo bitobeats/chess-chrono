@@ -1,10 +1,12 @@
+import type { RecordHandler } from "../model/RecordHandler";
+
 type DbRecordHandlerParams = {
   db: IDBDatabase;
   storeName: string;
   recordName: string;
 };
 
-export class DbRecordHandler<T> {
+export class DbRecordHandler<T> implements RecordHandler<T> {
   #db: IDBDatabase;
   #storeName: string;
   #recordName: string;
