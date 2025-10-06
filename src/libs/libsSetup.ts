@@ -28,15 +28,16 @@ await Promise.all([
 ]);
 
 const settingsManager = new SettingsManager(db.createRecordHandler("app", "settings"));
+await settingsManager.init();
 
 const chessClockService = new ChessClockService(
   {
-    countdownFrom: settingsManager.defaultSettings.player1.startTime,
-    incrementBy: settingsManager.defaultSettings.player1.incrementBy,
+    countdownFrom: settingsManager.settings.player1.startTime,
+    incrementBy: settingsManager.settings.player1.incrementBy,
   },
   {
-    countdownFrom: settingsManager.defaultSettings.player2.startTime,
-    incrementBy: settingsManager.defaultSettings.player2.incrementBy,
+    countdownFrom: settingsManager.settings.player2.startTime,
+    incrementBy: settingsManager.settings.player2.incrementBy,
   }
 );
 
@@ -63,6 +64,5 @@ function updateSettings(newSettings: Readonly<Settings>) {
 }
 
 settingsManager.addEventListener("settingssaved", updateSettings);
-settingsManager.addEventListener("settingsloaded", updateSettings);
 
 export { settingsManager, chessClockService, audioPlayer };
