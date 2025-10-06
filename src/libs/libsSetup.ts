@@ -2,9 +2,32 @@ import type { Settings } from "./settings-manager/types/Settings";
 
 import { ChessClockService } from "./chess-clock-service/ChessClockService";
 import { SettingsManager } from "./settings-manager/SettingsManager";
+import { Database } from "./persister/Database";
 import { AudioPlayer } from "./audio-player/AudioPlayer";
 
-const settingsManager = new SettingsManager();
+const audioPlayer = new AudioPlayer();
+
+type DatabaseStores = {
+  app: {
+    settings: Settings;
+    session: {};
+  };
+};
+
+const db = new Database<DatabaseStores>();
+
+await Promise.all([
+  db.init({
+    name: "chess-chrono",
+    version: 1,
+    onUpgradeNeeded: (request) => {
+      request.result.createObjectStore("app");
+    },
+  }),
+  audioPlayer.init(),
+]);
+
+const settingsManager = new SettingsManager(db.createRecordHandler("app", "settings"));
 
 const chessClockService = new ChessClockService(
   {
@@ -16,10 +39,6 @@ const chessClockService = new ChessClockService(
     incrementBy: settingsManager.defaultSettings.player2.incrementBy,
   }
 );
-
-settingsManager.addEventListener("settingsloaded", updateSettings);
-
-settingsManager.addEventListener("settingssaved", updateSettings);
 
 function updateSettings(newSettings: Readonly<Settings>) {
   if (
@@ -43,8 +62,7 @@ function updateSettings(newSettings: Readonly<Settings>) {
   );
 }
 
-const audioPlayer = new AudioPlayer();
-
-await Promise.all([settingsManager.init(), audioPlayer.init()]);
+settingsManager.addEventListener("settingssaved", updateSettings);
+settingsManager.addEventListener("settingsloaded", updateSettings);
 
 export { settingsManager, chessClockService, audioPlayer };

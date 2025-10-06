@@ -1,7 +1,7 @@
 import type { Settings } from "./types/Settings";
+import type { DbRecordHandler } from "../persister/DbRecordHandler";
 
 import { SimpleEventTarget } from "@bitobeats/simple-event-target";
-import { PersistentRecord } from "../persister/PersistentRecord";
 import { DEFAULT_SETTINGS } from "./DEFAULT_SETTINGS";
 
 type EventsMap = {
@@ -11,53 +11,35 @@ type EventsMap = {
 
 export class SettingsManager extends SimpleEventTarget<EventsMap> {
   #defaultSettings: Settings;
-  #persistentSettings: PersistentRecord<Settings> | null = null;
-  #initialized: boolean = false;
+  #dbRecordHandler: DbRecordHandler<Settings>;
 
-  constructor(defaultSettings?: Settings) {
+  constructor(dbRecordHandler: DbRecordHandler<Settings>, defaultSettings?: Settings) {
     super(["settingssaved", "settingsloaded"]);
     this.#defaultSettings = defaultSettings ? structuredClone(defaultSettings) : DEFAULT_SETTINGS;
+    this.#dbRecordHandler = dbRecordHandler;
   }
 
   get defaultSettings(): Readonly<Settings> {
     return this.#defaultSettings;
   }
 
-  async init() {
-    if (this.#initialized) {
-      return;
-    }
-
-    this.#persistentSettings = new PersistentRecord("chess_clock-settings", this.#defaultSettings);
-    await this.#persistentSettings.init();
-    this.#initialized = true;
-  }
-
   async saveSettings(newSettings: Readonly<Settings>) {
-    if (!this.#persistentSettings) {
-      throw new Error("You must initialize SettingsManager before using.");
-    }
-
     try {
-      await this.#persistentSettings.set(newSettings);
+      await this.#dbRecordHandler.set(newSettings);
       this.dispatchEvent("settingssaved", newSettings);
     } catch (err) {
       console.error("Couldn't persist settings. Error: " + err);
     }
   }
 
-  async loadSettings() {
-    if (!this.#persistentSettings) {
-      throw new Error("You must initialize SettingsManager before using.");
-    }
-
+  async loadSettings(): Promise<Readonly<Settings>> {
     try {
-      const loadedSettings = await this.#persistentSettings.get();
-      this.dispatchEvent("settingsloaded", loadedSettings);
-      return loadedSettings;
+      const settings = (await this.#dbRecordHandler.get()) ?? this.#defaultSettings;
+      this.dispatchEvent("settingsloaded", settings);
+      return settings;
     } catch (err) {
       console.error("Couldn't load persistent settings. Returning default settings. Error: " + err);
-      return DEFAULT_SETTINGS;
+      return this.#defaultSettings;
     }
   }
 }
