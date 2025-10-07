@@ -17,6 +17,11 @@ type ChessClockServiceEventMap = {
   playerdefeat: (defeatedPlayer: Player | null) => void;
   remainingtimeupdate: (player1RemainingTime: number, player2RemainingTime: number) => void;
 };
+type LoadSessionParams = {
+  playersTimes: [number, number];
+  activePlayer: Player;
+};
+
 export class ChessClockService extends SimpleEventTarget<ChessClockServiceEventMap> {
   #state: ChessClockState = "ready";
   #activePlayer: Player = 1;
@@ -175,6 +180,15 @@ export class ChessClockService extends SimpleEventTarget<ChessClockServiceEventM
     this.dispatchEvent("remainingtimeupdate", this.#player1Timer.remainingTime, this.#player2Timer.remainingTime);
     this.dispatchEvent("playerdefeat", null);
     this.#updateState("ready");
+  }
+
+  loadSession({ playersTimes, activePlayer }: LoadSessionParams) {
+    this.#state = "suspended";
+    this.#activePlayer = activePlayer;
+
+    [this.#player1Timer, this.#player2Timer].forEach((timer, index) => {
+      timer.loadSession(playersTimes[index]);
+    });
   }
 
   #updateState(state: ChessClockState) {
