@@ -59,6 +59,10 @@ export class Timer extends SimpleEventTarget<TimerEventMap> {
     clearTimeout(this.#finishCheckerTimeout ?? undefined);
   }
 
+  loadSession(time: number) {
+    this.#accumulatedTime = this.timerConfig.countdownFrom - time;
+  }
+
   #increment() {
     this.#accumulatedTime -= this.timerConfig.incrementBy;
   }

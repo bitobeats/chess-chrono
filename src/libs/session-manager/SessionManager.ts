@@ -37,7 +37,8 @@ export class SessionManager {
   async init(): Promise<Session> {
     this.#session = (await this.#recordHandler.get()) ?? DEFAULT_SESSION;
 
-    window.addEventListener("pagehide", this.saveSession.bind(this));
+    document.addEventListener("visibilitychange", this.saveSession.bind(this));
+
     return this.#session;
   }
 

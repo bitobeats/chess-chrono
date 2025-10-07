@@ -1,14 +1,16 @@
 import type { Settings } from "./settings-manager/types/Settings";
+import type { Session } from "./session-manager/types/Session";
 
 import { ChessClockService } from "./chess-clock-service/ChessClockService";
 import { SettingsManager } from "./settings-manager/SettingsManager";
 import { Database } from "./persister/Database";
 import { AudioPlayer } from "./audio-player/AudioPlayer";
+import { SessionManager } from "./session-manager/SessionManager";
 
 type DatabaseStores = {
   app: {
     settings: Settings;
-    session: {};
+    session: Session;
   };
 };
 
@@ -38,10 +40,33 @@ async function initLibs() {
     }
   );
 
-  return { settingsManager, chessClockService, audioPlayer };
+  const sessionManager = new SessionManager({
+    getActivePlayer: () => chessClockService.activePlayer,
+    getPlayersRemainingTimes: () => chessClockService.playerTimes,
+    getPlayersStartTimes: () => [
+      settingsManager.settings.player1.startTime,
+      settingsManager.settings.player2.startTime,
+    ],
+    recordHandler: db.createRecordHandler("app", "session"),
+  });
+
+  const session = await sessionManager.init();
+
+  if (session.shouldRestore) {
+    chessClockService.loadSession({
+      activePlayer: session.activePlayer,
+      playersTimes: [session.player1RemainingTime, session.player2RemainingTime],
+    });
+  }
+
+  return { settingsManager, chessClockService, audioPlayer, sessionManager };
 }
 
-function wireLibs(chessClockService: ChessClockService, settingsManager: SettingsManager) {
+function wireLibs(
+  chessClockService: ChessClockService,
+  settingsManager: SettingsManager,
+  sessionManager: SessionManager
+) {
   function updateSettings(newSettings: Readonly<Settings>) {
     if (
       chessClockService.player1Config.countdownFrom !== newSettings.player1.startTime ||
@@ -65,10 +90,14 @@ function wireLibs(chessClockService: ChessClockService, settingsManager: Setting
   }
 
   settingsManager.addEventListener("settingssaved", updateSettings);
+
+  chessClockService.addEventListener("activeplayerchange", sessionManager.saveSession.bind(sessionManager));
+  chessClockService.addEventListener("statechange", sessionManager.saveSession.bind(sessionManager));
+  chessClockService.addEventListener("playerconfigchange", sessionManager.saveSession.bind(sessionManager));
 }
 
-const { audioPlayer, chessClockService, settingsManager } = await initLibs();
+const { audioPlayer, chessClockService, settingsManager, sessionManager } = await initLibs();
 
-wireLibs(chessClockService, settingsManager);
+wireLibs(chessClockService, settingsManager, sessionManager);
 
 export { settingsManager, chessClockService, audioPlayer };
