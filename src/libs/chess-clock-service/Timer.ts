@@ -5,6 +5,7 @@ import { SimpleEventTarget } from "@bitobeats/simple-event-target";
 type TimerEventMap = {
   finish: () => void;
 };
+
 export class Timer extends SimpleEventTarget<TimerEventMap> {
   #accumulatedTime: number = 0;
   #lastTimestamp: number = 0;
@@ -16,11 +17,8 @@ export class Timer extends SimpleEventTarget<TimerEventMap> {
   }
 
   get remainingTime() {
-    if (this.#isRunning) {
-      this.#accumulateTime();
-    }
-
-    const currentTime = this.timerConfig.countdownFrom - this.#accumulatedTime;
+    const liveElapsedTime = this.#isRunning ? this.#elapsedSinceLastTimestamp() : 0;
+    const currentTime = this.timerConfig.countdownFrom - this.#accumulatedTime - liveElapsedTime;
     return currentTime > 0 ? currentTime : 0;
   }
 
@@ -32,19 +30,14 @@ export class Timer extends SimpleEventTarget<TimerEventMap> {
     this.#isRunning = true;
     this.#lastTimestamp = performance.now();
 
-    const finishChecker = () => {
-      if (this.remainingTime <= 0) {
-        this.pause();
-        this.dispatchEvent("finish");
-      } else {
-        this.#finishCheckerTimeout = setTimeout(finishChecker, this.remainingTime * 1000);
-      }
-    };
-
-    finishChecker();
+    this.#finishChecker();
   }
 
   pause(increment?: boolean) {
+    if (this.#isRunning) {
+      this.#accumulatedTime += this.#elapsedSinceLastTimestamp();
+    }
+
     this.#isRunning = false;
 
     if (increment) {
@@ -67,11 +60,19 @@ export class Timer extends SimpleEventTarget<TimerEventMap> {
     this.#accumulatedTime -= this.timerConfig.incrementBy;
   }
 
-  #accumulateTime() {
+  #elapsedSinceLastTimestamp() {
     const now = performance.now();
-    const elapsedTime = (now - this.#lastTimestamp) / 1000;
-
-    this.#lastTimestamp = now;
-    this.#accumulatedTime += elapsedTime;
+    return (now - this.#lastTimestamp) / 1000;
   }
+
+  #finishChecker = () => {
+    const remainingTime = this.remainingTime;
+
+    if (remainingTime <= 0) {
+      this.pause();
+      this.dispatchEvent("finish");
+    } else {
+      this.#finishCheckerTimeout = setTimeout(this.#finishChecker, remainingTime * 1000);
+    }
+  };
 }
