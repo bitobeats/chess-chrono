@@ -32,16 +32,7 @@ export class Timer extends SimpleEventTarget<TimerEventMap> {
     this.#isRunning = true;
     this.#lastTimestamp = performance.now();
 
-    const finishChecker = () => {
-      if (this.remainingTime <= 0) {
-        this.pause();
-        this.dispatchEvent("finish");
-      } else {
-        this.#finishCheckerTimeout = setTimeout(finishChecker, this.remainingTime * 1000);
-      }
-    };
-
-    finishChecker();
+    this.#finishChecker();
   }
 
   pause(increment?: boolean) {
@@ -74,4 +65,13 @@ export class Timer extends SimpleEventTarget<TimerEventMap> {
     this.#lastTimestamp = now;
     this.#accumulatedTime += elapsedTime;
   }
+
+  #finishChecker = () => {
+    if (this.remainingTime <= 0) {
+      this.pause();
+      this.dispatchEvent("finish");
+    } else {
+      this.#finishCheckerTimeout = setTimeout(this.#finishChecker, this.remainingTime * 1000);
+    }
+  };
 }
